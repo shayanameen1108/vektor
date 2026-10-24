@@ -1,0 +1,9 @@
+
+ RUN  v5.0.4 /Users/sfx/Developer/vektor
+
+
+ Test Files  6 passed (6)
+      Tests  87 passed (87)
+   Start at  21:13:31
+   Duration  346ms (import 64%, tests 26%, transform 8%, worker 2%)
+

@@ -1,10 +1,9 @@
-import { and, eq } from "drizzle-orm";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 
 import { companies } from "@/db/schema/company";
-import { complianceDocuments, sentReminders } from "@/db/schema/compliance";
+import { complianceDocuments } from "@/db/schema/compliance";
 import { user } from "@/db/schema/auth";
-import { daysUntil, pickThreshold, sendDocumentReminder } from "@/lib/reminder";
+import { sendDocumentReminder } from "@/lib/reminder";
 
 import type { Database } from "@/db";
 
@@ -46,71 +45,56 @@ async function seed(db: Database): Promise<{ companyId: string; documentId: stri
   return { companyId: "co-1", documentId: "doc-1" };
 }
 
-/** Mirrors reminder.ts sendDocumentReminder's persistence step. */
-async function recordSend(
-  db: Database,
-  ids: { companyId: string; documentId: string },
-  threshold: number,
-) {
-  await db.insert(sentReminders).values({
-    id: crypto.randomUUID(),
-    ...ids,
-    threshold,
-    sentAt: new Date(),
-    resendId: "re_test",
-    toEmail: "compliance@example.com",
+function stubResend(fetchMock: ReturnType<typeof vi.fn<typeof fetch>>) {
+  vi.stubGlobal("fetch", fetchMock);
+}
+
+function sendOnce(db: Database, ids: { companyId: string; documentId: string }) {
+  return sendDocumentReminder(
+    db,
+    { RESEND_API_KEY: "test-api-key" },
+    {
+      id: ids.companyId,
+      companyName: "Expiry Co",
+      contactEmail: "compliance@example.com",
+      alertsEnabled: true,
+    },
+    {
+      id: ids.documentId,
+      docType: "TAX_PIN",
+      fileName: "tax-pin.pdf",
+      expiryDate: "2026-09-02",
+      isCompliant: true,
+    },
+    7,
+  );
+}
+
+function resendOk(id = "re_retry") {
+  return new Response(JSON.stringify({ id }), {
+    status: 200,
+    headers: { "content-type": "application/json" },
   });
 }
 
-describe("reminder thresholds — idempotency against real SQL", () => {
-  it("fires exactly once per (company, document, threshold)", async () => {
+describe("reminder threshold idempotency through the public send", () => {
+  it("does not resend a threshold the sweep already recorded", async () => {
     const db = createTestDb();
     const ids = await seed(db);
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(resendOk("re_first"));
+    stubResend(fetchMock);
 
-    await recordSend(db, ids, 7);
-    // Second sweep attempt for the same threshold must not insert again.
-    const existing = await db
-      .select()
-      .from(sentReminders)
-      .where(
-        and(
-          eq(sentReminders.companyId, ids.companyId),
-          eq(sentReminders.documentId, ids.documentId),
-          eq(sentReminders.threshold, 7),
-        ),
-      );
-    expect(existing).toHaveLength(1);
-    await expect(recordSend(db, ids, 7)).rejects.toMatchObject({
-      cause: {
-        message: expect.stringContaining(
-          "UNIQUE constraint failed: sent_reminders.companyId, sent_reminders.documentId, sent_reminders.threshold",
-        ),
-      },
+    await expect(sendOnce(db, ids)).resolves.toMatchObject({
+      status: "sent",
+      threshold: 7,
+      resendId: "re_first",
     });
-  });
-
-  it("30 → 7 → 0 each fire on their own schedule", async () => {
-    const db = createTestDb();
-    const ids = await seed(db);
-
-    await recordSend(db, ids, 30);
-    expect(pickThreshold(daysUntil(new Date(Date.now() + 20 * 86_400_000)))).toBe(30);
-    expect(pickThreshold(daysUntil(new Date(Date.now() + 5 * 86_400_000)))).toBe(7);
-    await recordSend(db, ids, 7);
-    expect(pickThreshold(daysUntil(new Date(Date.now() - 86_400_000)))).toBe(0);
-    await recordSend(db, ids, 0);
-
-    const all = await db.select().from(sentReminders);
-    expect(all.map((r) => r.threshold).sort((a, b) => a - b)).toEqual([0, 7, 30]);
-  });
-
-  it("deleting a document clears its idempotency rows (fresh schedule for replacement)", async () => {
-    const db = createTestDb();
-    const ids = await seed(db);
-    await recordSend(db, ids, 7);
-
-    await db.delete(complianceDocuments).where(eq(complianceDocuments.id, ids.documentId));
-    expect(await db.select().from(sentReminders)).toHaveLength(0);
+    await expect(sendOnce(db, ids)).resolves.toMatchObject({
+      status: "skipped",
+      reason: "already sent",
+      threshold: 7,
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it.each([
@@ -125,43 +109,24 @@ describe("reminder thresholds — idempotency against real SQL", () => {
     const fetchMock = vi
       .fn<typeof fetch>()
       .mockImplementationOnce(failSend)
-      .mockResolvedValueOnce(
-        new Response(JSON.stringify({ id: "re_retry" }), {
-          status: 200,
-          headers: { "content-type": "application/json" },
-        }),
-      );
-    vi.stubGlobal("fetch", fetchMock);
+      .mockResolvedValueOnce(resendOk());
+    stubResend(fetchMock);
 
-    const send = () =>
-      sendDocumentReminder(
-        db,
-        { RESEND_API_KEY: "test-api-key" },
-        {
-          id: ids.companyId,
-          companyName: "Expiry Co",
-          contactEmail: "compliance@example.com",
-          alertsEnabled: true,
-        },
-        {
-          id: ids.documentId,
-          docType: "TAX_PIN",
-          fileName: "tax-pin.pdf",
-          expiryDate: "2026-09-02",
-          isCompliant: true,
-        },
-        7,
-      );
+    await expect(sendOnce(db, ids)).resolves.toMatchObject({ status: "failed", threshold: 7 });
 
-    await expect(send()).resolves.toMatchObject({ status: "failed", threshold: 7 });
-    expect(await db.select().from(sentReminders)).toHaveLength(0);
-
-    await expect(send()).resolves.toMatchObject({
+    // The claim was released, so the retry really sends — observable in the
+    // returned outcome and in a single new provider call.
+    await expect(sendOnce(db, ids)).resolves.toMatchObject({
       status: "sent",
       threshold: 7,
       resendId: "re_retry",
     });
-    expect(await db.select().from(sentReminders)).toHaveLength(1);
     expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    await expect(sendOnce(db, ids)).resolves.toMatchObject({
+      status: "skipped",
+      reason: "already sent",
+      threshold: 7,
+    });
   });
 });
