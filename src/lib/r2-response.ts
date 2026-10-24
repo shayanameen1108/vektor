@@ -115,7 +115,11 @@ function safeFilename(value: string): string {
 }
 
 /** Best-effort R2 cleanup — failed deletes are logged, never surfaced to the request. */
-export async function deleteQuietly(bucket: R2Bucket, key: string, what = "object"): Promise<void> {
+export async function deleteQuietly(
+  bucket: { delete(key: string): Promise<unknown> },
+  key: string,
+  what = "object",
+): Promise<void> {
   try {
     await bucket.delete(key);
   } catch (error) {
