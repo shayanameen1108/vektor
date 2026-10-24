@@ -35,7 +35,11 @@ import { Switch } from "@/components/ui/switch";
 import { useActiveCompany } from "@/hooks/use-active-company";
 import { apiSend } from "@/lib/api-client";
 import type { Company } from "@/lib/api-client";
-import { nullIfBlank, validateStatutoryFields } from "@/lib/company-validation";
+import {
+  companyInputSchema,
+  firstIssueMessage,
+  statutoryInputSchema,
+} from "@/lib/company-validation";
 import { companiesQuery, councilsQuery } from "@/lib/queries";
 import {
   Select,
@@ -261,47 +265,36 @@ function SetupPage() {
     }
   };
 
-  const statutoryReady = (() => {
-    try {
-      validateStatutoryFields(formData, { requireCipc: true });
-      return true;
-    } catch {
-      return false;
-    }
-  })();
+  const statutoryReady = statutoryInputSchema.safeParse({
+    cipc_num: formData.cipc_num,
+    csd_maaa_num: formData.csd_maaa_num,
+    sars_tcs_pin: formData.sars_tcs_pin,
+  }).success;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.company_name.trim()) {
-      toast.error("Company name is required");
-      return;
-    }
-    let statutoryFields: ReturnType<typeof validateStatutoryFields>;
-    try {
-      statutoryFields = validateStatutoryFields(formData, { requireCipc: true });
-    } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Check the statutory numbers and try again",
-      );
-      return;
-    }
-    const payload = {
+    // Same schema the API applies — the UI catches issues before the request.
+    const parsed = companyInputSchema.safeParse({
       company_name: formData.company_name.trim(),
-      cipc_num: statutoryFields.cipcNum,
-      csd_maaa_num: statutoryFields.csdMaaaNum,
-      sars_tcs_pin: statutoryFields.sarsTcsPin,
-      cidb_crs_num: nullIfBlank(formData.cidb_crs_num),
-      bbbee_level: formData.bbbee_level ? Number.parseInt(formData.bbbee_level, 10) : null,
-      contact_email: nullIfBlank(formData.contact_email),
-      contact_phone: nullIfBlank(formData.contact_phone),
-      authorised_signatory_name: nullIfBlank(formData.authorised_signatory_name),
-      authorised_signatory_position: nullIfBlank(formData.authorised_signatory_position),
-      bargaining_councils: formData.bargaining_councils || [],
-      preferred_pppfa_system: nullIfBlank(formData.preferred_pppfa_system),
-      alerts_enabled: Boolean(formData.alerts_enabled),
-    };
+      cipc_num: formData.cipc_num,
+      csd_maaa_num: formData.csd_maaa_num,
+      sars_tcs_pin: formData.sars_tcs_pin,
+      cidb_crs_num: formData.cidb_crs_num,
+      bbbee_level: formData.bbbee_level,
+      contact_email: formData.contact_email,
+      contact_phone: formData.contact_phone,
+      authorised_signatory_name: formData.authorised_signatory_name,
+      authorised_signatory_position: formData.authorised_signatory_position,
+      bargaining_councils: formData.bargaining_councils,
+      preferred_pppfa_system: formData.preferred_pppfa_system,
+      alerts_enabled: formData.alerts_enabled,
+    });
+    if (!parsed.success) {
+      toast.error(firstIssueMessage(parsed.error));
+      return;
+    }
     try {
-      await saveMutation.mutateAsync(payload);
+      await saveMutation.mutateAsync(parsed.data);
       if (isEditing) {
         toast.success("Company profile updated");
       } else {

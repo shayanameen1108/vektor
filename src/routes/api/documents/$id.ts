@@ -10,12 +10,10 @@ import {
   type DocType,
   validateBargainingCouncil,
 } from "@/lib/compliance";
-import { toApiDoc } from "@/lib/document-api";
+import { documentPatchSchema, toApiDoc } from "@/lib/document-api";
 import { deleteQuietly } from "@/lib/r2-response";
 import { fetchOwnedDocument } from "@/lib/ownership";
 import { requireUser } from "@/lib/server-auth";
-
-import { asString } from "@/lib/request-utils";
 
 export const Route = createFileRoute("/api/documents/$id")({
   server: {
@@ -51,9 +49,18 @@ export const Route = createFileRoute("/api/documents/$id")({
         if (owned instanceof Response) return owned;
         const { document } = owned;
 
+        const parsed = documentPatchSchema.safeParse(body);
+        if (!parsed.success) {
+          return Response.json(
+            { detail: parsed.error.issues[0]?.message ?? "Invalid input" },
+            { status: 400 },
+          );
+        }
+        const input = parsed.data;
+
         const updates: Record<string, unknown> = {};
-        if (Object.prototype.hasOwnProperty.call(body, "expiry_date")) {
-          const raw = asString(body.expiry_date).trim();
+        if (input.expiry_date !== undefined) {
+          const raw = input.expiry_date?.trim() ?? "";
           if (!raw) {
             if (NEEDS_EXPIRY_TYPES.has(document.docType as DocType)) {
               return Response.json(
@@ -71,19 +78,13 @@ export const Route = createFileRoute("/api/documents/$id")({
           }
         }
 
-        if (Object.prototype.hasOwnProperty.call(body, "is_compliant")) {
-          updates.isCompliant = Boolean(body.is_compliant);
+        if (input.is_compliant !== undefined) {
+          updates.isCompliant = input.is_compliant;
         }
 
-        if (
-          Object.prototype.hasOwnProperty.call(body, "bargaining_council") &&
-          isBcGos(document.docType)
-        ) {
+        if (input.bargaining_council !== undefined && isBcGos(document.docType)) {
           try {
-            const council = validateBargainingCouncil(
-              document.docType,
-              typeof body.bargaining_council === "string" ? body.bargaining_council : null,
-            );
+            const council = validateBargainingCouncil(document.docType, input.bargaining_council);
             updates.bargainingCouncil = council;
             updates.scopeKey = council ?? "";
           } catch (e) {
