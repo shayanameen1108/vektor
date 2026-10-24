@@ -4,7 +4,7 @@
  * atomic payment SQL and the referral-reward handoff behind `confirmEft`.
  */
 
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 
 import type { Database } from "@/db";
 import { eftPayments, type EftPaymentRow } from "@/db/schema/eft";
@@ -185,4 +185,58 @@ export async function confirmEft(
 
   const referralPending = await processReferral(db, durable, d1, true);
   return { ok: true, payment: durable, newlyConfirmed: true, referralPending };
+}
+
+export type RejectEftResult =
+  | { ok: true; payment: EftPaymentRow }
+  | { ok: false; status: 400 | 404 | 409; detail: string };
+
+/**
+ * Reject a pending EFT payment. Same single-guard pattern as `confirmEft`:
+ * the conditional UPDATE is the state machine, so a concurrent decision
+ * reports 409 instead of overwriting a settled payment. Rejection grants
+ * no credits, so there is no reward handoff — the caller sends the email.
+ */
+export async function rejectEft(
+  db: Database,
+  input: { paymentId: string; adminUserId: string; reason: string },
+): Promise<RejectEftResult> {
+  const payment = (
+    await db.select().from(eftPayments).where(eq(eftPayments.id, input.paymentId))
+  )[0];
+  if (!payment) return { ok: false, status: 404, detail: "Payment not found" };
+  if (payment.status !== "pending_review") {
+    return {
+      ok: false,
+      status: 400,
+      detail: `Cannot reject a ${payment.status} payment`,
+    };
+  }
+
+  const now = new Date();
+  const changed = await db
+    .update(eftPayments)
+    .set({
+      status: "rejected",
+      rejectReason: input.reason,
+      rejectedAt: now,
+      rejectedBy: input.adminUserId,
+      updatedAt: now,
+    })
+    .where(
+      and(
+        eq(eftPayments.id, input.paymentId),
+        eq(eftPayments.status, "pending_review"),
+        isNull(eftPayments.processingToken),
+      ),
+    )
+    .returning({ id: eftPayments.id });
+  if (changed.length === 0) {
+    return { ok: false, status: 409, detail: "Payment state changed; refresh and try again" };
+  }
+
+  const updated = (
+    await db.select().from(eftPayments).where(eq(eftPayments.id, input.paymentId))
+  )[0]!;
+  return { ok: true, payment: updated };
 }

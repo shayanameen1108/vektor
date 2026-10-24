@@ -83,33 +83,4 @@ describe("EFT credit rollover cap", () => {
     expect(rolloverCapForCycleCredits(20)).toBeGreaterThan(rolloverCapForCycleCredits(5));
     expect(rolloverCapForCycleCredits(50)).toBeGreaterThan(rolloverCapForCycleCredits(20));
   });
-
-  /**
-   * Mirrors the documented renewal rule as the EFT confirm handler applies it:
-   * a renewal tops the balance up but never past the cap, and a balance already
-   * above a smaller new cap is not clawed back. Only the cap comes from src.
-   */
-  function balanceAfterRenewal(held: number, cycleCredits: number): number {
-    const cap = rolloverCapForCycleCredits(cycleCredits);
-    return Math.max(held, Math.min(held + cycleCredits, cap));
-  }
-
-  it.each([
-    ["fresh subscriber, nothing banked", 0, 20, 20],
-    ["below the cap", 15, 20, 35],
-    ["one full cycle banked, at the cap", 20, 20, 40],
-    ["above one cycle but under the cap", 25, 20, 40],
-    ["already at the cap", 40, 20, 40],
-    ["over the cap after a downgrade", 55, 5, 55],
-  ] as const)("%s keeps %i credits after renewal", (_name, held, cycleCredits, expected) => {
-    expect(balanceAfterRenewal(held, cycleCredits)).toBe(expected);
-  });
-
-  it("never lets a renewal at the cap exceed twice the allowance", () => {
-    for (const cycleCredits of [1, 5, 20, 50]) {
-      const cap = rolloverCapForCycleCredits(cycleCredits);
-      expect(balanceAfterRenewal(cap, cycleCredits)).toBe(cap);
-      expect(balanceAfterRenewal(cap - 1, cycleCredits)).toBe(cap);
-    }
-  });
 });

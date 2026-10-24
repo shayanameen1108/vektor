@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { describe, expect, it } from "vite-plus/test";
 
 import type { Database } from "@/db";
@@ -8,7 +9,7 @@ import { eftPayments, type EftPaymentInsert } from "@/db/schema/eft";
 import { referrals } from "@/db/schema/referral";
 import { entryByLookup } from "@/lib/billing-catalog";
 import { getCredits, setCredits } from "@/lib/credits";
-import { confirmEft } from "@/lib/eft.server";
+import { confirmEft, rejectEft } from "@/lib/eft.server";
 import { claimPendingReferralRewards, maybeRewardReferrerOnPaidEft, myStats } from "@/lib/referral";
 
 import { createTestDb } from "../helpers/test-db";
@@ -355,5 +356,147 @@ describe("EFT admin confirmation", () => {
     });
     expect(await getCredits(db, "referee-company")).toBe(5);
     expect(await getCredits(db, "referrer-company")).toBe(5);
+  });
+});
+
+// V03: subscription renewal rollovers drive the production conditional SQL
+// through confirmEft — the local `balanceAfterRenewal` formula these cases
+// replace duplicated the rule and could drift from it silently.
+describe("subscription renewal rollover", () => {
+  it.each([
+    ["fresh subscriber, nothing banked", 0, "tc_pro_monthly_v2", 20, 20],
+    ["below the cap", 15, "tc_pro_monthly_v2", 20, 35],
+    ["one full cycle banked, at the cap", 20, "tc_pro_monthly_v2", 20, 40],
+    ["above one cycle but under the cap", 25, "tc_pro_monthly_v2", 20, 40],
+    ["already at the cap", 40, "tc_pro_monthly_v2", 20, 40],
+    ["one below the cap banks to the cap", 39, "tc_pro_monthly_v2", 20, 40],
+    ["over the cap after a downgrade", 55, "tc_starter_monthly_v2", 5, 55],
+  ] as const)(
+    "%s keeps the expected balance after renewal",
+    async (_name, held, lookupKey, cycleCredits, expected) => {
+      const db = createTestDb();
+      await seedUsers(db);
+      await seedReferrerCompany(db);
+      await setCredits(db, "referee-company", held);
+      await seedPayment(db, {
+        id: `payment-${held}-${cycleCredits}`,
+        reference: `VEK-R${String(held)}${String(cycleCredits)}`,
+        lookupKey,
+        credits: cycleCredits,
+      });
+
+      const result = await confirmEft(db, confirmInput(`payment-${held}-${cycleCredits}`));
+      expect(result).toMatchObject({ ok: true, newlyConfirmed: true });
+      expect(await getCredits(db, "referee-company")).toBe(expected);
+    },
+  );
+
+  it("grants the cycle when the company has no credit row yet", async () => {
+    const db = createTestDb();
+    await seedUsers(db);
+    await seedReferrerCompany(db);
+    await db.delete(companyCredits).where(eq(companyCredits.companyId, "referee-company"));
+    await seedPayment(db, {
+      id: "payment-pro",
+      reference: "VEK-PRO001",
+      lookupKey: "tc_pro_monthly_v2",
+      credits: 20,
+    });
+
+    const result = await confirmEft(db, confirmInput("payment-pro"));
+    expect(result).toMatchObject({ ok: true, newlyConfirmed: true });
+    expect(await getCredits(db, "referee-company")).toBe(20);
+  });
+});
+
+// V03: the rejection side of the state machine — no credits, no reward, and
+// a decided payment stays decided. Exercised through the same public seam
+// the route calls.
+describe("EFT admin rejection", () => {
+  it("rejects a pending payment without granting credits or a reward", async () => {
+    const db = createTestDb();
+    await seedUsers(db);
+    await seedReferrerCompany(db);
+    await seedPayment(db, {
+      id: "payment-pro",
+      reference: "VEK-PRO001",
+      lookupKey: "tc_pro_monthly_v2",
+      credits: 20,
+    });
+
+    const result = await rejectEft(db, {
+      paymentId: "payment-pro",
+      adminUserId: ADMIN,
+      reason: "Proof of payment is illegible",
+    });
+    expect(result).toMatchObject({
+      ok: true,
+      payment: { status: "rejected", rejectReason: "Proof of payment is illegible" },
+    });
+    expect(await getCredits(db, "referee-company")).toBe(5);
+    expect(await getCredits(db, "referrer-company")).toBe(5);
+    expect((await myStats(db, "referrer")).credits_earned).toBe(0);
+
+    // A rejected payment stays decided: it cannot be confirmed afterwards.
+    expect(await confirmEft(db, confirmInput("payment-pro"))).toEqual({
+      ok: false,
+      status: 400,
+      detail: "Payment must be in pending_review, currently rejected",
+    });
+    expect(await getCredits(db, "referee-company")).toBe(5);
+  });
+
+  it.each(["confirmed", "rejected", "awaiting_proof"] as const)(
+    "refuses to reject a %s payment and changes no balances",
+    async (status) => {
+      const db = createTestDb();
+      await seedUsers(db);
+      await seedReferrerCompany(db);
+      await seedPayment(db, {
+        id: `payment-${status}`,
+        reference: `VEK-${status.slice(0, 6).toUpperCase()}`,
+        lookupKey: "tc_pro_monthly_v2",
+        credits: 20,
+        status,
+      });
+
+      expect(
+        await rejectEft(db, {
+          paymentId: `payment-${status}`,
+          adminUserId: ADMIN,
+          reason: "x",
+        }),
+      ).toEqual({
+        ok: false,
+        status: 400,
+        detail: `Cannot reject a ${status} payment`,
+      });
+      expect(await getCredits(db, "referee-company")).toBe(5);
+    },
+  );
+
+  it("reports a held or missing payment instead of overwriting it", async () => {
+    const db = createTestDb();
+    await seedUsers(db);
+    await seedReferrerCompany(db);
+    await seedPayment(db, {
+      id: "payment-held",
+      reference: "VEK-HELD01",
+      lookupKey: "tc_pro_monthly_v2",
+      credits: 20,
+      processingToken: "concurrent-confirm",
+    });
+
+    expect(
+      await rejectEft(db, {
+        paymentId: "payment-held",
+        adminUserId: ADMIN,
+        reason: "x",
+      }),
+    ).toEqual({ ok: false, status: 409, detail: "Payment state changed; refresh and try again" });
+    expect(
+      await rejectEft(db, { paymentId: "payment-missing", adminUserId: ADMIN, reason: "x" }),
+    ).toEqual({ ok: false, status: 404, detail: "Payment not found" });
+    expect(await getCredits(db, "referee-company")).toBe(5);
   });
 });
