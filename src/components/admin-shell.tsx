@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
-import { clearActiveCompany } from "@/hooks/use-active-company";
+import { clearIdentityCaches } from "@/hooks/use-active-company";
 
 const NAV_ITEMS = [
   { to: "/admin", label: "Overview", testId: "admin-nav-overview" },
@@ -120,8 +120,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   }
                   // Better Auth ends the session but never touches this tab's
                   // TanStack cache, which still holds the user's private data.
-                  queryClient.clear();
-                  clearActiveCompany();
+                  clearIdentityCaches(queryClient);
                   toast.success("Signed out");
                   await navigate({ to: "/login", search: {} });
                 }}

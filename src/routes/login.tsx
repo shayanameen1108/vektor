@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
 import { getCurrentSession } from "@/lib/auth/session";
-import { clearActiveCompany } from "@/hooks/use-active-company";
+import { clearIdentityCaches } from "@/hooks/use-active-company";
 import { type UserDestination, homeForSession, userDestination } from "@/lib/destinations";
 
 export const Route = createFileRoute("/login")({
@@ -73,8 +73,7 @@ function LoginPage() {
     toast.success("Welcome back");
     // A new identity in this tab must not inherit the previous user's private
     // TanStack cache; Better Auth never touches it.
-    queryClient.clear();
-    clearActiveCompany();
+    clearIdentityCaches(queryClient);
     const { data } = await authClient.getSession();
     await navigate({ to: homeForSession(asVektorSession(data), search.redirect) });
   };

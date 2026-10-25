@@ -38,7 +38,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { clearActiveCompany, useActiveCompany } from "@/hooks/use-active-company";
+import { clearIdentityCaches, useActiveCompany } from "@/hooks/use-active-company";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
 import { companiesQuery, creditsQuery } from "@/lib/queries";
 
@@ -182,8 +182,7 @@ function UserFooter() {
                 }
                 // Better Auth ends the session but never touches this tab's
                 // TanStack cache, which still holds the user's private data.
-                queryClient.clear();
-                clearActiveCompany();
+                clearIdentityCaches(queryClient);
                 toast.success("Signed out");
                 await navigate({ to: "/login", search: {} });
               }}

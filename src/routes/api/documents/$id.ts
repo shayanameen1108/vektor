@@ -10,6 +10,7 @@ import {
   type DocType,
   validateBargainingCouncil,
 } from "@/lib/compliance";
+import { firstIssueMessage } from "@/lib/company-validation";
 import { documentPatchSchema, toApiDoc } from "@/lib/document-api";
 import { deleteQuietly } from "@/lib/r2-response";
 import { fetchOwnedDocument } from "@/lib/ownership";
@@ -51,10 +52,7 @@ export const Route = createFileRoute("/api/documents/$id")({
 
         const parsed = documentPatchSchema.safeParse(body);
         if (!parsed.success) {
-          return Response.json(
-            { detail: parsed.error.issues[0]?.message ?? "Invalid input" },
-            { status: 400 },
-          );
+          return Response.json({ detail: firstIssueMessage(parsed.error) }, { status: 400 });
         }
         const input = parsed.data;
 

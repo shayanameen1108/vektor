@@ -51,8 +51,12 @@ function firstPaidReferralPin(d1: D1Database, refereeUserId: string) {
   return d1.prepare(sql).bind(refereeUserId, ...Object.entries(TIER_REWARDS).flat(), refereeUserId);
 }
 
-/** Pin the first-paid reward (unless already pinned) then run the reward. */
-async function processReferral(
+/**
+ * Pins the first-paid reward (unless already pinned), then runs it. True
+ * while the reward stayed pending: its run failed, and the pin keeps it
+ * retryable.
+ */
+async function referralRewardPending(
   db: Database,
   payment: EftPaymentRow,
   d1: D1Database,
@@ -96,7 +100,7 @@ export async function confirmEft(
   if (payment.status === "confirmed") {
     // Retrying an already-confirmed payment still completes a reward that
     // failed on the original run — pending fields pin what is owed first.
-    const referralPending = await processReferral(db, payment, d1, false);
+    const referralPending = await referralRewardPending(db, payment, d1, false);
     return { ok: true, payment, newlyConfirmed: false, referralPending };
   }
   if (payment.status !== "pending_review") {
@@ -177,13 +181,13 @@ export async function confirmEft(
   if (!durable) return { ok: false, status: 404, detail: "Payment not found" };
   if (!won) {
     if (durable.status === "confirmed") {
-      const referralPending = await processReferral(db, durable, d1, false);
+      const referralPending = await referralRewardPending(db, durable, d1, false);
       return { ok: true, payment: durable, newlyConfirmed: false, referralPending };
     }
     return { ok: false, status: 409, detail: "Payment state changed; refresh and try again" };
   }
 
-  const referralPending = await processReferral(db, durable, d1, true);
+  const referralPending = await referralRewardPending(db, durable, d1, true);
   return { ok: true, payment: durable, newlyConfirmed: true, referralPending };
 }
 
