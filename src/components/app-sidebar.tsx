@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import {
   BuildingIcon,
@@ -38,7 +38,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { clearActiveCompany, useActiveCompany } from "@/hooks/use-active-company";
+import { clearIdentityCaches, useActiveCompany } from "@/hooks/use-active-company";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
 import { companiesQuery, creditsQuery } from "@/lib/queries";
 
@@ -131,6 +131,7 @@ function CreditsAndCompany() {
 
 function UserFooter() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { data: rawData } = authClient.useSession();
   const user = asVektorSession(rawData)?.user;
   if (!user) return null;
@@ -174,8 +175,14 @@ function UserFooter() {
             <DropdownMenuItem
               data-testid="btn-signout"
               onClick={async () => {
-                await authClient.signOut();
-                clearActiveCompany();
+                const { error } = await authClient.signOut();
+                if (error) {
+                  toast.error(error.message ?? "Could not sign out");
+                  return;
+                }
+                // Better Auth ends the session but never touches this tab's
+                // TanStack cache, which still holds the user's private data.
+                clearIdentityCaches(queryClient);
                 toast.success("Signed out");
                 await navigate({ to: "/login", search: {} });
               }}

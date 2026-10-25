@@ -1,3 +1,5 @@
+import { ALLOWED_PROOF_TYPES } from "@/lib/eft";
+
 export interface R2ResponseOptions {
   request: Request;
   bucket: R2Bucket;
@@ -18,7 +20,12 @@ export async function r2Response(options: R2ResponseOptions): Promise<Response |
   if (rangeHeader && !range) {
     return new Response(null, {
       status: 416,
-      headers: { "content-range": `bytes */${head.size}`, "accept-ranges": "bytes" },
+      headers: {
+        "content-range": `bytes */${head.size}`,
+        "accept-ranges": "bytes",
+        "cache-control": "private, no-store",
+        "x-content-type-options": "nosniff",
+      },
     });
   }
 
@@ -32,13 +39,26 @@ export async function r2Response(options: R2ResponseOptions): Promise<Response |
   object.writeHttpMetadata(headers);
   headers.set("etag", object.httpEtag);
   headers.set("accept-ranges", "bytes");
-  headers.set(
-    "content-disposition",
-    `${options.disposition}; filename="${safeFilename(options.filename)}"`,
-  );
+  // Every download is private auth-gated data: override whatever cache policy
+  // the object's R2 metadata carries and forbid content sniffing.
+  headers.set("cache-control", "private, no-store");
+  headers.set("x-content-type-options", "nosniff");
   if (!headers.has("content-type")) {
     headers.set("content-type", options.fallbackContentType ?? "application/octet-stream");
   }
+  // The only caller asking for inline is the EFT proof route, whose upload
+  // allowlist is the trust boundary — untrusted types must never execute on
+  // this origin, so they downgrade to an octet-stream download.
+  const baseType = (headers.get("content-type") ?? "").split(";")[0]!.trim().toLowerCase();
+  let disposition = options.disposition;
+  if (disposition === "inline" && !Object.hasOwn(ALLOWED_PROOF_TYPES, baseType)) {
+    disposition = "attachment";
+    headers.set("content-type", "application/octet-stream");
+  }
+  headers.set(
+    "content-disposition",
+    `${disposition}; filename="${safeFilename(options.filename)}"`,
+  );
 
   if (!("body" in object)) {
     const preconditionFailed =
@@ -95,7 +115,11 @@ function safeFilename(value: string): string {
 }
 
 /** Best-effort R2 cleanup — failed deletes are logged, never surfaced to the request. */
-export async function deleteQuietly(bucket: R2Bucket, key: string, what = "object"): Promise<void> {
+export async function deleteQuietly(
+  bucket: { delete(key: string): Promise<unknown> },
+  key: string,
+  what = "object",
+): Promise<void> {
   try {
     await bucket.delete(key);
   } catch (error) {

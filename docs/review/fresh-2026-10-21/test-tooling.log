@@ -1,0 +1,17 @@
++ vp run test:tooling
+$ node --test scripts/ensure-void-wrangler.test.mjs ⊘ cache disabled
+✔ selected local config supersedes stale generated config and stale lock (705.367792ms)
+✔ selected staging config supersedes stale generated config and stale lock (692.80225ms)
+✔ selected production config supersedes stale generated config and stale lock (697.574291ms)
+✔ config evaluation failure exits nonzero without a raw-lock fallback (676.745666ms)
+✔ missing Void installation fails nonzero rather than copying the lock (30.6575ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2845.321583
+
+EXIT(0) >> /Users/sfx/phase1-evidence/logs/vektor/test-tooling.log

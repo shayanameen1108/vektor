@@ -1,17 +1,18 @@
-import { eq } from "drizzle-orm";
 import { describe, expect, it } from "vite-plus/test";
 
 import type { Database } from "@/db";
 import { user } from "@/db/schema/auth";
 import { companies } from "@/db/schema/company";
 import { companyCredits } from "@/db/schema/credits";
-import { referralRewards, referrals } from "@/db/schema/referral";
+import { referrals } from "@/db/schema/referral";
+import { getCredits } from "@/lib/credits";
 import {
   LIFETIME_REWARD_CAP,
   MONTHLY_REWARD_CAP,
   claimPendingReferralRewards,
   isSelfReferral,
   maybeRewardReferrerOnPaidEft,
+  myStats,
   rewardForPlan,
 } from "@/lib/referral";
 
@@ -80,7 +81,7 @@ describe("referral reward rules", () => {
     ).toBe(false);
   });
 
-  it("preserves and idempotently claims the first paid reward after company creation", async () => {
+  it("parks the first paid reward until the referrer has a company, then grants it once", async () => {
     const db = createTestDb();
     await seedReferral(db);
 
@@ -99,11 +100,12 @@ describe("referral reward rules", () => {
       planLookupKey: "tc_scale_monthly_v2",
     });
 
-    expect((await db.select().from(referrals))[0]).toMatchObject({
-      pendingReferrerCredits: 5,
-      pendingPlanLookupKey: "tc_pro_monthly_v2",
-      pendingTriggerReference: "VEK-FIRST1",
-    });
+    // Visible to the referrer: one invited company, reward pending, none earned.
+    const parked = await myStats(db, "referrer");
+    expect(parked.recent[0]?.status).toBe("pending_referrer_company");
+    expect(parked.recent[0]?.first_paid_at).toBeNull();
+    expect(parked.subscribed_count).toBe(0);
+    expect(parked.credits_earned).toBe(0);
 
     const now = new Date();
     await db.insert(companies).values({
@@ -116,6 +118,7 @@ describe("referral reward rules", () => {
     });
     await db.insert(companyCredits).values({ companyId: "company", credits: 1, updatedAt: now });
 
+    // The parked reward keeps the ORIGINAL plan (pro → 5), not the later one.
     await expect(
       claimPendingReferralRewards(db, {
         referrerUserId: "referrer",
@@ -135,24 +138,13 @@ describe("referral reward rules", () => {
       }),
     ).resolves.toEqual([]);
 
-    expect(
-      (await db.select().from(companyCredits).where(eq(companyCredits.companyId, "company")))[0]
-        ?.credits,
-    ).toBe(6);
-    expect(await db.select().from(referralRewards)).toEqual([
-      expect.objectContaining({
-        creditsGranted: 5,
-        planLookupKey: "tc_pro_monthly_v2",
-        triggerReference: "VEK-FIRST1",
-      }),
-    ]);
-    expect((await db.select().from(referrals))[0]).toMatchObject({
-      status: "first_paid_subscription",
-      referrerFirstPaidBonusGranted: true,
-      firstPaidPlanLookupKey: "tc_pro_monthly_v2",
-      pendingReferrerCredits: null,
-      pendingPlanLookupKey: null,
-      pendingTriggerReference: null,
-    });
+    expect(await getCredits(db, "company")).toBe(6);
+    const stats = await myStats(db, "referrer");
+    expect(stats.recent[0]?.status).toBe("first_paid_subscription");
+    expect(stats.recent[0]?.first_paid_at).toBeTruthy();
+    expect(stats.subscribed_count).toBe(1);
+    expect(stats.credits_earned).toBe(5);
+    expect(stats.monthly_used).toBe(1);
+    expect(stats.lifetime_used).toBe(1);
   });
 });

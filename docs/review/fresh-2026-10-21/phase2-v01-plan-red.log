@@ -1,0 +1,99 @@
+
+ RUN  v5.0.4 /Users/sfx/phase1-evidence/checkouts-v01/vektor
+
+stderr | tests/unit/eft-confirmation.test.ts > EFT admin confirmation > keeps the payment durable on a reward failure and completes it on retry
+Failed to process referral reward Error: fixture referral persistence failure
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:67:14
+    at Array.map (<anonymous>)
+    at Object.batch (/Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:64:36)
+    at grantReferralReward (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:233:30)
+    at maybeRewardReferrerOnPaidEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:423:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at processReferral (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:63:5)
+    at confirmEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:186:27)
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/unit/eft-confirmation.test.ts:131:19
+    at async file:///Users/sfx/Developer/vektor/node_modules/.pnpm/vitest@5.0.4_@types+node@24.19.2_@vitest+browser-preview@5.0.4_@vitest+ui@5.0.4_@voidze_596eb94238162db054a1c3ddba1615b6/node_modules/vitest/dist/chunks/run.Cm2sd7-x.js:2794:20 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+
+stderr | tests/unit/eft-confirmation.test.ts > EFT admin confirmation > a later confirmed payment cannot overwrite the pinned first-paid reward
+Failed to process referral reward Error: fixture referral persistence failure
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:67:14
+    at Array.map (<anonymous>)
+    at Object.batch (/Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:64:36)
+    at grantReferralReward (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:233:30)
+    at maybeRewardReferrerOnPaidEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:423:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at processReferral (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:63:5)
+    at confirmEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:186:27)
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/unit/eft-confirmation.test.ts:174:5
+    at async file:///Users/sfx/Developer/vektor/node_modules/.pnpm/vitest@5.0.4_@types+node@24.19.2_@vitest+browser-preview@5.0.4_@vitest+ui@5.0.4_@voidze_596eb94238162db054a1c3ddba1615b6/node_modules/vitest/dist/chunks/run.Cm2sd7-x.js:2794:20 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+
+stderr | tests/unit/eft-confirmation.test.ts > EFT admin confirmation > prefers the pinned original plan when a retry passes later args
+Failed to process referral reward Error: fixture referral persistence failure
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:67:14
+    at Array.map (<anonymous>)
+    at Object.batch (/Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/helpers/test-db.ts:64:36)
+    at grantReferralReward (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:233:30)
+    at maybeRewardReferrerOnPaidEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/referral.ts:423:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at processReferral (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:63:5)
+    at confirmEft (/Users/sfx/phase1-evidence/checkouts-v01/vektor/src/lib/eft.server.ts:186:27)
+    at /Users/sfx/phase1-evidence/checkouts-v01/vektor/tests/unit/eft-confirmation.test.ts:276:5
+    at async file:///Users/sfx/Developer/vektor/node_modules/.pnpm/vitest@5.0.4_@types+node@24.19.2_@vitest+browser-preview@5.0.4_@vitest+ui@5.0.4_@voidze_596eb94238162db054a1c3ddba1615b6/node_modules/vitest/dist/chunks/run.Cm2sd7-x.js:2794:20 {
+  code: 'ERR_SQLITE_ERROR',
+  errcode: 1811,
+  errstr: 'constraint failed'
+}
+
+ ❯ tests/unit/eft-confirmation.test.ts (8 tests | 1 failed) 49ms
+   ❯ EFT admin confirmation (8)
+     ✓ keeps the payment durable on a reward failure and completes it on retry 17ms
+     ✓ a later confirmed payment cannot overwrite the pinned first-paid reward 6ms
+     ✓ grants credits and the reward exactly once under concurrent confirms 5ms
+     ✓ parks the reward when the referrer has no company, claimable once 4ms
+     ✓ grants PAYG credits without any referral reward 4ms
+     × prefers the pinned original plan when a retry passes later args 6ms
+     ✓ recovers a pre-patch confirmed payment's pinned reward on retry 4ms
+     ✓ refuses states that cannot confirm and changes no balances 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/eft-confirmation.test.ts > EFT admin confirmation > prefers the pinned original plan when a retry passes later args
+AssertionError: expected { granted: true, credits: 5, …(3) } to deeply equal { granted: true, credits: 5, …(3) }
+
+- Expected
++ Received
+
+  {
+    "credits": 5,
+    "granted": true,
+-   "plan_lookup_key": "tc_pro_monthly_v2",
++   "plan_lookup_key": "tc_credits_1_v2",
+    "referrer_user_id": "referrer",
+    "type": "first_paid_subscription",
+  }
+
+ ❯ tests/unit/eft-confirmation.test.ts:287:20
+    285|       planLookupKey: "tc_credits_1_v2",
+    286|     });
+    287|     expect(reward).toEqual({
+       |                    ^
+    288|       granted: true,
+    289|       credits: 5,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  22:38:40
+   Duration  350ms (import 71%, tests 17%, transform 11%, worker 1%)
+
+EXIT:1

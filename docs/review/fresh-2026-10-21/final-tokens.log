@@ -1,0 +1,5 @@
+$ node scripts/check-tokens.mjs ◉ cache hit, replaying
+Tokens only, on the 4px grid: 83 files.
+
+---
+vp run: cache hit, 691ms saved.

@@ -1,0 +1,32 @@
+{
+  "captured": "2026-10-21",
+  "baselineSha": "0ad39d23f1cc7aa21ae6072712b8f8a0be8d5ac8",
+  "branch": "review/fresh-2026-10-21",
+  "phase": "Phase 1 review - documentation only",
+  "issueList": {
+    "command": "gh issue list --repo sfxpers/vektor --state all --limit 200 --json number,title,labels,url",
+    "result": [],
+    "notes": "no governing GitHub issue; current ADRs, GLOSSARY.md, README.md and CODING_STANDARDS.md are the documented contract"
+  },
+  "skillsUpstream": {
+    "repo": "https://github.com/mattpocock/skills",
+    "pinnedSha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+    "tree": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+    "promotedDefinition": "https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/AGENTS.md",
+    "promotedManifest": "https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/.claude-plugin/plugin.json",
+    "promoted": "27 locked skills; updated 0, added 0, removed 0",
+    "unpromoted": [
+      "misc/git-guardrails-claude-code",
+      "misc/migrate-to-shoehorn",
+      "misc/scaffold-exercises",
+      "misc/setup-pre-commit",
+      "in-progress/chief-of-staff",
+      "in-progress/claude-handoff",
+      "in-progress/loop-me",
+      "in-progress/setup-ts-deep-modules",
+      "in-progress/writing-beats",
+      "in-progress/writing-fragments",
+      "in-progress/writing-shape"
+    ]
+  }
+}

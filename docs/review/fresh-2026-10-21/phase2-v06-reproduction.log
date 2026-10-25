@@ -1,0 +1,75 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (cached) (6.3s)
+  ✘  2 tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (in-flight) (5.6s)
+
+
+  1) tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (cached) 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "Same-Tab Alpha Holdings (Pty) Ltd",
+    +   "2026/111111/07",
+    + ]
+
+      150 |       // first mutation, so a bounded settle proves nothing of A's rendered.
+      151 |       await page.waitForTimeout(1000);
+    > 152 |       expect(await page.evaluate(() => (window as any).__v06Leak)).toEqual([]);
+          |                                                                    ^
+      153 |
+      154 |       releaseCompanies();
+      155 |       await page.unroute("**/api/companies");
+        at /Users/sfx/phase1-evidence/checkouts-v06/vektor/tests/e2e/session-isolation.spec.ts:152:68
+
+    Error Context: test-results/session-isolation-an-ident-a9dbc-ious-Account-s-data-cached-/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/session-isolation-an-ident-a9dbc-ious-Account-s-data-cached-/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/session-isolation-an-ident-a9dbc-ious-Account-s-data-cached-/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (in-flight) 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "Same-Tab Alpha Holdings (Pty) Ltd",
+    +   "2026/111111/07",
+    + ]
+
+      150 |       // first mutation, so a bounded settle proves nothing of A's rendered.
+      151 |       await page.waitForTimeout(1000);
+    > 152 |       expect(await page.evaluate(() => (window as any).__v06Leak)).toEqual([]);
+          |                                                                    ^
+      153 |
+      154 |       releaseCompanies();
+      155 |       await page.unroute("**/api/companies");
+        at /Users/sfx/phase1-evidence/checkouts-v06/vektor/tests/e2e/session-isolation.spec.ts:152:68
+
+    Error Context: test-results/session-isolation-an-ident-f77d1-s-Account-s-data-in-flight-/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/session-isolation-an-ident-f77d1-s-Account-s-data-in-flight-/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/session-isolation-an-ident-f77d1-s-Account-s-data-in-flight-/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (cached) 
+    tests/e2e/session-isolation.spec.ts:32:3 › an identity switch in one tab never shows the previous Account's data (in-flight) 
+EXIT:1

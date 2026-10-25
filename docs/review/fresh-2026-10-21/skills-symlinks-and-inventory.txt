@@ -1,0 +1,28 @@
+=== vektor .gitignore ===
+pnpm-*
+
+=== vektor symlinks (target + resolves?) ===
+./pnpm-@tanstack+devtools-vite-devtools-vite-plugin -> ../../node_modules/.pnpm/@tanstack+devtools-vite@0.8.5_@emnapi+core@1.11.3_@emnapi+runtime@1.11.3_@voidzero-dev+_efb59a1245fd4fb8133e99885eaa4f37/node_modules/@tanstack/devtools-vite/skills/devtools-vite-plugin [RESOLVES]
+./pnpm-@tanstack+react-start-react-start -> ../../node_modules/.pnpm/@tanstack+react-start@1.169.2_@voidzero-dev+vite-plus-core@1.2.0_@types+node@24.19.2_es_1ee8b4d9527b33bb2981459898ab8813/node_modules/@tanstack/react-start/skills/react-start [RESOLVES]
+./void -> ../../node_modules/void/skills/void [RESOLVES]
+=== vektor package skill inventories ===
+--- ./pnpm-@tanstack+devtools-vite-devtools-vite-plugin
+references/vite-options.md
+SKILL.md
+--- ./pnpm-@tanstack+react-start-react-start
+SKILL.md
+server-components/docs/caching-refresh-ssr.md
+server-components/docs/architecture.md
+server-components/docs/current-api-notes.md
+server-components/docs/debugging-review.md
+server-components/docs/sources.md
+server-components/docs/composite-components.md
+server-components/examples/04-selective-ssr-data-only.tsx
+server-components/examples/05-ssr-false-browser-loader.tsx
+server-components/examples/03-query-owned-rsc.tsx
+server-components/examples/06-low-level-flight-api-route.tsx
+server-components/examples/01-renderable-route-loader.tsx
+server-components/examples/02-composite-slots.tsx
+server-components/SKILL.md
+--- ./void
+SKILL.md

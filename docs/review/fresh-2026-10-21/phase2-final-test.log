@@ -1,0 +1,28 @@
+
+ RUN  v5.0.4 /Users/sfx/phase1-evidence/checkouts-final/vektor
+
+ ✓ tests/unit/eft.test.ts (20 tests) 27ms
+ ✓ tests/unit/reminder-template.test.ts (9 tests) 27ms
+ ✓ tests/unit/pdf-extract.test.ts (1 test) 128ms
+ ✓ tests/unit/sbd.test.ts (12 tests) 24ms
+ ✓ tests/unit/password.test.ts (36 tests) 7ms
+ ✓ tests/unit/tender-scoring.test.ts (54 tests) 18ms
+ ✓ tests/unit/local-tender-analysis.test.ts (3 tests) 10ms
+ ✓ tests/unit/verification.test.ts (21 tests) 6ms
+ ✓ tests/unit/cidb.test.ts (12 tests) 6ms
+ ✓ tests/unit/trusted-origins.test.ts (6 tests) 6ms
+ ✓ tests/unit/referral.test.ts (4 tests) 27ms
+ ✓ tests/unit/credits.test.ts (2 tests) 54ms
+ ✓ tests/unit/compliance.test.ts (3 tests) 5ms
+ ✓ tests/unit/bargaining.test.ts (3 tests) 4ms
+ ✓ tests/unit/reminder-idempotency.test.ts (5 tests) 113ms
+ ✓ tests/unit/bbbee.test.ts (6 tests) 3ms
+ ✓ tests/unit/destinations.test.ts (4 tests) 3ms
+ ✓ tests/unit/expiry.test.ts (61 tests) 8ms
+ ✓ tests/unit/reminder.test.ts (3 tests) 2ms
+
+ Test Files  19 passed (19)
+      Tests  265 passed (265)
+   Start at  22:13:47
+   Duration  1.15s (import 63%, transform 22%, tests 13%, worker 2%)
+

@@ -33,17 +33,15 @@ describe("reminder subject lines", () => {
 });
 
 describe("reminder body", () => {
-  it("badges the 7-day email urgent with the amber accent", () => {
+  it("badges the 7-day email urgent", () => {
     const html = buildEmailHtml({ ...BASE, threshold: 7 });
     expect(html).toContain("URGENT — 7 DAYS TO EXPIRY");
-    expect(html).toContain("#D97706");
     expect(html).toContain("Amandla Construction");
   });
 
-  it("badges the expiry-day email ineligible with the danger accent", () => {
+  it("badges the expiry-day email ineligible", () => {
     const html = buildEmailHtml({ ...BASE, threshold: 0 });
     expect(html).toContain("EXPIRED TODAY — INELIGIBLE TO BID");
-    expect(html).toContain("#DC2626");
   });
 
   it("badges the 30-day email with the neutral accent", () => {

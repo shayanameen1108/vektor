@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { LogOutIcon, Menu } from "lucide-react";
 import { toast } from "sonner";
@@ -13,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
-import { clearActiveCompany } from "@/hooks/use-active-company";
+import { clearIdentityCaches } from "@/hooks/use-active-company";
 
 const NAV_ITEMS = [
   { to: "/admin", label: "Overview", testId: "admin-nav-overview" },
@@ -25,6 +26,7 @@ const NAV_ITEMS = [
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { data: rawData } = authClient.useSession();
   const user = asVektorSession(rawData)?.user;
@@ -111,8 +113,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 title={`Sign out ${user.email}`}
                 className="!size-11"
                 onClick={async () => {
-                  await authClient.signOut();
-                  clearActiveCompany();
+                  const { error } = await authClient.signOut();
+                  if (error) {
+                    toast.error(error.message ?? "Could not sign out");
+                    return;
+                  }
+                  // Better Auth ends the session but never touches this tab's
+                  // TanStack cache, which still holds the user's private data.
+                  clearIdentityCaches(queryClient);
                   toast.success("Signed out");
                   await navigate({ to: "/login", search: {} });
                 }}

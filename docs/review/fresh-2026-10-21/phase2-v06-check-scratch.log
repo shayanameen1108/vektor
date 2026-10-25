@@ -1,0 +1,12 @@
+pass: All 248 files are correctly formatted (742ms, 8 threads)
+error: Lint or type issues found
+x typescript(TS2307): Cannot find module './helpers' or its corresponding type declarations.
+   ,-[session-isolation.spec.ts:3:85]
+ 2 | 
+ 3 | import { createCompany, signUp, TEST_PASSWORD, uniqueEmail, waitForHydration } from "./helpers";
+   :                                                                                     ^^^^^^^^^^^
+ 4 | 
+   `----
+
+Found 1 error and 0 warnings in 216 files (2.4s, 8 threads)
+EXIT:1

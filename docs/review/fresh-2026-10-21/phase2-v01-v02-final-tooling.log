@@ -1,0 +1,15 @@
+$ node --test scripts/ensure-void-wrangler.test.mjs ⊘ cache disabled
+✔ selected local config supersedes stale generated config and stale lock (694.451291ms)
+✔ selected staging config supersedes stale generated config and stale lock (688.659792ms)
+✔ selected production config supersedes stale generated config and stale lock (685.342208ms)
+✔ config evaluation failure exits nonzero without a raw-lock fallback (644.340333ms)
+✔ missing Void installation fails nonzero rather than copying the lock (31.45725ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2783.571666
+

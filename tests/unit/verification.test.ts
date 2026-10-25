@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vite-plus/test";
 
-import { validateStatutoryFields } from "@/lib/company-validation";
+import { companyInputSchema, companyPatchSchema } from "@/lib/company-validation";
 import { verifyCipc, verifyCsdMaaa, verifySarsTcs, verify } from "@/lib/verification";
+
+const issue = (result: { success: boolean; error?: { issues: { message: string }[] } }) =>
+  result.success ? null : (result.error?.issues[0]?.message ?? null);
 
 describe("verification", () => {
   describe("verifyCipc", () => {
@@ -99,56 +102,55 @@ describe("verification", () => {
   });
 });
 
-describe("company statutory field validation", () => {
-  it("requires a valid string CIPC number when requested", () => {
-    expect(() => validateStatutoryFields({}, { requireCipc: true })).toThrow(
+// Statutory rules now live in the shared Zod input schemas (see
+// input-validation.test.ts for the full contract); the same format checks
+// and normalization apply.
+describe("company statutory input validation", () => {
+  it("requires a valid string CIPC number on create", () => {
+    expect(issue(companyInputSchema.safeParse({ company_name: "Acme" }))).toBe(
       "CIPC number is required",
     );
-    expect(() =>
-      validateStatutoryFields({ cipc_num: 202112345607 }, { requireCipc: true }),
-    ).toThrow("CIPC number must be a string");
-    expect(() =>
-      validateStatutoryFields({ cipc_num: "2021-123456-07" }, { requireCipc: true }),
-    ).toThrow("Invalid CIPC number: Format must be YYYY/NNNNNN/TT");
+    expect(
+      issue(companyInputSchema.safeParse({ company_name: "Acme", cipc_num: 202112345607 })),
+    ).toBe("CIPC number must be a string");
+    expect(
+      issue(companyInputSchema.safeParse({ company_name: "Acme", cipc_num: "2021-123456-07" })),
+    ).toBe("Invalid CIPC number: Format must be YYYY/NNNNNN/TT (e.g. 2021/123456/07)");
   });
 
   it("normalizes valid statutory values", () => {
-    expect(
-      validateStatutoryFields(
-        {
-          cipc_num: " 2021/123456/07 ",
-          csd_maaa_num: " maaa0123456 ",
-          sars_tcs_pin: " ab12cd34ef ",
-        },
-        { requireCipc: true },
-      ),
-    ).toEqual({
-      cipcNum: "2021/123456/07",
-      csdMaaaNum: "MAAA0123456",
-      sarsTcsPin: "AB12CD34EF",
+    const parsed = companyPatchSchema.safeParse({
+      cipc_num: " 2021/123456/07 ",
+      csd_maaa_num: " maaa0123456 ",
+      sars_tcs_pin: " ab12cd34ef ",
+    });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data).toEqual({
+      cipc_num: "2021/123456/07",
+      csd_maaa_num: "MAAA0123456",
+      sars_tcs_pin: "AB12CD34EF",
     });
   });
 
   it("rejects invalid supplied CSD and SARS values and non-string types", () => {
-    expect(() => validateStatutoryFields({ csd_maaa_num: "MAAA123" })).toThrow(
-      "Invalid CSD/MAAA number",
+    expect(issue(companyPatchSchema.safeParse({ csd_maaa_num: "MAAA123" }))).toBe(
+      "Invalid CSD/MAAA number: MAAA number must be 'MAAA' followed by 7 digits (e.g. MAAA0123456)",
     );
-    expect(() => validateStatutoryFields({ sars_tcs_pin: "ABC-123" })).toThrow(
-      "Invalid SARS TCS PIN",
+    expect(issue(companyPatchSchema.safeParse({ sars_tcs_pin: "ABC-123" }))).toBe(
+      "Invalid SARS TCS PIN: TCS PIN must be 9–10 alphanumeric characters",
     );
-    expect(() => validateStatutoryFields({ csd_maaa_num: 123 })).toThrow(
+    expect(issue(companyPatchSchema.safeParse({ csd_maaa_num: 123 }))).toBe(
       "CSD/MAAA number must be a string or null",
     );
-    expect(() => validateStatutoryFields({ sars_tcs_pin: false })).toThrow(
+    expect(issue(companyPatchSchema.safeParse({ sars_tcs_pin: false }))).toBe(
       "SARS TCS PIN must be a string or null",
     );
   });
 
   it("normalizes blank optional values to null and ignores omitted fields", () => {
-    expect(validateStatutoryFields({ csd_maaa_num: "  ", sars_tcs_pin: null })).toEqual({
-      csdMaaaNum: null,
-      sarsTcsPin: null,
-    });
-    expect(validateStatutoryFields({})).toEqual({});
+    const parsed = companyPatchSchema.safeParse({ csd_maaa_num: "  ", sars_tcs_pin: null });
+    expect(parsed.success).toBe(true);
+    expect(parsed.data).toEqual({ csd_maaa_num: null, sars_tcs_pin: null });
+    expect(companyPatchSchema.safeParse({}).data).toEqual({});
   });
 });

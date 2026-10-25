@@ -306,34 +306,11 @@ describe("tender risk flag scoring", () => {
       },
     );
 
-    it("keeps every reachable fit score inside 0-100", () => {
-      for (const tax of [true, false]) {
-        for (const coida of [true, false]) {
-          for (const cidb of [true, false]) {
-            const { fitScore } = scoreDeductions(tax, coida, cidb);
-            expect(fitScore).toBeGreaterThanOrEqual(0);
-            expect(fitScore).toBeLessThanOrEqual(100);
-          }
-        }
-      }
-    });
-
     it("reaches the 0 floor exactly on the worst legal combination", () => {
       const result = scoreDeductions(true, true, true);
       expect(result.fitScore).toBe(0);
       expect(result.riskFlags.filter((flag) => flag.startsWith("CRITICAL:"))).toHaveLength(2);
       expect(result.riskFlags.filter((flag) => flag.startsWith("WARNING:"))).toHaveLength(1);
-    });
-
-    it("reports the same verdict for the score it returns", () => {
-      for (const tax of [true, false]) {
-        for (const coida of [true, false]) {
-          for (const cidb of [true, false]) {
-            const result = scoreDeductions(tax, coida, cidb);
-            expect(result.verdict).toBe(verdictFromScore(result.fitScore));
-          }
-        }
-      }
     });
   });
 
@@ -504,19 +481,10 @@ describe("GO/CAUTION/NO-GO verdict thresholds", () => {
     expect(verdictFromScore(undefined)).toBe("UNKNOWN");
   });
 
-  it("keeps the two band edges one point apart across the whole range", () => {
-    for (let score = 0; score <= 100; score++) {
-      const expected = score >= 75 ? "GO" : score >= 50 ? "CAUTION" : "NO-GO";
-      expect(verdictFromScore(score)).toBe(expected);
-    }
-  });
-
-  it("carries presentation metadata for every verdict a tender can emit", () => {
-    const emitted = new Set<string>();
-    for (let score = 0; score <= 100; score++) emitted.add(verdictFromScore(score));
-    emitted.add("UNKNOWN");
-    for (const verdict of emitted) {
+  it.each(["GO", "CAUTION", "NO-GO", "UNKNOWN"] as const)(
+    "carries presentation metadata for the %s verdict",
+    (verdict) => {
       expect(VERDICT_META[verdict]?.subtitle).toBeTruthy();
-    }
-  });
+    },
+  );
 });

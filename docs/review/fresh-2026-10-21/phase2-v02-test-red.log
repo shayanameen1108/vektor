@@ -1,0 +1,229 @@
+
+ RUN  v5.0.4 /Users/sfx/phase1-evidence/checkouts-v01/vektor
+
+ ❯ tests/unit/r2-response.test.ts (16 tests | 15 failed) 22ms
+   ❯ r2Response (16)
+     × serves the full body privately on an unconditional request 15ms
+     × overrides a public cache policy stored in object metadata 1ms
+     × serves a 206 range slice privately 1ms
+     × answers 304 privately on a matching if-none-match 0ms
+     × answers 412 privately on a mismatched if-match 0ms
+     × answers 416 privately on an unsatisfiable range 0ms
+     ✓ returns null for a missing object 0ms
+     × keeps trusted application/pdf inline 0ms
+     × keeps trusted IMAGE/PNG;charset=binary inline 0ms
+     × keeps trusted image/jpeg inline 0ms
+     × keeps trusted image/webp inline 0ms
+     × downloads untrusted text/html as octet-stream even when inline is asked 0ms
+     × downloads untrusted image/svg+xml as octet-stream even when inline is asked 0ms
+     × downloads untrusted application/x-unknown as octet-stream even when inline is asked 0ms
+     × lets real HTML metadata outvote a PDF fallback for inline 0ms
+     × downloads as octet-stream when no type is known at all 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > serves the full body privately on an unconditional request
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:101:43
+     99|     expect(response!.headers.get("content-disposition")).toContain("at…
+    100|     for (const [name, value] of Object.entries(SECURITY))
+    101|       expect(response!.headers.get(name)).toBe(value);
+       |                                           ^
+    102|   });
+    103|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > overrides a public cache policy stored in object metadata
+AssertionError: expected 'public, max-age=31536000, immutable' to be 'private, no-store' // Object.is equality
+
+Expected: "private, no-store"
+Received: "public, max-age=31536000, immutable"
+
+ ❯ tests/unit/r2-response.test.ts:115:52
+    113|       disposition: "attachment",
+    114|     });
+    115|     expect(response!.headers.get("cache-control")).toBe(SECURITY["cach…
+       |                                                    ^
+    116|     expect(response!.headers.get("x-content-type-options")).toBe(
+    117|       SECURITY["x-content-type-options"],
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > serves a 206 range slice privately
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:130:43
+    128|     expect(response!.headers.get("content-length")).toBe("3");
+    129|     for (const [name, value] of Object.entries(SECURITY))
+    130|       expect(response!.headers.get(name)).toBe(value);
+       |                                           ^
+    131|   });
+    132|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > answers 304 privately on a matching if-none-match
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:142:43
+    140|     expect(await response!.text()).toBe("");
+    141|     for (const [name, value] of Object.entries(SECURITY))
+    142|       expect(response!.headers.get(name)).toBe(value);
+       |                                           ^
+    143|   });
+    144|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > answers 412 privately on a mismatched if-match
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:153:43
+    151|     expect(response!.status).toBe(412);
+    152|     for (const [name, value] of Object.entries(SECURITY))
+    153|       expect(response!.headers.get(name)).toBe(value);
+       |                                           ^
+    154|   });
+    155|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > answers 416 privately on an unsatisfiable range
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:164:43
+    162|     expect(response!.headers.get("accept-ranges")).toBe("bytes");
+    163|     for (const [name, value] of Object.entries(SECURITY))
+    164|       expect(response!.headers.get(name)).toBe(value);
+       |                                           ^
+    165|   });
+    166|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > keeps trusted application/pdf inline
+ FAIL  tests/unit/r2-response.test.ts > r2Response > keeps trusted image/jpeg inline
+ FAIL  tests/unit/r2-response.test.ts > r2Response > keeps trusted image/webp inline
+AssertionError: expected null to be 'private, no-store' // Object.is equality
+
+- Expected:
+"private, no-store"
+
++ Received:
+null
+
+ ❯ tests/unit/r2-response.test.ts:194:47
+    192|     expect(res!.headers.get("content-disposition")).toContain("inline"…
+    193|     expect(res!.headers.get("content-type")).toBe(expectedType);
+    194|     expect(res!.headers.get("cache-control")).toBe(SECURITY["cache-con…
+       |                                               ^
+    195|   });
+    196|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > keeps trusted IMAGE/PNG;charset=binary inline
+AssertionError: expected 'IMAGE/PNG;charset=binary' to be 'image/png' // Object.is equality
+
+Expected: "image/png"
+Received: "IMAGE/PNG;charset=binary"
+
+ ❯ tests/unit/r2-response.test.ts:193:46
+    191|     expect(res!.status).toBe(200);
+    192|     expect(res!.headers.get("content-disposition")).toContain("inline"…
+    193|     expect(res!.headers.get("content-type")).toBe(expectedType);
+       |                                              ^
+    194|     expect(res!.headers.get("cache-control")).toBe(SECURITY["cache-con…
+    195|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > downloads untrusted text/html as octet-stream even when inline is asked
+ FAIL  tests/unit/r2-response.test.ts > r2Response > downloads untrusted image/svg+xml as octet-stream even when inline is asked
+ FAIL  tests/unit/r2-response.test.ts > r2Response > downloads untrusted application/x-unknown as octet-stream even when inline is asked
+AssertionError: expected 'inline; filename="proof.html"' to contain 'attachment'
+
+Expected: "attachment"
+Received: "inline; filename="proof.html""
+
+ ❯ tests/unit/r2-response.test.ts:208:55
+    206|       });
+    207|       expect(res!.status).toBe(200);
+    208|       expect(res!.headers.get("content-disposition")).toContain("attac…
+       |                                                       ^
+    209|       expect(res!.headers.get("content-type")).toBe("application/octet…
+    210|     },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > lets real HTML metadata outvote a PDF fallback for inline
+AssertionError: expected 'inline; filename="proof.pdf"' to contain 'attachment'
+
+Expected: "attachment"
+Received: "inline; filename="proof.pdf""
+
+ ❯ tests/unit/r2-response.test.ts:222:53
+    220|       fallbackContentType: "application/pdf",
+    221|     });
+    222|     expect(res!.headers.get("content-disposition")).toContain("attachm…
+       |                                                     ^
+    223|     expect(res!.headers.get("content-type")).toBe("application/octet-s…
+    224|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/unit/r2-response.test.ts > r2Response > downloads as octet-stream when no type is known at all
+AssertionError: expected 'inline; filename="proof"' to contain 'attachment'
+
+Expected: "attachment"
+Received: "inline; filename="proof""
+
+ ❯ tests/unit/r2-response.test.ts:234:53
+    232|       disposition: "inline",
+    233|     });
+    234|     expect(res!.headers.get("content-disposition")).toContain("attachm…
+       |                                                     ^
+    235|     expect(res!.headers.get("content-type")).toBe("application/octet-s…
+    236|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  15 failed | 1 passed (16)
+   Start at  22:41:57
+   Duration  118ms (tests 48%, transform 35%, import 12%, worker 5%)
+
+EXIT:1
