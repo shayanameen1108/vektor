@@ -11,8 +11,7 @@ import { eftPayments } from "@/db/schema/eft";
 import { referrals, referralRewards } from "@/db/schema/referral";
 import { tenders } from "@/db/schema/tender";
 import { requireAdmin } from "@/lib/server-auth";
-import { deleteQuietly } from "@/lib/r2-response";
-import { returnableDocKeys } from "@/lib/tender-returnables";
+import { deleteUserCascade } from "@/lib/user-admin";
 
 import { asString } from "@/lib/request-utils";
 
@@ -148,73 +147,22 @@ export const Route = createFileRoute("/api/admin/users/$userId")({
         const adminCheck = await requireAdmin(request);
         if (adminCheck instanceof Response) return adminCheck;
 
-        if (params.userId === adminCheck.user.id) {
-          return Response.json({ detail: "You cannot delete yourself" }, { status: 400 });
-        }
-
         const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
         const reason = asString(body?.reason ?? "").trim();
         const confirmEmail = asString(body?.confirm_email ?? "")
           .trim()
           .toLowerCase();
-        if (!reason) {
-          return Response.json({ detail: "A reason is required for deletion" }, { status: 400 });
+
+        const outcome = await deleteUserCascade(createDb(env.DB), env.STORAGE, {
+          adminUserId: adminCheck.user.id,
+          targetUserId: params.userId,
+          reason,
+          confirmEmail,
+        });
+        if (!outcome.ok) {
+          return Response.json({ detail: outcome.detail }, { status: outcome.status });
         }
-
-        const db = createDb(env.DB);
-        const target = (await db.select().from(user).where(eq(user.id, params.userId)))[0];
-        if (!target) return Response.json({ detail: "User not found" }, { status: 404 });
-        if (target.role === "admin") {
-          return Response.json({ detail: "Cannot delete an admin account" }, { status: 400 });
-        }
-        if (!confirmEmail || confirmEmail !== target.email.toLowerCase()) {
-          return Response.json(
-            { detail: "Confirmation email doesn't match target user's email" },
-            { status: 400 },
-          );
-        }
-
-        // Collect R2 keys before the cascade removes the rows.
-        const ownedCompanies = await db
-          .select({ id: companies.id })
-          .from(companies)
-          .where(eq(companies.userId, params.userId));
-        const companyIds = ownedCompanies.map((c) => c.id);
-
-        const keys: string[] = [];
-        if (companyIds.length > 0) {
-          const docs = await db
-            .select({ storageKey: complianceDocuments.storageKey })
-            .from(complianceDocuments)
-            .where(inArray(complianceDocuments.companyId, companyIds));
-          const tenderKeys = await db
-            .select({
-              pdfStorageKey: tenders.pdfStorageKey,
-              returnableStatus: tenders.returnableStatus,
-            })
-            .from(tenders)
-            .where(inArray(tenders.companyId, companyIds));
-          for (const k of docs) if (k.storageKey) keys.push(k.storageKey);
-          for (const tender of tenderKeys) {
-            if (tender.pdfStorageKey) keys.push(tender.pdfStorageKey);
-            keys.push(...returnableDocKeys(tender.returnableStatus));
-          }
-        }
-        const proofs = await db
-          .select({ proofPath: eftPayments.proofPath })
-          .from(eftPayments)
-          .where(eq(eftPayments.userId, params.userId));
-        for (const k of proofs) if (k.proofPath) keys.push(k.proofPath);
-
-        // All child rows (sessions, accounts, companies → documents/tenders/
-        // credits/reminders, EFT payments, referrals, rewards) carry
-        // ON DELETE CASCADE foreign keys back to user.
-        await db.delete(user).where(eq(user.id, params.userId));
-        await Promise.all(
-          keys.map((key) => deleteQuietly(env.STORAGE, key, "user cascade object")),
-        );
-
-        return Response.json({ status: "deleted", user_id: params.userId, email: target.email });
+        return Response.json({ status: "deleted", user_id: params.userId, email: outcome.email });
       },
     },
   },
