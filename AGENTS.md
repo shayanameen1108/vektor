@@ -16,9 +16,9 @@ Single-context: one `GLOSSARY.md` + `docs/adr/` at the repo root. See `docs/agen
 
 Every commit passes the checks CI runs (`README.md`, Scripts). Review applies `CODING_STANDARDS.md`, which holds only judgement calls; a rule a check can enforce becomes a check.
 
-## Shared stack
+## Stack
 
-- Prefer upstream-supported defaults and public APIs across these projects. Keep a different approach only for a product requirement or an upstream limitation, and record the reason in the existing README or ADR. Preserve deployed resource identities and migration history when changing tooling.
+- Prefer upstream-supported defaults and public APIs. Keep a different approach only for a product requirement or an upstream limitation, and record the reason in the existing README or ADR. Preserve deployed resource identities and migration history when changing tooling.
 - Vite+ owns development, build, formatting, linting, typechecking, and unit tests. Use the repository's scripts and verification commands in `README.md`; preserve product-specific test seams and deployment gates.
 - Before changing Void resources, configuration, environment handling, or deployment, read the matching installed docs in `node_modules/void/docs/`. Start with `guide/quickstart.md`, `integrations/frameworks/tanstack-start.md`, and `reference/cli.md`, then follow the relevant command reference. Void owns resources and deploy; TanStack Start owns routing and SSR. Keep Better Auth integrated directly with TanStack Start while Void-managed auth is unsupported in framework mode.
 - Follow `guide/env-vars.md` for `env.ts`, typed `void/env` access, local `.env`, build-time public `VITE_*` values, and production server secrets. Use native Cloudflare bindings where the product requires them.
