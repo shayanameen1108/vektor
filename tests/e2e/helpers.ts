@@ -173,7 +173,7 @@ export interface EftBankDetails {
 /**
  * The bank details the Worker is actually serving, read from the same endpoint
  * the dialog renders. Specs assert against this instead of literals copied out
- * of `.dev.vars`, which only exist on a developer's machine.
+ * of `.env`, which only exist on a developer's machine.
  */
 export async function eftBankDetails(page: Page): Promise<EftBankDetails> {
   const res = await page.request.get("/api/eft/bank-details");

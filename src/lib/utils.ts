@@ -1,9 +1,4 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+export { cn } from "cn";
 
 /** Parse a JSON string-array column; returns [] when absent or malformed. */
 export function parseStringList(raw: string | null | undefined): string[] {

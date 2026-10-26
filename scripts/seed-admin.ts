@@ -14,7 +14,7 @@ const email = process.env.ADMIN_EMAIL?.toLowerCase();
 const password = process.env.ADMIN_PASSWORD;
 const name = process.env.ADMIN_NAME || "Vektor Admin";
 if (!email || !password) {
-  console.error("Set ADMIN_EMAIL and ADMIN_PASSWORD in .dev.vars or env");
+  console.error("Set ADMIN_EMAIL and ADMIN_PASSWORD in .env or the shell");
   process.exit(1);
 }
 const base = process.env.BASEURL ?? "http://127.0.0.1:5173";
@@ -36,6 +36,9 @@ if (!res || !res.ok) {
 console.log(`[seed-admin] created user ${email}`);
 
 // `vp run` puts node_modules/.bin on PATH.
+execFileSync(process.execPath, ["scripts/ensure-void-wrangler.mjs"], {
+  stdio: "inherit",
+});
 execFileSync(
   "wrangler",
   [
@@ -43,6 +46,10 @@ execFileSync(
     "execute",
     "DB",
     "--local",
+    "-c",
+    ".void-wrangler.jsonc",
+    "--persist-to",
+    ".void",
     "--command",
     `UPDATE user SET role='admin' WHERE email='${email.replace(/'/g, "''")}'`,
   ],

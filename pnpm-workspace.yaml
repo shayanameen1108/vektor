@@ -18,3 +18,8 @@ peerDependencyRules:
 allowBuilds:
   esbuild: false
   workerd: false
+permissions:
+  "@tanstack/devtools-vite":
+    skills: true
+  "@tanstack/react-start":
+    skills: true

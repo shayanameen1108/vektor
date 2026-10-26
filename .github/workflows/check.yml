@@ -19,12 +19,16 @@ jobs:
           cache: true
       - run: vp check
       - run: vp run check:tokens
+      - run: vp run test:tooling
       - run: vp test run
-      # No secrets: preflight copies .dev.vars.example, whose ENVIRONMENT="local"
-      # keeps email and tender analysis on this machine (src/lib/ports.ts).
-      # Installed Chrome. The public pages, then the one chain that spends a credit.
+      # Preflight copies docs/local.env.example → .env (ENVIRONMENT=local stand-ins
+      # for email/analysis). Workers AI is remote:true, so preview still needs a
+      # Cloudflare token to start the remote proxy even when analysis is stubbed.
       - run: vp run test:smoke
         timeout-minutes: 15
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       - if: failure()
         uses: actions/upload-artifact@v7
         with:

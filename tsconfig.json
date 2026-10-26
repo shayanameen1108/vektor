@@ -1,4 +1,5 @@
 {
+  "extends": "./.void/tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", ".wrangler", ".tanstack"],
   "compilerOptions": {
@@ -8,8 +9,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "node"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["vite/client", "node", "void/env"],
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,

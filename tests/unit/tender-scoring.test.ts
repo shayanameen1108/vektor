@@ -506,10 +506,8 @@ describe("GO/CAUTION/NO-GO verdict thresholds", () => {
 
   it("keeps the two band edges one point apart across the whole range", () => {
     for (let score = 0; score <= 100; score++) {
-      const verdict = verdictFromScore(score);
-      if (score >= 75) expect(verdict).toBe("GO");
-      else if (score >= 50) expect(verdict).toBe("CAUTION");
-      else expect(verdict).toBe("NO-GO");
+      const expected = score >= 75 ? "GO" : score >= 50 ? "CAUTION" : "NO-GO";
+      expect(verdictFromScore(score)).toBe(expected);
     }
   });
 

@@ -1,7 +1,13 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { createRootRouteWithContext, HeadContent, Link, Scripts } from "@tanstack/react-router";
+import {
+  createRootRouteWithContext,
+  type ErrorComponentProps,
+  HeadContent,
+  Link,
+  Scripts,
+} from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 
@@ -86,13 +92,15 @@ function RootDocument({ children }: { children: ReactNode }) {
   );
 }
 
-function RootError({ error, reset }: { error: Error; reset: () => void }) {
+function RootError({ error, reset }: ErrorComponentProps) {
   return (
     <main className="grid min-h-svh place-items-center bg-background p-6">
       <Empty className="max-w-md border-none" role="alert">
         <EmptyHeader>
           <h1 className="font-heading text-xl font-bold tracking-tight">Something went wrong</h1>
-          <EmptyDescription>{error.message || "Try again."}</EmptyDescription>
+          <EmptyDescription>
+            {error instanceof Error && error.message ? error.message : "Try again."}
+          </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button data-testid="root-error-retry" variant="outline" onClick={reset}>

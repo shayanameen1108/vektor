@@ -11,7 +11,15 @@ export function promoteLocalUserToAdmin(email: string): void {
   const normalized = email.trim().toLowerCase();
   if (!normalized || !normalized.includes("@")) throw new Error("A valid email is required");
   const sqlEmail = normalized.replaceAll("'", "''");
-  const wrangler = resolve(process.cwd(), "node_modules/.bin/wrangler");
+  const root = process.cwd();
+  const node = process.execPath;
+  const wrangler = resolve(root, "node_modules/.bin/wrangler");
+  // Materialize Void's Wrangler config (no root wrangler.jsonc after migration).
+  execFileSync(node, [resolve(root, "scripts/ensure-void-wrangler.mjs")], {
+    cwd: root,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
   execFileSync(
     wrangler,
     [
@@ -19,10 +27,14 @@ export function promoteLocalUserToAdmin(email: string): void {
       "execute",
       "DB",
       "--local",
+      "-c",
+      ".void-wrangler.jsonc",
+      "--persist-to",
+      ".void",
       "--command",
       `UPDATE user SET role = 'admin', updatedAt = unixepoch() WHERE lower(email) = '${sqlEmail}';`,
     ],
-    { cwd: process.cwd(), encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+    { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
   );
 }
 

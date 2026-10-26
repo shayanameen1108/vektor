@@ -13,14 +13,14 @@ import * as schema from "@/db/schema";
  * (credit consume/refund, sent_reminders idempotency). Uses Node's built-in
  * `node:sqlite` through drizzle's sqlite-proxy — same SQL semantics (unique
  * indexes, atomic UPDATE guards, FK cascade) as D1 in production. The schema
- * is applied straight from the generated Drizzle migrations in `drizzle/`,
+ * is applied straight from the generated Drizzle migrations in `db/migrations/`,
  * so tests can never drift from the production DDL.
  */
 export function createTestDb(): Database {
   const sqlite = new DatabaseSync(":memory:");
   sqlite.exec("PRAGMA foreign_keys = ON;");
 
-  const migrationsDir = join(dirname(fileURLToPath(import.meta.url)), "../../drizzle");
+  const migrationsDir = join(dirname(fileURLToPath(import.meta.url)), "../../db/migrations");
   const files = readdirSync(migrationsDir)
     .filter((f) => f.endsWith(".sql"))
     .sort();

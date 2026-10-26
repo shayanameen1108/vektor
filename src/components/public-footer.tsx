@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 
 export function PublicFooter({ testIdPrefix }: { testIdPrefix: string }) {
+  const [year] = useState(() => new Date().getFullYear());
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-xs text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} Vektor · SA Tender Compliance</span>
+        <span>© {year} Vektor · SA Tender Compliance</span>
         <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-5">
           <Link
             to="/about"

@@ -1,6 +1,6 @@
 /**
  * Adapters for the outside services. With ENVIRONMENT="local" (set in
- * `.dev.vars`, so dev, e2e and CI) nothing leaves the machine: email lands in
+ * `.env`, so dev, e2e and CI) nothing leaves the machine: email lands in
  * an in-memory mailbox and tender analysis runs a deterministic stand-in
  * (src/lib/local-tender-analysis.ts). Production sets no ENVIRONMENT, so it
  * always gets Resend and the Workers AI binding.

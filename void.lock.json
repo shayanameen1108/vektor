@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "source": {
+    "name": "vektor",
+    "account_id": "ab816378ce175deba8768e44d4c9478b",
+    "workers_dev": false,
+    "preview_urls": false,
+    "observability": {
+      "enabled": true
+    },
+    "routes": [
+      {
+        "pattern": "vektorhq.co.za",
+        "custom_domain": true
+      },
+      {
+        "pattern": "www.vektorhq.co.za",
+        "custom_domain": true
+      }
+    ],
+    "r2_buckets": [
+      {
+        "binding": "STORAGE",
+        "bucket_name": "vektor-storage"
+      }
+    ],
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "vektor-db",
+        "database_id": "ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c",
+        "migrations_dir": "./db/migrations"
+      }
+    ],
+    "ai": {
+      "binding": "AI",
+      "remote": true
+    }
+  },
+  "resolved": {
+    "name": "vektor",
+    "account_id": "ab816378ce175deba8768e44d4c9478b",
+    "workers_dev": false,
+    "preview_urls": false,
+    "observability": {
+      "enabled": true
+    },
+    "routes": [
+      {
+        "pattern": "vektorhq.co.za",
+        "custom_domain": true
+      },
+      {
+        "pattern": "www.vektorhq.co.za",
+        "custom_domain": true
+      }
+    ],
+    "r2_buckets": [
+      {
+        "binding": "STORAGE",
+        "bucket_name": "vektor-storage"
+      }
+    ],
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "vektor-db",
+        "database_id": "ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c",
+        "migrations_dir": "./db/migrations"
+      }
+    ],
+    "ai": {
+      "binding": "AI",
+      "remote": true
+    }
+  },
+  "text": "{\n  \"name\": \"vektor\",\n  \"account_id\": \"ab816378ce175deba8768e44d4c9478b\",\n  \"workers_dev\": false,\n  \"preview_urls\": false,\n  \"observability\": {\n    \"enabled\": true\n  },\n  \"routes\": [\n    {\n      \"pattern\": \"vektorhq.co.za\",\n      \"custom_domain\": true\n    },\n    {\n      \"pattern\": \"www.vektorhq.co.za\",\n      \"custom_domain\": true\n    }\n  ],\n  \"r2_buckets\": [\n    {\n      \"binding\": \"STORAGE\",\n      \"bucket_name\": \"vektor-storage\"\n    }\n  ],\n  \"d1_databases\": [\n    {\n      \"binding\": \"DB\",\n      \"database_name\": \"vektor-db\",\n      \"database_id\": \"ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c\",\n      \"migrations_dir\": \"./db/migrations\"\n    }\n  ],\n  \"ai\": {\n    \"binding\": \"AI\",\n    \"remote\": true\n  }\n}\n"
+}

@@ -1,7 +1,7 @@
 /**
  * Better Auth rejects requests whose `Origin` header is not in
  * `trustedOrigins`. The app is served from both the apex and `www`
- * hostnames (see `routes` in `wrangler.jsonc`), so trusting only the
+ * hostnames (see `cloudflare.routes` in `void.config.ts`), so trusting only the
  * configured `BETTER_AUTH_URL` breaks login on the other hostname with
  * "invalid origin". These helpers expand each configured URL with its
  * apex/www counterpart so both work.

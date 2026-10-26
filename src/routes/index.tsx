@@ -836,54 +836,57 @@ function FooterCol({
   );
 }
 
-const Footer = () => (
-  <footer className="border-t border-border bg-background py-14" data-testid="landing-footer">
-    <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-footer lg:px-10">
-      <div>
-        <div className="mb-4 flex items-center gap-3">
-          <VektorMark />
-          <span className="text-xl font-bold tracking-tight">Vektor</span>
+const Footer = () => {
+  const [year] = useState(() => new Date().getFullYear());
+  return (
+    <footer className="border-t border-border bg-background py-14" data-testid="landing-footer">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-footer lg:px-10">
+        <div>
+          <div className="mb-4 flex items-center gap-3">
+            <VektorMark />
+            <span className="text-xl font-bold tracking-tight">Vektor</span>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Automated tender compliance for South African contractors. Built in Cape Town, made for
+            every construction firm from Polokwane to Port Elizabeth.
+          </p>
+          <p className="mt-4 text-xs text-muted-foreground">
+            © {year} EcoBuiltConnect (Pty) Ltd — All rights reserved. Vektor™ is a trade mark of
+            EcoBuiltConnect (Pty) Ltd.
+          </p>
         </div>
-        <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-          Automated tender compliance for South African contractors. Built in Cape Town, made for
-          every construction firm from Polokwane to Port Elizabeth.
-        </p>
-        <p className="mt-4 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} EcoBuiltConnect (Pty) Ltd — All rights reserved. Vektor™ is a
-          trade mark of EcoBuiltConnect (Pty) Ltd.
-        </p>
+        <FooterCol
+          title="Product"
+          links={[
+            { label: "Features", href: "#features" },
+            { label: "Pricing", href: "#pricing" },
+            { label: "How it works", href: "#how-it-works" },
+            { label: "Partners", href: "#partners" },
+          ]}
+        />
+        <FooterCol
+          title="Company"
+          links={[
+            { label: "About", to: "/about" },
+            { label: "Sign in", to: "/login" },
+            { label: "Start free", to: "/signup" },
+          ]}
+        />
+        <FooterCol
+          title="Legal"
+          links={[
+            { label: "Terms of Service", to: "/terms" },
+            { label: "Privacy Policy", to: "/privacy" },
+          ]}
+        />
+        <FooterCol
+          title="Support"
+          links={[
+            { label: "support@vektorhq.co.za", href: "mailto:support@vektorhq.co.za" },
+            { label: "Help & walkthrough", to: "/help" },
+          ]}
+        />
       </div>
-      <FooterCol
-        title="Product"
-        links={[
-          { label: "Features", href: "#features" },
-          { label: "Pricing", href: "#pricing" },
-          { label: "How it works", href: "#how-it-works" },
-          { label: "Partners", href: "#partners" },
-        ]}
-      />
-      <FooterCol
-        title="Company"
-        links={[
-          { label: "About", to: "/about" },
-          { label: "Sign in", to: "/login" },
-          { label: "Start free", to: "/signup" },
-        ]}
-      />
-      <FooterCol
-        title="Legal"
-        links={[
-          { label: "Terms of Service", to: "/terms" },
-          { label: "Privacy Policy", to: "/privacy" },
-        ]}
-      />
-      <FooterCol
-        title="Support"
-        links={[
-          { label: "support@vektorhq.co.za", href: "mailto:support@vektorhq.co.za" },
-          { label: "Help & walkthrough", to: "/help" },
-        ]}
-      />
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};

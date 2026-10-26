@@ -41,28 +41,26 @@ export const session = sqliteTable("session", {
   impersonatedBy: text("impersonatedBy"),
 });
 
-export const account = sqliteTable(
-  "account",
-  {
-    id: text("id").primaryKey(),
-    issuer: text("issuer").notNull(),
-    accountId: text("accountId").notNull(),
-    providerId: text("providerId").notNull(),
-    userId: text("userId")
-      .notNull()
-      .references(() => user.id, { onDelete: "cascade" }),
-    accessToken: text("accessToken"),
-    refreshToken: text("refreshToken"),
-    idToken: text("idToken"),
-    accessTokenExpiresAt: integer("accessTokenExpiresAt", { mode: "timestamp" }),
-    refreshTokenExpiresAt: integer("refreshTokenExpiresAt", { mode: "timestamp" }),
-    scope: text("scope"),
-    password: text("password"),
-    createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
-    updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
-  },
-  (t) => [uniqueIndex("account_issuer_accountId_uidx").on(t.issuer, t.accountId)],
-);
+export const account = sqliteTable("account", {
+  id: text("id").primaryKey(),
+  // Better Auth 1.7.3+ no longer writes issuer (1.7.0–1.7.2 required it).
+  // Keep the column nullable for existing rows; identity is providerId+accountId.
+  issuer: text("issuer"),
+  accountId: text("accountId").notNull(),
+  providerId: text("providerId").notNull(),
+  userId: text("userId")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  accessToken: text("accessToken"),
+  refreshToken: text("refreshToken"),
+  idToken: text("idToken"),
+  accessTokenExpiresAt: integer("accessTokenExpiresAt", { mode: "timestamp" }),
+  refreshTokenExpiresAt: integer("refreshTokenExpiresAt", { mode: "timestamp" }),
+  scope: text("scope"),
+  password: text("password"),
+  createdAt: integer("createdAt", { mode: "timestamp" }).notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp" }).notNull(),
+});
 
 export const verification = sqliteTable("verification", {
   id: text("id").primaryKey(),

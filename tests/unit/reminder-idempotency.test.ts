@@ -80,7 +80,13 @@ describe("reminder thresholds — idempotency against real SQL", () => {
         ),
       );
     expect(existing).toHaveLength(1);
-    await expect(recordSend(db, ids, 7)).rejects.toThrow();
+    await expect(recordSend(db, ids, 7)).rejects.toMatchObject({
+      cause: {
+        message: expect.stringContaining(
+          "UNIQUE constraint failed: sent_reminders.companyId, sent_reminders.documentId, sent_reminders.threshold",
+        ),
+      },
+    });
   });
 
   it("30 → 7 → 0 each fire on their own schedule", async () => {

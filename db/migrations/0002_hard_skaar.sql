@@ -1,3 +1,4 @@
+-- void:allow-destructive
 PRAGMA foreign_keys=OFF;--> statement-breakpoint
 CREATE TABLE `__new_referral_rewards` (
 	`id` text PRIMARY KEY NOT NULL,

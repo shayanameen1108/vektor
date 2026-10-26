@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 
 import { VektorMark } from "@/components/vektor-mark";
 
@@ -16,6 +16,7 @@ export function AuthShell({
   footer?: ReactNode;
   children: ReactNode;
 }) {
+  const [year] = useState(() => new Date().getFullYear());
   return (
     <main className="flex min-h-svh overflow-x-hidden bg-background text-foreground">
       <div className="hidden w-1/2 flex-col justify-between border-r border-border bg-card p-12 lg:flex">
@@ -41,7 +42,7 @@ export function AuthShell({
         </div>
 
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Vektor · Built for South African contractors ·{" "}
+          © {year} Vektor · Built for South African contractors ·{" "}
           <Link
             to="/about"
             data-testid="auth-about-link"
