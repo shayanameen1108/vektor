@@ -6,9 +6,22 @@ Runs on Cloudflare Workers with TanStack Start, D1, R2, better-auth, and shadcn/
 
 Production: [vektorhq.co.za](https://vektorhq.co.za)
 
+Each thing is written down once:
+
+| What                      | Where                           |
+| ------------------------- | ------------------------------- |
+| What the product does     | GitHub Issues, then `docs/adr/` |
+| The words it uses         | `GLOSSARY.md`                   |
+| How code is judged        | `CODING_STANDARDS.md`           |
+| What agents need          | `AGENTS.md`                     |
+| Bindings and environments | `wrangler.jsonc`                |
+| Secrets                   | `.dev.vars.example`             |
+| Colours, radius, and type | `src/styles.css`                |
+| Prices                    | `src/lib/billing-catalog.ts`    |
+
 ## Setup
 
-[Vite+](https://viteplus.dev) (`vp`) runs everything: it uses the Node in `.node-version` and the pnpm in `package.json`, and ships Vite, Vitest, Oxlint, and Oxfmt as one set, pinned in `pnpm-workspace.yaml`. `vp install` also sets up the pre-commit hook, which checks what is staged.
+[Vite+](https://viteplus.dev) (`vp`) runs everything: it uses the Node in `.node-version` and the pnpm in `package.json`, and ships Vite, Vitest, Oxlint, and Oxfmt as one set, pinned in `pnpm-workspace.yaml`. `vp install` also sets up the pre-commit hook, which checks what is staged. `postinstall` writes `worker-configuration.d.ts` from `wrangler.jsonc` (`vp run cf-typegen` after changing it).
 
 ```sh
 curl -fsSL https://vite.plus | bash   # once per machine

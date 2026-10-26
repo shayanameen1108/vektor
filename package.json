@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vp run db:migrate:local && vp dev --host 127.0.0.1",
+    "build": "vp build",
+    "preview": "vp preview",
     "deploy": "vp build && wrangler deploy",
     "prepare": "vp config",
     "postinstall": "wrangler types",
