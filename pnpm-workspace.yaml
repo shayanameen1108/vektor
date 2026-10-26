@@ -19,3 +19,5 @@ permissions:
     skills: true
   "@tanstack/react-start":
     skills: true
+patchedDependencies:
+  void@1.2.1: patches/void@1.2.1.patch

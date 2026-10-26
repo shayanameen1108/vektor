@@ -8,7 +8,7 @@ import { sweepAndSend } from "@/lib/reminder";
 export const cron = "0 6 * * *";
 
 export default defineScheduled(async (_controller, env, ctx) => {
-  const workerEnv = env as RuntimeEnv;
+  const workerEnv = env as unknown as RuntimeEnv;
   const run = sweepAndSend(createDb(workerEnv.DB), workerEnv)
     .then(({ sent, skipped, failed }) => {
       console.log("[cron] compliance sweep done", { sent, skipped, failed });
