@@ -2,6 +2,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { createRootRouteWithContext, HeadContent, Link, Scripts } from "@tanstack/react-router";
+import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 
 import { HelpFab } from "@/components/help-fab";
@@ -26,7 +27,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
         name: "description",
         content: "Automated South African tender compliance & bid intelligence.",
       },
-      { name: "theme-color", content: "#09090b" },
+      { name: "color-scheme", content: "light dark" },
       { property: "og:title", content: "Vektor — SA Tender Compliance" },
       {
         property: "og:description",
@@ -51,16 +52,23 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootDocument({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-ZA" className="dark">
+    <html lang="en-ZA" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
-        <TooltipProvider>
-          {children}
-          <HelpFab />
-          <Toaster position="bottom-right" offset={{ bottom: 88, right: 24 }} />
-        </TooltipProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            {children}
+            <HelpFab />
+            <Toaster position="bottom-right" offset={{ bottom: 88, right: 24 }} />
+          </TooltipProvider>
+        </ThemeProvider>
         {import.meta.env.DEV ? (
           <TanStackDevtools
             config={{ position: "bottom-right" }}

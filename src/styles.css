@@ -1,6 +1,4 @@
-@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,700,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
-
+@import "@fontsource-variable/geist";
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -14,8 +12,12 @@
   --card-foreground: #09090b;
   --popover: #ffffff;
   --popover-foreground: #09090b;
-  --primary: #09090b;
-  --primary-foreground: #fafafa;
+  /* One brand colour: links, focus, and the primary action. Dark enough for
+     4.5:1 as text on the light background, and as light text on the fill. */
+  --brand: #0f766e;
+  --brand-foreground: #f8fafc;
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
   --secondary: #e4e4e7;
   --secondary-foreground: #09090b;
   --muted: #f4f4f5;
@@ -26,20 +28,14 @@
   --destructive-foreground: #fafafa;
   --border: #e4e4e7;
   --input: #e4e4e7;
-  --ring: #09090b;
+  --ring: var(--brand);
   --radius: 0.25rem;
   --impersonation-banner-height: 0px;
-  /* Single declared accent for the whole product. `--brand-foreground` is the
-     only text colour that holds AA contrast on top of it. */
-  --brand: #14b8a6;
-  --brand-foreground: #09090b;
-  --whatsapp: #25d366;
-  --whatsapp-foreground: #09090b;
   /* Status palette — the documented light-mode values. They do not clear AA as
      small text on the near-black dark surfaces, so .dark re-declares them. */
-  --status-success: #16a34a;
-  --status-warning: #d97706;
-  --status-warning-foreground: #09090b;
+  --status-success: #166534;
+  --status-warning: #92400e;
+  --status-warning-foreground: #fafafa;
   --status-info: #2563eb;
   /* The fixed mobile topbar's height, shared with the SidebarInset padding that
      compensates for it so the two cannot drift apart. */
@@ -48,12 +44,13 @@
      Sheet — which portals to document.body — matches the desktop rail. */
   --sidebar: #18181b;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: var(--brand);
-  --sidebar-primary-foreground: #09090b;
+  /* The rail stays dark in both themes, so it uses the light brand shade. */
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #042f2e;
   --sidebar-accent: #27272a;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: #27272a;
-  --sidebar-ring: var(--brand);
+  --sidebar-ring: #2dd4bf;
 }
 
 .dark {
@@ -63,9 +60,9 @@
   --card-foreground: #fafafa;
   --popover: #18181b;
   --popover-foreground: #fafafa;
-  /* The product ships dark-only, so the brand accent IS the primary. Routing it
-     through --primary/--ring means shadcn controls pick it up instead of every
-     call site restating a teal override. */
+  /* Same hue, lighter so it clears 4.5:1 on the near-black surfaces. */
+  --brand: #2dd4bf;
+  --brand-foreground: #042f2e;
   --primary: var(--brand);
   --primary-foreground: var(--brand-foreground);
   --secondary: #27272a;
@@ -82,6 +79,7 @@
   --destructive-foreground: #09090b;
   --status-success: #4ade80;
   --status-warning: #fbbf24;
+  --status-warning-foreground: #09090b;
   --status-info: #60a5fa;
   --border: #27272a;
   --input: #27272a;
@@ -110,8 +108,6 @@
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
-  --color-whatsapp: var(--whatsapp);
-  --color-whatsapp-foreground: var(--whatsapp-foreground);
   --color-status-success: var(--status-success);
   --color-status-warning: var(--status-warning);
   --color-status-warning-foreground: var(--status-warning-foreground);
@@ -124,8 +120,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: "IBM Plex Sans", sans-serif;
-  --font-heading: "Cabinet Grotesk", sans-serif;
+  --font-sans: "Geist Variable", sans-serif;
+  --font-heading: "Geist Variable", sans-serif;
   --radius-sm: var(--radius);
   --radius-md: var(--radius);
   --radius-lg: var(--radius);
@@ -195,49 +191,23 @@
   }
 }
 
-/* Swiss high-contrast utilities. Named `overline-label`, not `overline`:
-   Tailwind's core `overline` sets text-decoration-line and would win the
-   cascade, striking a line across every label. */
+/* Named `overline-label`, not `overline`: Tailwind's core `overline` sets
+   text-decoration-line and would strike a line across every label. Hierarchy
+   comes from size and weight, in the same face as the body. */
 @utility overline-label {
-  @apply text-[10px] uppercase tracking-[0.2em] font-semibold;
+  @apply text-xs font-medium;
 }
 
-/* Technical blueprint grid behind hero and auth panels. The opacity is baked in
-   so every panel reads at the same weight. */
-@utility blueprint-grid {
-  background-image:
-    linear-gradient(to right, var(--foreground) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--foreground) 1px, transparent 1px);
-  background-size: 80px 80px;
-  opacity: 0.04;
-}
-
-/* Soft brand wash anchored to a corner so large flat panels read as designed
-   rather than empty. */
-@utility brand-glow {
-  background-image: radial-gradient(
-    circle at 20% 90%,
-    color-mix(in oklab, var(--primary) 14%, transparent) 0%,
-    transparent 50%
-  );
-}
-
-/* Field-label typography. Declared once so call sites do not each restate the
-   same tracking/size/weight string. */
 @utility label-caps {
-  @apply text-xs uppercase tracking-[0.1em] font-semibold;
+  @apply text-xs font-medium;
 }
 
-/* Dense table column headers. Smaller than `label-caps` so the header row stays
-   quieter than the 12px body cells it labels. */
 @utility table-caps {
-  @apply text-[11px] uppercase tracking-[0.15em] font-semibold;
+  @apply text-xs font-medium;
 }
 
-/* Tight micro-labels inside chips, badges and buttons, where the wider tracking
-   of an overline would overflow the control. */
 @utility tight-caps {
-  @apply text-[10px] uppercase tracking-[0.08em] font-bold;
+  @apply text-xs font-medium tabular-nums;
 }
 
 /* Long-form legal/help copy. `@tailwindcss/typography` is not a dependency, so
@@ -296,9 +266,5 @@
 @layer utilities {
   .grid-border-item {
     @apply border-r border-b border-border;
-  }
-
-  .grid-border-item:hover {
-    @apply -translate-y-1 shadow-sm transition-transform;
   }
 }

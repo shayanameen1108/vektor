@@ -1,16 +1,6 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Bell,
-  ChartLine,
-  CheckCircle,
-  Clock,
-  FileText,
-  Menu,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle, Clock, Menu } from "lucide-react";
 
 import { VektorMark } from "@/components/vektor-mark";
 import {
@@ -212,16 +202,15 @@ const HERO_CHECKS = [
 ];
 
 const Hero = () => (
-  <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32" data-testid="landing-hero">
-    <div aria-hidden="true" className="blueprint-grid pointer-events-none absolute inset-0" />
-    <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-hero lg:px-10">
+  <section
+    className="border-b border-border pt-28 pb-12 lg:pt-32 lg:pb-16"
+    data-testid="landing-hero"
+  >
+    <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 lg:grid-cols-hero lg:px-10">
       <div>
-        <p className="mb-6 inline-flex items-center gap-2 overline-label text-primary">
-          <span className="inline-block h-px w-6 bg-primary" />
-          SA Tender Compliance · Built for contractors
-        </p>
-        <h1 className="text-4xl leading-none font-black tracking-tight sm:text-5xl">
-          Never lose a bid on a <span className="text-primary">technicality</span> again.
+        <p className="mb-3 text-sm font-medium text-primary">SA tender compliance</p>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Never lose a bid on a technicality again.
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground lg:text-xl">
           Vektor scans SA public tender PDFs in seconds, matches them to your{" "}
@@ -262,25 +251,22 @@ const Hero = () => (
         </div>
       </div>
 
-      <div className="relative" data-testid="landing-hero-visual">
-        <div className="relative overflow-hidden rounded-sm border border-border bg-card">
-          <div className="flex items-center gap-2 border-b border-border bg-background px-4 py-3">
-            <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
-            <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
-            <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
-            <span className="ml-3 overline-label text-muted-foreground">
-              Analysis · CIDB 6GB · R23.4M
+      <div data-testid="landing-hero-visual">
+        <div className="overflow-hidden rounded-sm border border-border bg-card">
+          <div className="border-b border-border bg-background px-4 py-3">
+            <span className="text-xs font-medium text-muted-foreground">
+              Analysis · CIDB 6GB · <span className="tabular-nums">R23.4M</span>
             </span>
           </div>
           <div className="space-y-4 p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="overline-label text-muted-foreground">Go / No-Go</p>
-                <p className="mt-1 text-2xl font-bold text-primary">GO — 84%</p>
+                <p className="mt-1 text-2xl font-semibold text-primary tabular-nums">GO — 84%</p>
               </div>
               <div className="text-right">
                 <p className="overline-label text-muted-foreground">B-BBEE Points</p>
-                <p className="mt-1 text-2xl font-bold text-foreground">18 / 20</p>
+                <p className="mt-1 text-2xl font-semibold text-foreground tabular-nums">18 / 20</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -304,19 +290,9 @@ const Hero = () => (
             </div>
           </div>
         </div>
-        <div className="mt-4 hidden max-w-xs rounded-sm border border-border bg-background p-4 lg:block">
-          <div className="flex items-start gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-status-warning/30 bg-status-warning/10">
-              <Bell className="h-4 w-4 text-status-warning" aria-hidden="true" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-foreground">COIDA letter expires in 7 days</p>
-              <p className="mt-1 text-xs leading-snug text-muted-foreground">
-                Renew before Friday or you&apos;ll be ineligible to bid on this tender.
-              </p>
-            </div>
-          </div>
-        </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Example only. A real analysis uses the company profile and the uploaded tender.
+        </p>
       </div>
     </div>
   </section>
@@ -328,56 +304,45 @@ const SocialProofStrip = () => (
     data-testid="landing-social-proof"
   >
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
-      <p className="mb-8 overline-label text-center text-muted-foreground">
-        Trusted by contractors from Cape Town to Polokwane
-      </p>
-      <div className="grid grid-cols-2 gap-x-6 gap-y-6 text-center md:grid-cols-4">
-        {[
-          { value: "15s", label: "Average analysis time" },
-          { value: "R4.2M", label: "Avg tender value screened" },
-          { value: "98%", label: "Correct SBD form matches" },
-          { value: "0", label: "Missed compliance items" },
-        ].map((stat) => (
-          <div key={stat.label}>
-            <p className="text-3xl font-black tracking-tight text-foreground lg:text-4xl">
-              {stat.value}
-            </p>
-            <p className="mt-1 label-caps text-muted-foreground">{stat.label}</p>
-          </div>
-        ))}
-      </div>
+      <ul className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-3">
+        <li>5 analyses when the company profile is created</li>
+        <li>
+          Starter{" "}
+          {formatRand(
+            (CATALOG.find((entry) => entry.lookup_key === "tc_starter_monthly_v2")?.amount_cents ??
+              0) / 100,
+            0,
+          )}{" "}
+          / month, paid by EFT
+        </li>
+        <li>Prices below are the live catalog, in rand</li>
+      </ul>
     </div>
   </section>
 );
 
 const FEATURES = [
   {
-    icon: FileText,
     title: "Instant tender parsing",
     body: "Drop any RFP or SBD-packed PDF. Vektor extracts scope, budget, CIDB grade, closing date, and every mandatory returnable in under 15 seconds.",
   },
   {
-    icon: ShieldCheck,
     title: "CIDB grade matching",
     body: "Auto-matches the tender to your registered CIDB grades and CoR classes. If you don't qualify, Vektor tells you before you waste hours drafting.",
   },
   {
-    icon: ChartLine,
     title: "B-BBEE points calculator",
     body: "Live scoring for the 90/10 or 80/20 preference systems. See exactly how many points your Level earns on this specific tender.",
   },
   {
-    icon: FileText,
     title: "SBD 4 & 6.1 auto-generation",
     body: "Vektor pre-fills the SBD 4 declaration and SBD 6.1 B-BBEE affidavit with your company data — including the authorised signatory's name and position. Sign, upload, submit.",
   },
   {
-    icon: ShieldCheck,
     title: "Bargaining Council checks",
     body: "Every SA construction tender falls under a sectoral council — BCCEI for civil, NBCEI for electrical, MEIBC for mechanical, regional BIBCs for building. Vektor auto-detects the right one and flags a missing Letter of Good Standing before you submit.",
   },
   {
-    icon: Bell,
     title: "Vault & expiry alerts",
     body: "One home for Tax PIN, COIDA, B-BBEE, CIDB and Bargaining Council letters. Vektor emails you at 30, 7, and 0 days before each expires.",
   },
@@ -388,7 +353,7 @@ const FeaturesSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">What you get</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
+        <h2 className="text-2xl font-semibold tracking-tight">
           Compliance work, <span className="text-primary">done before your coffee cools.</span>
         </h2>
       </div>
@@ -400,10 +365,7 @@ const FeaturesSection = () => (
             className="rounded-sm border-border shadow-none transition-colors hover:border-primary/50"
           >
             <CardHeader>
-              <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-sm border border-primary/30 bg-primary/10">
-                <f.icon className="h-5 w-5 text-primary" aria-hidden="true" />
-              </div>
-              <CardTitle className="text-lg font-bold">{f.title}</CardTitle>
+              <CardTitle className="text-base font-semibold">{f.title}</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-sm leading-relaxed">{f.body}</CardDescription>
@@ -438,7 +400,7 @@ const HowItWorks = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">How Vektor works</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
+        <h2 className="text-2xl font-semibold tracking-tight">
           From RFP to submission, <span className="text-primary">in three steps.</span>
         </h2>
       </div>
@@ -450,9 +412,7 @@ const HowItWorks = () => (
             className="rounded-sm border-border bg-background shadow-none"
           >
             <CardContent className="grid items-start gap-4 p-6 lg:grid-cols-step lg:gap-10 lg:p-8">
-              <p aria-hidden="true" className="text-5xl font-black text-primary/70 lg:text-6xl">
-                {step.n}
-              </p>
+              <p className="text-sm font-medium tabular-nums text-muted-foreground">{step.n}</p>
               <div>
                 <CardTitle className="mb-2 text-xl font-bold lg:text-2xl">{step.title}</CardTitle>
                 <CardDescription className="max-w-2xl text-base leading-relaxed">
@@ -524,7 +484,7 @@ const ProductProofSection = () => (
       </div>
       <div className="order-1 lg:order-2">
         <p className="mb-4 overline-label text-primary">Compliance vault</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
+        <h2 className="text-2xl font-semibold tracking-tight">
           Your statutory documents, one calendar away from a lost bid.
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground lg:text-lg">
@@ -575,7 +535,7 @@ const PricingSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">Pricing</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
+        <h2 className="text-2xl font-semibold tracking-tight">
           Every plan comes with <span className="text-primary">every feature.</span>
         </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -599,7 +559,7 @@ const PricingSection = () => (
             )}
             <p className="mb-1 overline-label text-muted-foreground">{p.name}</p>
             <div className="mb-1 flex items-baseline gap-1">
-              <span className="text-3xl font-black text-foreground">{p.price}</span>
+              <span className="text-2xl font-semibold tabular-nums text-foreground">{p.price}</span>
               <span className="text-sm text-muted-foreground">{p.period}</span>
             </div>
             <p className="mb-2 text-xs text-muted-foreground">{p.credits}</p>
@@ -676,7 +636,7 @@ function PartnerLogo({ logo, initials }: { logo?: string; initials: string }) {
   if (!logo || broken) {
     return (
       <div className="flex h-32 items-center justify-center border-b border-primary/30 bg-primary/10">
-        <span className="text-4xl font-black tracking-wider text-primary">{initials}</span>
+        <span className="text-2xl font-semibold text-primary">{initials}</span>
       </div>
     );
   }
@@ -697,7 +657,7 @@ const PartnersSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">Partners</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
+        <h2 className="text-2xl font-semibold tracking-tight">
           Backed by trusted South African <span className="text-primary">partners.</span>
         </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -715,7 +675,7 @@ const PartnersSection = () => (
             <PartnerLogo logo={p.logo} initials={p.fallbackInitials} />
             <div className="p-6">
               <p className="mb-1 overline-label text-muted-foreground">{p.role}</p>
-              <h3 className="mb-2 text-lg font-black leading-tight text-foreground">{p.name}</h3>
+              <h3 className="mb-2 text-lg font-semibold leading-tight text-foreground">{p.name}</h3>
               <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
               {"href" in p && p.href && (
                 <a
@@ -777,9 +737,7 @@ const FaqSection = () => (
     <div className="mx-auto max-w-4xl px-6 lg:px-10">
       <div className="mb-12">
         <p className="mb-4 overline-label text-primary">Common questions</p>
-        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
-          The important stuff, up front.
-        </h2>
+        <h2 className="text-2xl font-semibold tracking-tight">The important stuff, up front.</h2>
       </div>
       <Accordion className="border-y border-border">
         {FAQ.map((row, idx) => (
@@ -800,11 +758,10 @@ const FaqSection = () => (
 const FinalCta = () => (
   <section className="bg-background py-24 lg:py-32" data-testid="landing-final-cta">
     <div className="mx-auto max-w-5xl px-6 lg:px-10">
-      <div className="relative overflow-hidden rounded-sm border border-primary/30 bg-gradient-to-br from-card via-background to-card p-10 lg:p-14">
-        <div aria-hidden="true" className="brand-glow pointer-events-none absolute inset-0" />
-        <div className="relative">
+      <div className="rounded-sm border border-border bg-card p-8 lg:p-10">
+        <div>
           <p className="mb-4 overline-label text-primary">Ready when you are</p>
-          <h2 className="max-w-2xl text-4xl leading-none font-black tracking-tight lg:text-5xl">
+          <h2 className="max-w-2xl text-2xl font-semibold tracking-tight">
             Your next bid could go <span className="text-primary">out this afternoon.</span>
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">

@@ -18,43 +18,29 @@ export function AuthShell({
 }) {
   return (
     <main className="flex min-h-svh overflow-x-hidden bg-background text-foreground">
-      <div className="relative hidden w-1/2 flex-col justify-between border-r border-border p-12 lg:flex">
-        <div aria-hidden="true" className="blueprint-grid pointer-events-none absolute inset-0" />
-        <div aria-hidden="true" className="brand-glow pointer-events-none absolute inset-0" />
-        <Link to="/" data-testid="auth-brand-home" className="relative flex items-center gap-3">
+      <div className="hidden w-1/2 flex-col justify-between border-r border-border bg-card p-12 lg:flex">
+        <Link to="/" data-testid="auth-brand-home" className="flex items-center gap-2">
           <VektorMark className="h-8 w-8" />
           <span className="text-2xl font-bold tracking-tight">Vektor</span>
         </Link>
 
-        <div className="relative max-w-md space-y-6">
-          <p className="inline-flex items-center gap-2 overline-label text-primary">
-            <span className="inline-block h-px w-6 bg-primary" />
-            SA Tender Compliance
-          </p>
-          <h2 className="text-4xl leading-none font-black tracking-tight xl:text-5xl">
-            Never lose a bid on a <span className="text-primary">technicality</span> again.
+        <div className="max-w-md space-y-4">
+          <p className="text-sm font-medium text-primary">SA tender compliance</p>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Never lose a bid on a technicality again.
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             CIDB matching, B-BBEE scoring, and expiry alerts for SA public tenders in seconds, not
             weeks.
           </p>
-          <ul className="space-y-3 pt-2 text-sm text-foreground">
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-              <span>5 free tender analyses on signup</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-              <span>Auto-fill SBD 4 and SBD 6.1 forms</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
-              <span>Email alerts 30 / 7 / 0 days before compliance expires</span>
-            </li>
+          <ul className="list-disc space-y-2 pl-5 text-sm text-foreground">
+            <li>5 free tender analyses when the company profile is created</li>
+            <li>SBD 4 and SBD 6.1 filled from the company profile</li>
+            <li>Email at 30, 7, and 0 days before a document expires</li>
           </ul>
         </div>
 
-        <p className="relative text-xs text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           © {new Date().getFullYear()} Vektor · Built for South African contractors ·{" "}
           <Link
             to="/about"
@@ -80,7 +66,7 @@ export function AuthShell({
               {eyebrow}
             </p>
           )}
-          <h1 className="text-3xl font-black tracking-tight text-foreground">{title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h1>
           {subtitle && <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>}
           <div className="mt-8">{children}</div>
           {footer && <div className="mt-6 text-sm text-muted-foreground">{footer}</div>}

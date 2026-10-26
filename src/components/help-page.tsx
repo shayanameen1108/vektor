@@ -95,7 +95,7 @@ const WALKTHROUGH_SLIDES: WalkthroughSlide[] = [
     chapter: 10,
     title: "Earn credits with referrals",
     caption:
-      "Invite a friend. When they upgrade to a paid plan you unlock free credits — up to 10 per referral.",
+      "Invite a contractor. When they move to a paid plan you receive credits — up to 10 per referral.",
     image: "/help-slides/billing.jpg",
   },
 ];
@@ -185,7 +185,7 @@ export function HelpContent() {
                     loading="lazy"
                   />
                 </AspectRatio>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/95 via-background/70 to-transparent p-4 text-foreground">
+                <div className="border-t border-border p-4 text-foreground">
                   <div className="mb-1 overline-label text-muted-foreground">
                     Chapter {slide.chapter} / {WALKTHROUGH_SLIDES.length}
                   </div>

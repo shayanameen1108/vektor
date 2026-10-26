@@ -68,7 +68,7 @@ function AboutPage() {
         <section className="bg-background text-foreground">
           <div className="mx-auto max-w-4xl px-6 py-20 lg:py-28">
             <p className="mb-4 overline-label text-primary">About Vektor</p>
-            <h1 className="text-4xl leading-none font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight">
               Why We Built <span className="text-primary">Vektor</span>
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">

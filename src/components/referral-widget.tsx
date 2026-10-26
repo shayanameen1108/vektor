@@ -84,14 +84,9 @@ export function ReferralWidget() {
   return (
     <Card className="mb-8" data-testid="referral-widget">
       <CardContent className="p-6 sm:p-8">
-        <div className="flex items-center gap-3 mb-1">
-          <div className="w-9 h-9 rounded-sm bg-primary/10 border border-primary/30 flex items-center justify-center">
-            <UsersIcon size={18} className="text-primary" aria-hidden="true" />
-          </div>
-          <div>
-            <p className="overline-label text-primary">Refer a paid subscriber</p>
-            <h2 className="text-lg font-bold text-foreground">Unlock free credits</h2>
-          </div>
+        <div className="mb-1">
+          <p className="text-sm font-medium text-primary">Refer a paid subscriber</p>
+          <h2 className="text-lg font-semibold text-foreground">Referral credits</h2>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed mt-2 max-w-2xl">
           Share your link with an SA contractor. When they upgrade to a paid plan, you earn credits
@@ -109,7 +104,7 @@ export function ReferralWidget() {
               data-testid={`referral-tier-${t.key}`}
             >
               <p className="overline-label text-muted-foreground">{t.label}</p>
-              <p className="text-xl font-black text-primary leading-tight mt-1">
+              <p className="text-xl font-semibold tabular-nums text-primary leading-tight mt-1">
                 +{tierRewards[t.key] ?? 0}
               </p>
               <p className="text-xs text-muted-foreground">credits</p>
@@ -151,7 +146,8 @@ export function ReferralWidget() {
               />
             }
             size="sm"
-            className="bg-whatsapp text-xs font-bold text-whatsapp-foreground hover:bg-whatsapp/90"
+            variant="outline"
+            className="text-xs font-medium"
           >
             <MessageCircleIcon aria-hidden="true" />
             Share on WhatsApp
@@ -170,7 +166,7 @@ export function ReferralWidget() {
           <div className="text-center">
             <UsersIcon size={16} className="mx-auto mb-1 text-muted-foreground" />
             <p
-              className="text-2xl font-black tracking-tight text-foreground"
+              className="text-2xl font-semibold tabular-nums tracking-tight text-foreground"
               data-testid="referral-stat-invited"
             >
               {stats.invited_count}
@@ -184,7 +180,7 @@ export function ReferralWidget() {
               aria-hidden="true"
             />
             <p
-              className="text-2xl font-black tracking-tight text-foreground"
+              className="text-2xl font-semibold tabular-nums tracking-tight text-foreground"
               data-testid="referral-stat-paid"
             >
               {stats.subscribed_count}
@@ -194,7 +190,7 @@ export function ReferralWidget() {
           <div className="text-center">
             <CoinsIcon size={16} className="mx-auto mb-1 text-primary" aria-hidden="true" />
             <p
-              className="text-2xl font-black tracking-tight text-primary"
+              className="text-2xl font-semibold tabular-nums tracking-tight text-primary"
               data-testid="referral-stat-earned"
             >
               {stats.credits_earned}
