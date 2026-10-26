@@ -1,0 +1,268 @@
+@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@900,700,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f4f4f5;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #09090b;
+  --primary-foreground: #fafafa;
+  --secondary: #e4e4e7;
+  --secondary-foreground: #09090b;
+  --muted: #f4f4f5;
+  --muted-foreground: #52525b;
+  --accent: #f4f4f5;
+  --accent-foreground: #09090b;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #09090b;
+  --radius: 0.25rem;
+  --impersonation-banner-height: 0px;
+  /* Single declared accent for the whole product. `--brand-foreground` is the
+     only text colour that holds AA contrast on top of it. */
+  --brand: #14b8a6;
+  --brand-foreground: #09090b;
+  --whatsapp: #25d366;
+  --whatsapp-foreground: #09090b;
+  /* Status palette — the documented light-mode values. They do not clear AA as
+     small text on the near-black dark surfaces, so .dark re-declares them. */
+  --status-success: #16a34a;
+  --status-warning: #d97706;
+  --status-warning-foreground: #09090b;
+  --status-info: #2563eb;
+  /* The fixed mobile topbar's height, shared with the SidebarInset padding that
+     compensates for it so the two cannot drift apart. */
+  --header-height: calc(var(--spacing) * 14);
+  /* Always dark, and declared on :root rather than under .dark so the mobile
+     Sheet — which portals to document.body — matches the desktop rail. */
+  --sidebar: #18181b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: #09090b;
+  --sidebar-accent: #27272a;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-ring: var(--brand);
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  /* The product ships dark-only, so the brand accent IS the primary. Routing it
+     through --primary/--ring means shadcn controls pick it up instead of every
+     call site restating a teal override. */
+  --primary: var(--brand);
+  --primary-foreground: var(--brand-foreground);
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  /* Distinct from --muted/--secondary so row and control hovers read against
+     zebra striping, which uses the muted surface. */
+  --accent: #3f3f46;
+  --accent-foreground: #fafafa;
+  /* The light-mode status hues fall below AA as small text on near-black, so
+     the dark layer re-declares them at the brighter end of the same hue. */
+  --destructive: #f87171;
+  --destructive-foreground: #09090b;
+  --status-success: #4ade80;
+  --status-warning: #fbbf24;
+  --status-info: #60a5fa;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: var(--brand);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-warning-foreground: var(--status-warning-foreground);
+  --color-status-info: var(--status-info);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-heading: "Cabinet Grotesk", sans-serif;
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground min-h-svh antialiased;
+    font-family: var(--font-sans);
+  }
+
+  body:has([data-impersonation]) {
+    --impersonation-banner-height: 2.5rem;
+    padding-top: var(--impersonation-banner-height);
+
+    [data-slot="sidebar-container"] {
+      top: var(--impersonation-banner-height);
+      height: calc(100svh - var(--impersonation-banner-height));
+    }
+
+    /* The mobile off-canvas drawer is rendered as a SheetContent that upstream
+       shadcn tags with data-slot="sidebar" and data-mobile="true", so the two
+       attributes together identify it without a bespoke hook. */
+    [data-slot="sidebar"][data-mobile="true"] {
+      top: var(--impersonation-banner-height);
+      height: calc(100svh - var(--impersonation-banner-height));
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  h1 {
+    @apply tracking-tight;
+  }
+
+  /* Declare the placeholder colour from the token so it never falls back to the
+     UA's own (#aeaeae), which fails AA on the dark surfaces. */
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--muted-foreground);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Swiss high-contrast utilities. Named `overline-label`, not `overline`:
+   Tailwind's core `overline` sets text-decoration-line and would win the
+   cascade, striking a line across every label. */
+@utility overline-label {
+  @apply text-[10px] uppercase tracking-[0.2em] font-semibold;
+}
+
+/* Technical blueprint grid behind hero and auth panels. The opacity is baked in
+   so every panel reads at the same weight. */
+@utility blueprint-grid {
+  background-image:
+    linear-gradient(to right, var(--foreground) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--foreground) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.04;
+}
+
+/* Soft brand wash anchored to a corner so large flat panels read as designed
+   rather than empty. */
+@utility brand-glow {
+  background-image: radial-gradient(
+    circle at 20% 90%,
+    color-mix(in oklab, var(--primary) 14%, transparent) 0%,
+    transparent 50%
+  );
+}
+
+/* Field-label typography. Declared once so call sites do not each restate the
+   same tracking/size/weight string. */
+@utility label-caps {
+  @apply text-xs uppercase tracking-[0.1em] font-semibold;
+}
+
+/* Dense table column headers. Smaller than `label-caps` so the header row stays
+   quieter than the 12px body cells it labels. */
+@utility table-caps {
+  @apply text-[11px] uppercase tracking-[0.15em] font-semibold;
+}
+
+/* Tight micro-labels inside chips, badges and buttons, where the wider tracking
+   of an overline would overflow the control. */
+@utility tight-caps {
+  @apply text-[10px] uppercase tracking-[0.08em] font-bold;
+}
+
+/* Long-form legal/help copy. `@tailwindcss/typography` is not a dependency, so
+   the `prose` classes that used to sit on these containers did nothing and the
+   copy rendered unpaced and without list markers. */
+@utility legal-copy {
+  @apply space-y-4 text-sm leading-relaxed text-muted-foreground;
+
+  & strong {
+    @apply font-semibold text-foreground;
+  }
+
+  & ul {
+    @apply list-disc space-y-1.5 pl-5 marker:text-muted-foreground;
+  }
+
+  & ol {
+    @apply list-decimal space-y-1.5 pl-5 marker:text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .grid-border-item {
+    @apply border-r border-b border-border;
+  }
+
+  .grid-border-item:hover {
+    @apply -translate-y-1 shadow-sm transition-transform;
+  }
+}

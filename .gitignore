@@ -1,0 +1,47 @@
+node_modules/
+
+# Framework and build output
+.output/
+.tanstack/
+.wrangler/
+dist/
+dist-ssr/
+.vite/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+artifacts/
+blob-report/
+playwright/.cache/
+
+# Local environment and tool state
+.env
+.env.*
+*.local
+*.tsbuildinfo
+.dev.vars*
+!.dev.vars.example
+.better-auth/
+
+# Local database artifacts
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs and editor files
+*.log
+.DS_Store
+.idea/
+.vscode/
+.worktrees/
+
+# Scratch - local issue tracker
+.scratch/
+
+# Large municipal tender PDFs used by tests/e2e/tender-municipal.spec.ts
+tests/fixtures/tenders/*.pdf

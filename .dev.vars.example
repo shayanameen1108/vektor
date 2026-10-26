@@ -1,0 +1,41 @@
+# Local development secrets for Cloudflare Workers / Better Auth.
+# Copy to .dev.vars and fill in values. Never commit .dev.vars with real secrets.
+
+BETTER_AUTH_SECRET="development-secret-key-at-least-32-chars-long"
+# Preview/e2e default is :4173. `nub run dev` is :5173 — both origins are
+# trusted in src/lib/auth/auth.ts so either port works locally.
+BETTER_AUTH_URL="http://127.0.0.1:4173"
+APP_URL="http://127.0.0.1:4173"
+
+# Transactional email (Resend). Required everywhere, including local dev —
+# every send goes through api.resend.com. A test-mode key (re_test_…)
+# simulates without delivering but only accepts Resend's testing inbox, so
+# e2e reminder flows address mail to delivered@resend.dev (see
+# RESEND_TEST_INBOX in tests/e2e/helpers.ts).
+RESEND_API_KEY="re_..."
+SENDER_EMAIL="onboarding@resend.dev"
+SENDER_NAME="Vektor"
+# EMAIL_FROM="Vektor <no-reply@vektorhq.co.za>"
+# Optional support address shown in reminder emails (defaults to
+# support@vektorhq.co.za).
+# SUPPORT_EMAIL="support@vektorhq.co.za"
+
+# EFT bank details shown on billing requests. In production these are set via
+# `wrangler secret put EFT_*`; locally they are plain vars. These demo FNB
+# details are for dev/e2e display only — no money moves over them.
+EFT_BANK_NAME="First National Bank"
+EFT_ACCOUNT_HOLDER="Vektor (Pty) Ltd"
+EFT_ACCOUNT_NUMBER="62712345678"
+EFT_BRANCH_CODE="250655"
+EFT_ACCOUNT_TYPE="Cheque"
+
+# Google OAuth — required (Continue with Google is a core sign-in method).
+# Web OAuth client from Google Cloud Console (APIs & Services → Credentials).
+# Register {origin}/api/auth/callback/google for every origin you run
+# (prod domain plus http://127.0.0.1:4173, http://localhost:4173, :5173).
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+
+# Tender analysis uses the Workers AI binding (see `ai` in wrangler.jsonc)
+# with @cf/zai-org/glm-4.7-flash — no keys required. Local runs use the
+# binding directly; remote runs need Workers AI enabled on the account.

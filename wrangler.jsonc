@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vektor",
+  "account_id": "ab816378ce175deba8768e44d4c9478b",
+  "compatibility_date": "2026-08-24",
+  "main": "worker.ts",
+  "observability": {
+    "enabled": true,
+  },
+  "triggers": {
+    // 08:00 SAST daily reminders (Cloudflare cron triggers run in UTC)
+    "crons": ["0 6 * * *"],
+  },
+  "routes": [
+    {
+      "pattern": "vektorhq.co.za",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.vektorhq.co.za",
+      "custom_domain": true,
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "STORAGE",
+      "bucket_name": "vektor-storage",
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vektor-db",
+      "database_id": "ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c",
+      "migrations_dir": "drizzle",
+    },
+  ],
+  "ai": {
+    "binding": "AI",
+  },
+}
