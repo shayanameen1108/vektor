@@ -1,3 +1,0 @@
-$ node scripts/check-tokens.mjs ○ cache miss: 'src/routes/signup.tsx' modified, executing
-Tokens only, on the 4px grid: 83 files.
-
