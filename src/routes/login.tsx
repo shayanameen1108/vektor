@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -10,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
 import { getCurrentSession } from "@/lib/auth/session";
+import { clearIdentityCaches } from "@/hooks/use-active-company";
 import { type UserDestination, homeForSession, userDestination } from "@/lib/destinations";
 
 export const Route = createFileRoute("/login")({
@@ -27,6 +29,7 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const search = Route.useSearch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,6 +71,9 @@ function LoginPage() {
       setSubmitting(false);
     }
     toast.success("Welcome back");
+    // A new identity in this tab must not inherit the previous user's private
+    // TanStack cache; Better Auth never touches it.
+    clearIdentityCaches(queryClient);
     const { data } = await authClient.getSession();
     await navigate({ to: homeForSession(asVektorSession(data), search.redirect) });
   };

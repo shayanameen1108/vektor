@@ -1,6 +1,24 @@
+import { z } from "zod";
+
 import type { complianceDocuments } from "@/db/schema/compliance";
 
 type DocRow = typeof complianceDocuments.$inferSelect;
+
+/**
+ * Shared PATCH input for compliance documents. Wrong types now 400 instead
+ * of being coerced (`Boolean("false")`, `String(null)`); domain rules —
+ * expiry required per doc type, council validity — stay in the route.
+ */
+export const documentPatchSchema = z.object({
+  expiry_date: z.string({ error: "expiry_date must be a string or null" }).nullable().optional(),
+  is_compliant: z.boolean({ error: "is_compliant must be a boolean" }).optional(),
+  bargaining_council: z
+    .string({ error: "bargaining_council must be a string or null" })
+    .nullable()
+    .optional(),
+});
+
+export type DocumentPatchInput = z.infer<typeof documentPatchSchema>;
 
 /** Single serializer for compliance document rows. */
 export function toApiDoc(row: DocRow) {

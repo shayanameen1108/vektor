@@ -72,7 +72,7 @@ function formatDate(date: Date): string {
 }
 
 // Exported for unit testing — field mapping without PDF bytes
-export function getSbd4Fields(company: SbdCompany, tender: SbdTender) {
+function getSbd4Fields(company: SbdCompany, tender: SbdTender) {
   return {
     header: "SBD 4",
     subHeader: "DECLARATION OF INTEREST",
@@ -121,7 +121,7 @@ export function getSbd4Fields(company: SbdCompany, tender: SbdTender) {
   };
 }
 
-export function getSbd61Fields(
+function getSbd61Fields(
   company: SbdCompany,
   tender: SbdTender,
   preferenceSystemInput?: string | null,

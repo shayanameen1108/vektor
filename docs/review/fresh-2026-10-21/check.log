@@ -1,0 +1,4 @@
++ vp check
+pass: All 235 files are correctly formatted (739ms, 8 threads)
+pass: Found no warnings, lint errors, or type errors in 209 files (2.2s, 8 threads)
+EXIT(0) >> /Users/sfx/phase1-evidence/logs/vektor/check.log

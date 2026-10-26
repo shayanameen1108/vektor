@@ -1,3 +1,4 @@
+import type { QueryClient } from "@tanstack/react-query";
 import { useSyncExternalStore } from "react";
 
 import type { Company } from "@/lib/api-client";
@@ -50,6 +51,16 @@ if (typeof window !== "undefined") {
 /** Drop the remembered pick on sign-out so the next user starts clean. */
 export function clearActiveCompany() {
   setId(null);
+}
+
+/**
+ * Drops everything this tab remembers about the signed-in identity: the
+ * TanStack cache and the active company pick. Better Auth ends the session
+ * but never touches either.
+ */
+export function clearIdentityCaches(queryClient: QueryClient) {
+  queryClient.clear();
+  clearActiveCompany();
 }
 
 export function useActiveCompany(companies: Company[]) {

@@ -1,0 +1,330 @@
+{
+  "@axe-core/playwright": {
+    "repository": "dequelabs/axe-core-npm",
+    "url": "https://github.com/dequelabs/axe-core-npm",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-20T16:05:56Z",
+    "default_branch": "develop"
+  },
+  "@base-ui/react": {
+    "repository": "mui/base-ui",
+    "url": "https://github.com/mui/base-ui",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:46:46Z",
+    "default_branch": "master"
+  },
+  "@better-auth/drizzle-adapter": {
+    "repository": "better-auth/better-auth",
+    "url": "https://github.com/better-auth/better-auth",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:23:34Z",
+    "default_branch": "main"
+  },
+  "@fontsource-variable/geist": {
+    "repository": "fontsource/font-files",
+    "url": "https://github.com/fontsource/font-files",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-14T11:35:32Z",
+    "default_branch": "main"
+  },
+  "@playwright/test": {
+    "repository": "microsoft/playwright",
+    "url": "https://github.com/microsoft/playwright",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:58:29Z",
+    "default_branch": "main"
+  },
+  "@tailwindcss/vite": {
+    "repository": "tailwindlabs/tailwindcss",
+    "url": "https://github.com/tailwindlabs/tailwindcss",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T15:50:56Z",
+    "default_branch": "main"
+  },
+  "@tanstack/devtools-vite": {
+    "repository": "TanStack/devtools",
+    "url": "https://github.com/TanStack/devtools",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T14:58:01Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-devtools": {
+    "repository": "TanStack/devtools",
+    "url": "https://github.com/TanStack/devtools",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T14:58:01Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-query": {
+    "repository": "TanStack/query",
+    "url": "https://github.com/TanStack/query",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:16:59Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-router": {
+    "repository": "TanStack/router",
+    "url": "https://github.com/TanStack/router",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:23:25Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-router-devtools": {
+    "repository": "TanStack/router",
+    "url": "https://github.com/TanStack/router",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:23:25Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-router-ssr-query": {
+    "repository": "TanStack/router",
+    "url": "https://github.com/TanStack/router",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:23:25Z",
+    "default_branch": "main"
+  },
+  "@tanstack/react-start": {
+    "repository": "TanStack/router",
+    "url": "https://github.com/TanStack/router",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T07:23:25Z",
+    "default_branch": "main"
+  },
+  "@types/node": {
+    "repository": "DefinitelyTyped/DefinitelyTyped",
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:06:54Z",
+    "default_branch": "master"
+  },
+  "@types/react": {
+    "repository": "DefinitelyTyped/DefinitelyTyped",
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:06:54Z",
+    "default_branch": "master"
+  },
+  "@types/react-dom": {
+    "repository": "DefinitelyTyped/DefinitelyTyped",
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:06:54Z",
+    "default_branch": "master"
+  },
+  "@vitejs/plugin-react": {
+    "repository": "vitejs/vite-plugin-react",
+    "url": "https://github.com/vitejs/vite-plugin-react",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-20T12:13:36Z",
+    "default_branch": "main"
+  },
+  "better-auth": {
+    "repository": "better-auth/better-auth",
+    "url": "https://github.com/better-auth/better-auth",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:23:34Z",
+    "default_branch": "main"
+  },
+  "class-variance-authority": {
+    "repository": "joe-bell/cva",
+    "url": "https://github.com/joe-bell/cva",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T03:37:55Z",
+    "default_branch": "main"
+  },
+  "cn": {
+    "repository": "shadcn-ui/cn",
+    "url": "https://github.com/shadcn-ui/cn",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T06:40:28Z",
+    "default_branch": "main"
+  },
+  "drizzle-kit": {
+    "repository": "drizzle-team/drizzle-orm",
+    "url": "https://github.com/drizzle-team/drizzle-orm",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-20T21:54:31Z",
+    "default_branch": "main"
+  },
+  "drizzle-orm": {
+    "repository": "drizzle-team/drizzle-orm",
+    "url": "https://github.com/drizzle-team/drizzle-orm",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-20T21:54:31Z",
+    "default_branch": "main"
+  },
+  "lucide-react": {
+    "repository": "lucide-icons/lucide",
+    "url": "https://github.com/lucide-icons/lucide",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T13:55:40Z",
+    "default_branch": "main"
+  },
+  "next-themes": {
+    "repository": "pacocoursey/next-themes",
+    "url": "https://github.com/pacocoursey/next-themes",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-02-25T05:25:42Z",
+    "default_branch": "main"
+  },
+  "pdf-lib": {
+    "repository": "Hopding/pdf-lib",
+    "url": "https://github.com/Hopding/pdf-lib",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2024-07-17T12:18:51Z",
+    "default_branch": "master"
+  },
+  "pnpm": {
+    "repository": "pnpm/pnpm",
+    "url": "https://github.com/pnpm/pnpm",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:03:03Z",
+    "default_branch": "main"
+  },
+  "react": {
+    "repository": "react/react",
+    "url": "https://github.com/react/react",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:23:10Z",
+    "default_branch": "main"
+  },
+  "react-day-picker": {
+    "repository": "gpbl/react-day-picker",
+    "url": "https://github.com/gpbl/react-day-picker",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-09-30T09:16:56Z",
+    "default_branch": "main"
+  },
+  "react-dom": {
+    "repository": "react/react",
+    "url": "https://github.com/react/react",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:23:10Z",
+    "default_branch": "main"
+  },
+  "shadcn": {
+    "repository": "shadcn-ui/ui",
+    "url": "https://github.com/shadcn-ui/ui",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-20T20:37:52Z",
+    "default_branch": "main"
+  },
+  "sonner": {
+    "repository": "emilkowalski/sonner",
+    "url": "https://github.com/emilkowalski/sonner",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-08-10T11:13:03Z",
+    "default_branch": "main"
+  },
+  "tailwindcss": {
+    "repository": "tailwindlabs/tailwindcss",
+    "url": "https://github.com/tailwindlabs/tailwindcss",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T15:50:56Z",
+    "default_branch": "main"
+  },
+  "tw-animate-css": {
+    "repository": "Wombosvideo/tw-animate-css",
+    "url": "https://github.com/Wombosvideo/tw-animate-css",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-02-28T13:32:38Z",
+    "default_branch": "main"
+  },
+  "typescript": {
+    "repository": "microsoft/TypeScript",
+    "url": "https://github.com/microsoft/TypeScript",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:27:37Z",
+    "default_branch": "main"
+  },
+  "unpdf": {
+    "repository": "unjs/unpdf",
+    "url": "https://github.com/unjs/unpdf",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T05:45:44Z",
+    "default_branch": "main"
+  },
+  "vite": {
+    "repository": "voidzero-dev/vite-plus",
+    "url": "https://github.com/voidzero-dev/vite-plus",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:27:02Z",
+    "default_branch": "main"
+  },
+  "vite-plus": {
+    "repository": "voidzero-dev/vite-plus",
+    "url": "https://github.com/voidzero-dev/vite-plus",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:27:02Z",
+    "default_branch": "main"
+  },
+  "vitest": {
+    "repository": "vitest-dev/vitest",
+    "url": "https://github.com/vitest-dev/vitest",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T06:26:36Z",
+    "default_branch": "main"
+  },
+  "void": {
+    "repository": "voidzero-dev/void",
+    "url": "https://github.com/voidzero-dev/void",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T12:33:25Z",
+    "default_branch": "main"
+  },
+  "wrangler": {
+    "repository": "cloudflare/workers-sdk",
+    "url": "https://github.com/cloudflare/workers-sdk",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-21T15:17:00Z",
+    "default_branch": "main"
+  },
+  "zod": {
+    "repository": "colinhacks/zod",
+    "url": "https://github.com/colinhacks/zod",
+    "archived": false,
+    "disabled": false,
+    "pushed_at": "2026-10-19T22:46:10Z",
+    "default_branch": "main"
+  }
+}

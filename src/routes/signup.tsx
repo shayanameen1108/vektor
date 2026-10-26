@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, GiftIcon } from "lucide-react";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { asVektorSession, authClient } from "@/lib/auth/auth-client";
 import { getCurrentSession } from "@/lib/auth/session";
+import { clearIdentityCaches } from "@/hooks/use-active-company";
 import { homeForSession } from "@/lib/destinations";
 import { isPasswordAcceptable } from "@/lib/password";
 import { referralLookupQuery } from "@/lib/queries";
@@ -33,6 +34,7 @@ export const Route = createFileRoute("/signup")({
 
 function SignupPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const search = Route.useSearch();
   const refCode = search.ref ?? null;
   const [name, setName] = useState("");
@@ -80,6 +82,9 @@ function SignupPage() {
       setSubmitting(false);
     }
     toast.success("Account created — welcome to Vektor");
+    // A new identity in this tab must not inherit the previous user's private
+    // TanStack cache; Better Auth never touches it.
+    clearIdentityCaches(queryClient);
     const { data } = await authClient.getSession();
     await navigate({ to: homeForSession(asVektorSession(data), "/setup") });
   };

@@ -13,7 +13,7 @@
  * referrals row (pending_referrer_company) rather than failing the confirm.
  */
 
-import { and, eq, gte, isNull, sql } from "drizzle-orm";
+import { and, eq, gte, sql } from "drizzle-orm";
 
 import type { createDb } from "@/db";
 import { user } from "@/db/schema/auth";
@@ -277,7 +277,9 @@ async function grantReferralReward(
         .prepare(
           `UPDATE referrals SET status = 'first_paid_subscription',
            referrerFirstPaidBonusGranted = 1, referrerSubBonusGranted = 1,
-           firstPaidAt = ?, firstPaidPlanLookupKey = ?, rewardClaimToken = NULL,
+           firstPaidAt = coalesce(firstPaidAt, ?),
+           firstPaidPlanLookupKey = coalesce(firstPaidPlanLookupKey, ?),
+           rewardClaimToken = NULL,
            pendingReferrerCredits = NULL, pendingPlanLookupKey = NULL,
            pendingTriggerReference = NULL
          WHERE id = ? AND rewardClaimToken = ?`,
@@ -370,9 +372,15 @@ export async function maybeRewardReferrerOnPaidEft(
     await db.select().from(referrals).where(eq(referrals.refereeUserId, refereeUserId))
   )[0];
   if (!ref || ref.referrerFirstPaidBonusGranted) return null;
-  if (!isSubscription) return { granted: false, reason: "not_subscription" };
 
-  const creditsToGrant = rewardForPlan(planLookupKey);
+  // A durable first-paid pin outranks the triggering payment's own args, so
+  // a retry after a partial failure recovers the ORIGINAL reward — including
+  // when the later call is a PAYG confirm.
+  const pinned = ref.pendingReferrerCredits != null;
+  if (!pinned && !isSubscription) return { granted: false, reason: "not_subscription" };
+  const creditsToGrant = ref.pendingReferrerCredits ?? rewardForPlan(planLookupKey);
+  const effectivePlan = ref.pendingPlanLookupKey ?? planLookupKey ?? null;
+  const effectiveReference = ref.pendingTriggerReference ?? triggerReference;
   if (creditsToGrant <= 0) return { granted: false, reason: "plan_not_rewardable" };
 
   const referrerCompany = (
@@ -387,17 +395,11 @@ export async function maybeRewardReferrerOnPaidEft(
       .update(referrals)
       .set({
         status: "pending_referrer_company",
-        pendingReferrerCredits: creditsToGrant,
-        pendingPlanLookupKey: planLookupKey ?? null,
-        pendingTriggerReference: triggerReference,
+        pendingReferrerCredits: sql`coalesce(${referrals.pendingReferrerCredits}, ${creditsToGrant})`,
+        pendingPlanLookupKey: sql`coalesce(${referrals.pendingPlanLookupKey}, ${effectivePlan})`,
+        pendingTriggerReference: sql`coalesce(${referrals.pendingTriggerReference}, ${effectiveReference})`,
       })
-      .where(
-        and(
-          eq(referrals.id, ref.id),
-          eq(referrals.referrerFirstPaidBonusGranted, false),
-          isNull(referrals.pendingReferrerCredits),
-        ),
-      );
+      .where(and(eq(referrals.id, ref.id), eq(referrals.referrerFirstPaidBonusGranted, false)));
 
     // Close the race where the company was created while this reward was being parked.
     const companyAfterPark = (
@@ -424,8 +426,8 @@ export async function maybeRewardReferrerOnPaidEft(
     {
       referrerCompanyId: referrerCompany.id,
       creditsToGrant,
-      planLookupKey: planLookupKey ?? null,
-      triggerReference,
+      planLookupKey: effectivePlan,
+      triggerReference: effectiveReference,
     },
     d1,
   );

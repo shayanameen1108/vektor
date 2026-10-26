@@ -1,0 +1,110 @@
+$ node scripts/ensure-void-wrangler.mjs ⊘ cache disabled
+
+$ wrangler d1 migrations apply DB --local -c .void-wrangler.jsonc --persist-to .void ⊘ cache disabled
+
+ ⛅️ wrangler 4.151.0 (update available 4.151.3)
+───────────────────────────────────────────────
+Resource location: local 
+
+Use --remote if you want to access the remote instance.
+
+Migrations to be applied:
+┌───────────────────────────────────┐
+│ name                              │
+├───────────────────────────────────┤
+│ 0000_red_cerise.sql               │
+├───────────────────────────────────┤
+│ 0001_nappy_radioactive_man.sql    │
+├───────────────────────────────────┤
+│ 0002_hard_skaar.sql               │
+├───────────────────────────────────┤
+│ 0003_pending_referral_trigger.sql │
+├───────────────────────────────────┤
+│ 0004_pretty_molly_hayes.sql       │
+└───────────────────────────────────┘
+? About to apply 5 migration(s)
+Your database may not be available to serve requests during the migration, continue?
+🤖 Using fallback value in non-interactive context: yes
+🌀 Executing on local database DB (ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c) from .void/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 37 commands executed successfully.
+┌───────────────────────────────────┬────────┐
+│ name                              │ status │
+├───────────────────────────────────┼────────┤
+│ 0000_red_cerise.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0001_nappy_radioactive_man.sql    │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0002_hard_skaar.sql               │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0003_pending_referral_trigger.sql │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0004_pretty_molly_hayes.sql       │ 🕒️    │
+└───────────────────────────────────┴────────┘
+🌀 Executing on local database DB (ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c) from .void/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 7 commands executed successfully.
+┌───────────────────────────────────┬────────┐
+│ name                              │ status │
+├───────────────────────────────────┼────────┤
+│ 0000_red_cerise.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0001_nappy_radioactive_man.sql    │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0002_hard_skaar.sql               │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0003_pending_referral_trigger.sql │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0004_pretty_molly_hayes.sql       │ 🕒️    │
+└───────────────────────────────────┴────────┘
+🌀 Executing on local database DB (ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c) from .void/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 10 commands executed successfully.
+┌───────────────────────────────────┬────────┐
+│ name                              │ status │
+├───────────────────────────────────┼────────┤
+│ 0000_red_cerise.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0001_nappy_radioactive_man.sql    │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0002_hard_skaar.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0003_pending_referral_trigger.sql │ 🕒️    │
+├───────────────────────────────────┼────────┤
+│ 0004_pretty_molly_hayes.sql       │ 🕒️    │
+└───────────────────────────────────┴────────┘
+🌀 Executing on local database DB (ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c) from .void/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 2 commands executed successfully.
+┌───────────────────────────────────┬────────┐
+│ name                              │ status │
+├───────────────────────────────────┼────────┤
+│ 0000_red_cerise.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0001_nappy_radioactive_man.sql    │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0002_hard_skaar.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0003_pending_referral_trigger.sql │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0004_pretty_molly_hayes.sql       │ 🕒️    │
+└───────────────────────────────────┴────────┘
+🌀 Executing on local database DB (ebb2cb84-3cc8-40ad-9558-f2cb9e40fc3c) from .void/v3/d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 7 commands executed successfully.
+┌───────────────────────────────────┬────────┐
+│ name                              │ status │
+├───────────────────────────────────┼────────┤
+│ 0000_red_cerise.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0001_nappy_radioactive_man.sql    │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0002_hard_skaar.sql               │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0003_pending_referral_trigger.sql │ ✅     │
+├───────────────────────────────────┼────────┤
+│ 0004_pretty_molly_hayes.sql       │ ✅     │
+└───────────────────────────────────┴────────┘
+
+---
+vp run: 2/2 successful. (Run `vp run --last-details` for full details)

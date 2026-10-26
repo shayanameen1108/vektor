@@ -1,0 +1,7 @@
++ vp run check:tokens
+$ node scripts/check-tokens.mjs ◉ cache hit, replaying
+Tokens only, on the 4px grid: 83 files.
+
+---
+vp run: cache hit, 74ms saved.
+EXIT(0) >> /Users/sfx/phase1-evidence/logs/vektor/check-tokens.log

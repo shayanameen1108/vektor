@@ -1,0 +1,933 @@
+{
+  "@axe-core/playwright": {
+    "registryPackage": "@axe-core/playwright",
+    "installed": "4.13.0",
+    "latestStable": "4.14.0",
+    "latestRelease": "2026-10-15T13:33:17.706Z",
+    "registryModified": "2026-10-15T16:39:05.721Z",
+    "repository": {
+      "url": "git+https://github.com/dequelabs/axe-core-npm.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "develop",
+      "disabled": false,
+      "full_name": "dequelabs/axe-core-npm",
+      "html_url": "https://github.com/dequelabs/axe-core-npm",
+      "pushed_at": "2026-10-20T16:05:56Z",
+      "updated_at": "2026-10-21T14:15:40Z"
+    }
+  },
+  "@base-ui/react": {
+    "registryPackage": "@base-ui/react",
+    "installed": "1.9.0",
+    "latestStable": "1.9.0",
+    "latestRelease": "2026-10-09T08:52:43.788Z",
+    "registryModified": "2026-10-09T08:52:44.362Z",
+    "repository": {
+      "url": "git+https://github.com/mui/base-ui.git",
+      "type": "git",
+      "directory": "packages/react"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "master",
+      "disabled": false,
+      "full_name": "mui/base-ui",
+      "html_url": "https://github.com/mui/base-ui",
+      "pushed_at": "2026-10-21T07:46:46Z",
+      "updated_at": "2026-10-21T13:21:10Z"
+    }
+  },
+  "@better-auth/drizzle-adapter": {
+    "registryPackage": "@better-auth/drizzle-adapter",
+    "installed": "1.7.11",
+    "latestStable": "1.7.12",
+    "latestRelease": "2026-10-20T11:59:50.269Z",
+    "registryModified": "2026-10-20T11:59:50.676Z",
+    "repository": {
+      "url": "git+https://github.com/better-auth/better-auth.git",
+      "type": "git",
+      "directory": "packages/drizzle-adapter"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE together after required auth migration review",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "better-auth/better-auth",
+      "html_url": "https://github.com/better-auth/better-auth",
+      "pushed_at": "2026-10-21T15:23:34Z",
+      "updated_at": "2026-10-21T14:11:06Z"
+    }
+  },
+  "@fontsource-variable/geist": {
+    "registryPackage": "@fontsource-variable/geist",
+    "installed": "5.3.0",
+    "latestStable": "5.3.0",
+    "latestRelease": "2026-07-19T03:50:13.458Z",
+    "registryModified": "2026-07-19T03:50:13.882Z",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/fontsource/font-files.git",
+      "directory": "fonts/variable/geist"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "fontsource/font-files",
+      "html_url": "https://github.com/fontsource/font-files",
+      "pushed_at": "2026-10-14T11:35:32Z",
+      "updated_at": "2026-10-19T13:43:47Z"
+    }
+  },
+  "@playwright/test": {
+    "registryPackage": "@playwright/test",
+    "installed": "1.64.1",
+    "latestStable": "1.64.1",
+    "latestRelease": "2026-10-14T11:58:13.696Z",
+    "registryModified": "2026-10-21T05:25:00.854Z",
+    "repository": {
+      "url": "git+https://github.com/microsoft/playwright.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "microsoft/playwright",
+      "html_url": "https://github.com/microsoft/playwright",
+      "pushed_at": "2026-10-21T07:58:29Z",
+      "updated_at": "2026-10-21T15:24:20Z"
+    }
+  },
+  "@tailwindcss/vite": {
+    "registryPackage": "@tailwindcss/vite",
+    "installed": "4.3.3",
+    "latestStable": "4.3.3",
+    "latestRelease": "2026-07-16T12:04:06.316Z",
+    "registryModified": "2026-10-19T16:02:40.792Z",
+    "repository": {
+      "url": "https://github.com/tailwindlabs/tailwindcss.git",
+      "type": "git",
+      "directory": "packages/@tailwindcss-vite"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "tailwindlabs/tailwindcss",
+      "html_url": "https://github.com/tailwindlabs/tailwindcss",
+      "pushed_at": "2026-10-19T15:50:56Z",
+      "updated_at": "2026-10-21T15:32:11Z"
+    }
+  },
+  "@tanstack/devtools-vite": {
+    "registryPackage": "@tanstack/devtools-vite",
+    "installed": "0.8.5",
+    "latestStable": "0.8.5",
+    "latestRelease": "2026-08-20T10:44:43.278Z",
+    "registryModified": "2026-08-20T10:44:43.646Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/devtools.git",
+      "type": "git",
+      "directory": "packages/devtools-vite"
+    },
+    "deprecated": null,
+    "verdict": "KEEP (installed 0.8.5 is already latest stable)",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/devtools",
+      "html_url": "https://github.com/TanStack/devtools",
+      "pushed_at": "2026-10-21T14:58:01Z",
+      "updated_at": "2026-10-19T14:33:33Z"
+    }
+  },
+  "@tanstack/react-devtools": {
+    "registryPackage": "@tanstack/react-devtools",
+    "installed": "0.10.12",
+    "latestStable": "0.10.13",
+    "latestRelease": "2026-09-23T11:38:55.325Z",
+    "registryModified": "2026-09-23T11:38:55.618Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/devtools.git",
+      "type": "git",
+      "directory": "packages/react-devtools"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/devtools",
+      "html_url": "https://github.com/TanStack/devtools",
+      "pushed_at": "2026-10-21T14:58:01Z",
+      "updated_at": "2026-10-19T14:33:33Z"
+    }
+  },
+  "@tanstack/react-query": {
+    "registryPackage": "@tanstack/react-query",
+    "installed": "5.101.4",
+    "latestStable": "5.104.5",
+    "latestRelease": "2026-10-19T16:57:50.440Z",
+    "registryModified": "2026-10-19T16:57:50.907Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/query.git",
+      "type": "git",
+      "directory": "packages/react-query"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/query",
+      "html_url": "https://github.com/TanStack/query",
+      "pushed_at": "2026-10-21T15:16:59Z",
+      "updated_at": "2026-10-21T15:18:02Z"
+    }
+  },
+  "@tanstack/react-router": {
+    "registryPackage": "@tanstack/react-router",
+    "installed": "1.170.44",
+    "latestStable": "1.170.45",
+    "latestRelease": "2026-10-16T21:11:23.380Z",
+    "registryModified": "2026-10-16T21:11:23.776Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/router.git",
+      "type": "git",
+      "directory": "packages/react-router"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/router",
+      "html_url": "https://github.com/TanStack/router",
+      "pushed_at": "2026-10-21T07:23:25Z",
+      "updated_at": "2026-10-21T14:14:43Z"
+    }
+  },
+  "@tanstack/react-router-devtools": {
+    "registryPackage": "@tanstack/react-router-devtools",
+    "installed": "1.167.2",
+    "latestStable": "1.167.2",
+    "latestRelease": "2026-09-13T13:20:31.773Z",
+    "registryModified": "2026-09-13T13:20:32.099Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/router.git",
+      "type": "git",
+      "directory": "packages/react-router-devtools"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/router",
+      "html_url": "https://github.com/TanStack/router",
+      "pushed_at": "2026-10-21T07:23:25Z",
+      "updated_at": "2026-10-21T14:14:43Z"
+    }
+  },
+  "@tanstack/react-router-ssr-query": {
+    "registryPackage": "@tanstack/react-router-ssr-query",
+    "installed": "1.167.1",
+    "latestStable": "1.167.3",
+    "latestRelease": "2026-09-16T21:13:57.844Z",
+    "registryModified": "2026-09-16T21:13:58.205Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/router.git",
+      "type": "git",
+      "directory": "packages/react-router-ssr-query"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/router",
+      "html_url": "https://github.com/TanStack/router",
+      "pushed_at": "2026-10-21T07:23:25Z",
+      "updated_at": "2026-10-21T14:14:43Z"
+    }
+  },
+  "@tanstack/react-start": {
+    "registryPackage": "@tanstack/react-start",
+    "installed": "1.169.2",
+    "latestStable": "1.169.3",
+    "latestRelease": "2026-10-16T21:10:41.109Z",
+    "registryModified": "2026-10-16T21:10:41.792Z",
+    "repository": {
+      "url": "git+https://github.com/TanStack/router.git",
+      "type": "git",
+      "directory": "packages/react-start"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "TanStack/router",
+      "html_url": "https://github.com/TanStack/router",
+      "pushed_at": "2026-10-21T07:23:25Z",
+      "updated_at": "2026-10-21T14:14:43Z"
+    }
+  },
+  "@types/node": {
+    "registryPackage": "@types/node",
+    "installed": "24.19.2",
+    "latestStable": "26.6.5",
+    "latestRelease": "2026-10-09T18:46:47.657Z",
+    "registryModified": "2026-10-09T18:46:47.862Z",
+    "repository": {
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "type": "git",
+      "directory": "types/node"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "master",
+      "disabled": false,
+      "full_name": "DefinitelyTyped/DefinitelyTyped",
+      "html_url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "pushed_at": "2026-10-21T15:06:54Z",
+      "updated_at": "2026-10-21T15:09:01Z"
+    }
+  },
+  "@types/react": {
+    "registryPackage": "@types/react",
+    "installed": "19.3.0",
+    "latestStable": "19.3.0",
+    "latestRelease": "2026-09-09T18:08:49.750Z",
+    "registryModified": "2026-10-04T09:18:58.831Z",
+    "repository": {
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "type": "git",
+      "directory": "types/react"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "master",
+      "disabled": false,
+      "full_name": "DefinitelyTyped/DefinitelyTyped",
+      "html_url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "pushed_at": "2026-10-21T15:06:54Z",
+      "updated_at": "2026-10-21T15:09:01Z"
+    }
+  },
+  "@types/react-dom": {
+    "registryPackage": "@types/react-dom",
+    "installed": "19.3.0",
+    "latestStable": "19.3.0",
+    "latestRelease": "2026-09-09T18:07:51.886Z",
+    "registryModified": "2026-10-04T09:19:01.470Z",
+    "repository": {
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "type": "git",
+      "directory": "types/react-dom"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "master",
+      "disabled": false,
+      "full_name": "DefinitelyTyped/DefinitelyTyped",
+      "html_url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "pushed_at": "2026-10-21T15:06:54Z",
+      "updated_at": "2026-10-21T15:09:01Z"
+    }
+  },
+  "@vitejs/plugin-react": {
+    "registryPackage": "@vitejs/plugin-react",
+    "installed": "6.1.2",
+    "latestStable": "6.1.2",
+    "latestRelease": "2026-10-05T10:08:27.143Z",
+    "registryModified": "2026-10-05T10:08:27.439Z",
+    "repository": {
+      "url": "git+https://github.com/vitejs/vite-plugin-react.git",
+      "type": "git",
+      "directory": "packages/plugin-react"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "vitejs/vite-plugin-react",
+      "html_url": "https://github.com/vitejs/vite-plugin-react",
+      "pushed_at": "2026-10-20T12:13:36Z",
+      "updated_at": "2026-10-20T12:11:40Z"
+    }
+  },
+  "better-auth": {
+    "registryPackage": "better-auth",
+    "installed": "1.7.11",
+    "latestStable": "1.7.12",
+    "latestRelease": "2026-10-20T11:59:45.143Z",
+    "registryModified": "2026-10-20T11:59:46.065Z",
+    "repository": {
+      "url": "git+https://github.com/better-auth/better-auth.git",
+      "type": "git",
+      "directory": "packages/better-auth"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE together after required auth migration review",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "better-auth/better-auth",
+      "html_url": "https://github.com/better-auth/better-auth",
+      "pushed_at": "2026-10-21T15:23:34Z",
+      "updated_at": "2026-10-21T14:11:06Z"
+    }
+  },
+  "class-variance-authority": {
+    "registryPackage": "class-variance-authority",
+    "installed": "0.7.1",
+    "latestStable": "0.7.1",
+    "latestRelease": "2024-11-26T08:20:34.604Z",
+    "registryModified": "2024-11-26T08:20:34.776Z",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/joe-bell/cva.git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "joe-bell/cva",
+      "html_url": "https://github.com/joe-bell/cva",
+      "pushed_at": "2026-10-19T03:37:55Z",
+      "updated_at": "2026-10-20T23:19:13Z"
+    }
+  },
+  "cn": {
+    "registryPackage": "cn",
+    "installed": "0.4.0",
+    "latestStable": "0.5.0",
+    "latestRelease": "2026-10-16T12:59:28.723Z",
+    "registryModified": "2026-10-16T12:59:29.086Z",
+    "repository": {
+      "url": "git+https://github.com/shadcn-ui/cn.git",
+      "type": "git",
+      "directory": "packages/cn"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "shadcn-ui/cn",
+      "html_url": "https://github.com/shadcn-ui/cn",
+      "pushed_at": "2026-10-19T06:40:28Z",
+      "updated_at": "2026-10-21T13:59:00Z"
+    }
+  },
+  "drizzle-kit": {
+    "registryPackage": "drizzle-kit",
+    "installed": "0.31.11",
+    "latestStable": "0.31.11",
+    "latestRelease": "2026-09-21T10:06:58.727Z",
+    "registryModified": "2026-09-21T10:06:59.070Z",
+    "repository": {
+      "url": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "drizzle-team/drizzle-orm",
+      "html_url": "https://github.com/drizzle-team/drizzle-orm",
+      "pushed_at": "2026-10-20T21:54:31Z",
+      "updated_at": "2026-10-21T13:54:33Z"
+    }
+  },
+  "drizzle-orm": {
+    "registryPackage": "drizzle-orm",
+    "installed": "0.45.4",
+    "latestStable": "0.45.4",
+    "latestRelease": "2026-10-08T10:50:41.953Z",
+    "registryModified": "2026-10-08T10:50:42.417Z",
+    "repository": {
+      "url": "git+https://github.com/drizzle-team/drizzle-orm.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "drizzle-team/drizzle-orm",
+      "html_url": "https://github.com/drizzle-team/drizzle-orm",
+      "pushed_at": "2026-10-20T21:54:31Z",
+      "updated_at": "2026-10-21T13:54:33Z"
+    }
+  },
+  "lucide-react": {
+    "registryPackage": "lucide-react",
+    "installed": "1.57.0",
+    "latestStable": "1.61.0",
+    "latestRelease": "2026-10-21T06:12:38.158Z",
+    "registryModified": "2026-10-21T06:12:38.502Z",
+    "repository": {
+      "url": "https://github.com/lucide-icons/lucide.git",
+      "type": "git",
+      "directory": "packages/lucide-react"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "lucide-icons/lucide",
+      "html_url": "https://github.com/lucide-icons/lucide",
+      "pushed_at": "2026-10-21T13:55:40Z",
+      "updated_at": "2026-10-21T14:31:03Z"
+    }
+  },
+  "next-themes": {
+    "registryPackage": "next-themes",
+    "installed": "0.4.6",
+    "latestStable": "0.4.6",
+    "latestRelease": "2025-03-11T21:02:05.882Z",
+    "registryModified": "2025-03-11T21:02:06.078Z",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pacocoursey/next-themes.git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "pacocoursey/next-themes",
+      "html_url": "https://github.com/pacocoursey/next-themes",
+      "pushed_at": "2026-02-25T05:25:42Z",
+      "updated_at": "2026-10-20T04:16:22Z"
+    }
+  },
+  "pdf-lib": {
+    "registryPackage": "pdf-lib",
+    "installed": "1.17.1",
+    "latestStable": "1.17.1",
+    "latestRelease": "2021-11-06T22:29:49.065Z",
+    "registryModified": "2022-05-12T18:02:10.238Z",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Hopding/pdf-lib.git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "master",
+      "disabled": false,
+      "full_name": "Hopding/pdf-lib",
+      "html_url": "https://github.com/Hopding/pdf-lib",
+      "pushed_at": "2024-07-17T12:18:51Z",
+      "updated_at": "2026-10-21T08:29:21Z"
+    }
+  },
+  "pnpm": {
+    "registryPackage": "pnpm",
+    "installed": "12.11.2",
+    "latestStable": "12.14.0",
+    "latestRelease": "2026-10-15T13:39:41.432Z",
+    "registryModified": "2026-10-21T11:16:18.476Z",
+    "repository": {
+      "url": "https://github.com/pnpm/pnpm",
+      "type": "git",
+      "directory": "pnpm/npm/pnpm"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "pnpm/pnpm",
+      "html_url": "https://github.com/pnpm/pnpm",
+      "pushed_at": "2026-10-21T15:03:03Z",
+      "updated_at": "2026-10-21T15:10:01Z"
+    }
+  },
+  "react": {
+    "registryPackage": "react",
+    "installed": "19.3.1",
+    "latestStable": "19.3.1",
+    "latestRelease": "2026-10-14T16:47:15.290Z",
+    "registryModified": "2026-10-20T16:29:01.195Z",
+    "repository": {
+      "url": "git+https://github.com/react/react.git",
+      "type": "git",
+      "directory": "packages/react"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "react/react",
+      "html_url": "https://github.com/react/react",
+      "pushed_at": "2026-10-21T15:23:10Z",
+      "updated_at": "2026-10-21T15:31:57Z"
+    }
+  },
+  "react-day-picker": {
+    "registryPackage": "react-day-picker",
+    "installed": "10.0.2",
+    "latestStable": "10.0.2",
+    "latestRelease": "2026-09-30T09:03:29.525Z",
+    "registryModified": "2026-09-30T09:03:30.350Z",
+    "repository": {
+      "url": "git+https://github.com/gpbl/react-day-picker.git",
+      "type": "git",
+      "directory": "packages/react-day-picker"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "gpbl/react-day-picker",
+      "html_url": "https://github.com/gpbl/react-day-picker",
+      "pushed_at": "2026-09-30T09:16:56Z",
+      "updated_at": "2026-10-18T07:04:04Z"
+    }
+  },
+  "react-dom": {
+    "registryPackage": "react-dom",
+    "installed": "19.3.1",
+    "latestStable": "19.3.1",
+    "latestRelease": "2026-10-14T16:49:10.081Z",
+    "registryModified": "2026-10-20T16:31:40.349Z",
+    "repository": {
+      "url": "git+https://github.com/react/react.git",
+      "type": "git",
+      "directory": "packages/react-dom"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "react/react",
+      "html_url": "https://github.com/react/react",
+      "pushed_at": "2026-10-21T15:23:10Z",
+      "updated_at": "2026-10-21T15:31:57Z"
+    }
+  },
+  "shadcn": {
+    "registryPackage": "shadcn",
+    "installed": "4.21.5",
+    "latestStable": "4.22.1",
+    "latestRelease": "2026-10-18T18:12:18.511Z",
+    "registryModified": "2026-10-18T18:12:18.875Z",
+    "repository": {
+      "url": "git+https://github.com/shadcn-ui/ui.git",
+      "type": "git",
+      "directory": "packages/shadcn"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "shadcn-ui/ui",
+      "html_url": "https://github.com/shadcn-ui/ui",
+      "pushed_at": "2026-10-20T20:37:52Z",
+      "updated_at": "2026-10-21T15:30:15Z"
+    }
+  },
+  "sonner": {
+    "registryPackage": "sonner",
+    "installed": "2.0.8",
+    "latestStable": "2.0.8",
+    "latestRelease": "2026-08-09T08:46:10.174Z",
+    "registryModified": "2026-08-09T08:46:10.361Z",
+    "repository": {
+      "url": "git+https://github.com/emilkowalski/sonner.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "emilkowalski/sonner",
+      "html_url": "https://github.com/emilkowalski/sonner",
+      "pushed_at": "2026-08-10T11:13:03Z",
+      "updated_at": "2026-10-21T13:57:16Z"
+    }
+  },
+  "tailwindcss": {
+    "registryPackage": "tailwindcss",
+    "installed": "4.3.3",
+    "latestStable": "4.3.3",
+    "latestRelease": "2026-07-16T12:03:35.267Z",
+    "registryModified": "2026-10-19T16:02:21.368Z",
+    "repository": {
+      "url": "https://github.com/tailwindlabs/tailwindcss.git",
+      "type": "git",
+      "directory": "packages/tailwindcss"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "tailwindlabs/tailwindcss",
+      "html_url": "https://github.com/tailwindlabs/tailwindcss",
+      "pushed_at": "2026-10-19T15:50:56Z",
+      "updated_at": "2026-10-21T15:32:11Z"
+    }
+  },
+  "tw-animate-css": {
+    "registryPackage": "tw-animate-css",
+    "installed": "1.4.0",
+    "latestStable": "1.4.0",
+    "latestRelease": "2025-09-24T05:25:53.055Z",
+    "registryModified": "2026-02-28T13:22:41.202Z",
+    "repository": {
+      "url": "git+https://github.com/Wombosvideo/tw-animate-css.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "Wombosvideo/tw-animate-css",
+      "html_url": "https://github.com/Wombosvideo/tw-animate-css",
+      "pushed_at": "2026-02-28T13:32:38Z",
+      "updated_at": "2026-10-21T07:40:00Z"
+    }
+  },
+  "typescript": {
+    "registryPackage": "typescript",
+    "installed": "7.0.2",
+    "latestStable": "7.0.2",
+    "latestRelease": "2026-07-08T15:55:18.431Z",
+    "registryModified": "2026-10-21T08:23:20.376Z",
+    "repository": {
+      "url": "git+https://github.com/microsoft/TypeScript.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "microsoft/TypeScript",
+      "html_url": "https://github.com/microsoft/TypeScript",
+      "pushed_at": "2026-10-21T15:27:37Z",
+      "updated_at": "2026-10-21T15:28:56Z"
+    }
+  },
+  "unpdf": {
+    "registryPackage": "unpdf",
+    "installed": "1.8.1",
+    "latestStable": "1.9.1",
+    "latestRelease": "2026-10-19T05:47:16.158Z",
+    "registryModified": "2026-10-19T05:47:16.548Z",
+    "repository": {
+      "url": "git+https://github.com/unjs/unpdf.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "unjs/unpdf",
+      "html_url": "https://github.com/unjs/unpdf",
+      "pushed_at": "2026-10-19T05:45:44Z",
+      "updated_at": "2026-10-21T07:31:31Z"
+    }
+  },
+  "vite": {
+    "registryPackage": "@voidzero-dev/vite-plus-core",
+    "installed": "@voidzero-dev/vite-plus-core@1.2.0",
+    "latestStable": "1.3.0",
+    "latestRelease": "2026-10-16T05:40:02.001Z",
+    "registryModified": "2026-10-16T05:40:02.401Z",
+    "repository": {
+      "url": "git+https://github.com/voidzero-dev/vite-plus.git",
+      "type": "git",
+      "directory": "packages/core"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE as family: Vite+/core 1.3.0, Vitest 5.0.5",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "voidzero-dev/vite-plus",
+      "html_url": "https://github.com/voidzero-dev/vite-plus",
+      "pushed_at": "2026-10-21T15:27:02Z",
+      "updated_at": "2026-10-21T15:31:03Z"
+    }
+  },
+  "vite-plus": {
+    "registryPackage": "vite-plus",
+    "installed": "1.2.0",
+    "latestStable": "1.3.0",
+    "latestRelease": "2026-10-16T05:42:37.109Z",
+    "registryModified": "2026-10-16T05:42:37.523Z",
+    "repository": {
+      "url": "git+https://github.com/voidzero-dev/vite-plus.git",
+      "type": "git",
+      "directory": "packages/cli"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE as family: Vite+/core 1.3.0, Vitest 5.0.5",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "voidzero-dev/vite-plus",
+      "html_url": "https://github.com/voidzero-dev/vite-plus",
+      "pushed_at": "2026-10-21T15:27:02Z",
+      "updated_at": "2026-10-21T15:31:03Z"
+    }
+  },
+  "vitest": {
+    "registryPackage": "vitest",
+    "installed": "5.0.4 (toolchain override)",
+    "latestStable": "5.0.5",
+    "latestRelease": "2026-10-15T14:29:01.396Z",
+    "registryModified": "2026-10-19T16:53:22.209Z",
+    "repository": {
+      "url": "git+https://github.com/vitest-dev/vitest.git",
+      "type": "git",
+      "directory": "packages/vitest"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE as family: Vite+/core 1.3.0, Vitest 5.0.5",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "vitest-dev/vitest",
+      "html_url": "https://github.com/vitest-dev/vitest",
+      "pushed_at": "2026-10-21T06:26:36Z",
+      "updated_at": "2026-10-21T14:25:52Z"
+    }
+  },
+  "void": {
+    "registryPackage": "void",
+    "installed": "1.1.12",
+    "latestStable": "1.1.12",
+    "latestRelease": "2026-10-19T04:25:11.496Z",
+    "registryModified": "2026-10-19T04:25:11.883Z",
+    "repository": {
+      "url": "git+https://github.com/voidzero-dev/void.git",
+      "type": "git",
+      "directory": "packages/void"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "voidzero-dev/void",
+      "html_url": "https://github.com/voidzero-dev/void",
+      "pushed_at": "2026-10-21T12:33:25Z",
+      "updated_at": "2026-10-21T15:26:08Z"
+    }
+  },
+  "wrangler": {
+    "registryPackage": "wrangler",
+    "installed": "4.151.0",
+    "latestStable": "4.151.3",
+    "latestRelease": "2026-10-20T12:05:18.897Z",
+    "registryModified": "2026-10-20T12:05:20.184Z",
+    "repository": {
+      "url": "git+https://github.com/cloudflare/workers-sdk.git",
+      "type": "git",
+      "directory": "packages/wrangler"
+    },
+    "deprecated": null,
+    "verdict": "UPGRADE to 4.151.3 with Workers tooling; retain required migration bridge",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "cloudflare/workers-sdk",
+      "html_url": "https://github.com/cloudflare/workers-sdk",
+      "pushed_at": "2026-10-21T15:17:00Z",
+      "updated_at": "2026-10-21T15:11:46Z"
+    }
+  },
+  "zod": {
+    "registryPackage": "zod",
+    "installed": "4.6.7",
+    "latestStable": "4.6.7",
+    "latestRelease": "2026-10-12T16:29:37.778Z",
+    "registryModified": "2026-10-12T16:29:38.042Z",
+    "repository": {
+      "url": "git+https://github.com/colinhacks/zod.git",
+      "type": "git"
+    },
+    "deprecated": null,
+    "verdict": "KEEP",
+    "maintenance": {
+      "archived": false,
+      "default_branch": "main",
+      "disabled": false,
+      "full_name": "colinhacks/zod",
+      "html_url": "https://github.com/colinhacks/zod",
+      "pushed_at": "2026-10-19T22:46:10Z",
+      "updated_at": "2026-10-21T13:15:38Z"
+    }
+  }
+}

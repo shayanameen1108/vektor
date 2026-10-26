@@ -1,0 +1,296 @@
++ vp build
+note: You are running `vp build` as a Vite+ built-in command. If you meant to run the build npm script, use `vpr build` instead.
+transforming...
+
+[@tanstack/devtools-vite] Removed devtools code from: /src/routes/__root.tsx
+
+✓ 3363 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/.assetsignore                                           0.02 kB
+dist/client/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2    7.42 kB
+dist/client/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2      8.00 kB
+dist/client/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2       15.08 kB
+dist/client/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2      16.51 kB
+dist/client/assets/geist-latin-wght-normal-BgDaEnEv.woff2          29.40 kB
+dist/client/assets/styles-DwNl84nI.css                            149.39 kB │ gzip:  23.02 kB
+dist/client/assets/separator-DiMVSBJu.js                            0.04 kB │ gzip:   0.06 kB
+dist/client/assets/help-GbBJH2AA.js                                 0.07 kB │ gzip:   0.08 kB
+dist/client/assets/clamp-D0kAXd-u.js                                0.08 kB │ gzip:   0.09 kB
+dist/client/assets/stringifyLocale-CkHjdQTJ.js                      0.09 kB │ gzip:   0.10 kB
+dist/client/assets/useRender-CJBOICut.js                            0.10 kB │ gzip:   0.12 kB
+dist/client/assets/isElementDisabled-KSuuBj8D.js                    0.11 kB │ gzip:   0.11 kB
+dist/client/assets/money-CBdFR5W-.js                                0.12 kB │ gzip:   0.12 kB
+dist/client/assets/useRouter-CPrsgkx5.js                            0.19 kB │ gzip:   0.16 kB
+dist/client/assets/getHighlightReason-wkMpRSmh.js                   0.19 kB │ gzip:   0.15 kB
+dist/client/assets/arrow-up-right-B56kWNUG.js                       0.19 kB │ gzip:   0.17 kB
+dist/client/assets/visuallyHidden-CmQ9ItcI.js                       0.20 kB │ gzip:   0.17 kB
+dist/client/assets/skeleton-4OMUlbPn.js                             0.20 kB │ gzip:   0.18 kB
+dist/client/assets/menu-DAuXKnTn.js                                 0.21 kB │ gzip:   0.17 kB
+dist/client/assets/help-ComHKo0Q.js                                 0.24 kB │ gzip:   0.20 kB
+dist/client/assets/circle-check-big-uzVUNHlZ.js                     0.24 kB │ gzip:   0.21 kB
+dist/client/assets/vektor-mark-CUYV193p.js                          0.25 kB │ gzip:   0.22 kB
+dist/client/assets/chevron-up-04L1XG-T.js                           0.25 kB │ gzip:   0.19 kB
+dist/client/assets/log-out-X5R8KJxB.js                              0.26 kB │ gzip:   0.21 kB
+dist/client/assets/upload-UxSL_IM1.js                               0.26 kB │ gzip:   0.21 kB
+dist/client/assets/spinner-6Gi5rGu-.js                              0.26 kB │ gzip:   0.21 kB
+dist/client/assets/useNavigate-BPysEcwy.js                          0.26 kB │ gzip:   0.21 kB
+dist/client/assets/banknote-CAVCYDiB.js                             0.27 kB │ gzip:   0.23 kB
+dist/client/assets/useControlled-D_toJITp.js                        0.29 kB │ gzip:   0.24 kB
+dist/client/assets/coins-DCEWTuqT.js                                0.31 kB │ gzip:   0.24 kB
+dist/client/assets/date-BBwhA5PM.js                                 0.34 kB │ gzip:   0.19 kB
+dist/client/assets/gift-nBh_zoCY.js                                 0.37 kB │ gzip:   0.27 kB
+dist/client/assets/CompositeItem-BTV1vtZQ.js                        0.38 kB │ gzip:   0.27 kB
+dist/client/assets/file-text-B8hmGYGT.js                            0.41 kB │ gzip:   0.27 kB
+dist/client/assets/eft-zsC9Utod.js                                  0.45 kB │ gzip:   0.22 kB
+dist/client/assets/useTimeout-B2Y2vNgF.js                           0.53 kB │ gzip:   0.31 kB
+dist/client/assets/useCompositeItem-LcWj8rHI.js                     0.54 kB │ gzip:   0.38 kB
+dist/client/assets/useAriaLabelledBy-BWS9rVk0.js                    0.61 kB │ gzip:   0.41 kB
+dist/client/assets/use-active-company-BebEdCkU.js                   0.67 kB │ gzip:   0.40 kB
+dist/client/assets/rolldown-runtime-hePW80VL.js                     0.71 kB │ gzip:   0.42 kB
+dist/client/assets/textarea-BUSMz6xY.js                             0.76 kB │ gzip:   0.42 kB
+dist/client/assets/google-icon-C_iXc_-t.js                          0.77 kB │ gzip:   0.47 kB
+dist/client/assets/useMatch-CfY5TXOB.js                             0.86 kB │ gzip:   0.51 kB
+dist/client/assets/page-state-KmBiIQAS.js                           0.87 kB │ gzip:   0.49 kB
+dist/client/assets/page-header-BOkL9ypH.js                          0.94 kB │ gzip:   0.51 kB
+dist/client/assets/useTriggerSwitchTransition-DiZoFC9d.js           1.15 kB │ gzip:   0.62 kB
+dist/client/assets/table-D6XT8yTD.js                                1.22 kB │ gzip:   0.50 kB
+dist/client/assets/queries-BL0NYQt1.js                              1.25 kB │ gzip:   0.52 kB
+dist/client/assets/alert-zYuWUpBw.js                                1.28 kB │ gzip:   0.59 kB
+dist/client/assets/billing-catalog-C1p8IwHl.js                      1.33 kB │ gzip:   0.53 kB
+dist/client/assets/badge-vfWFhQu0.js                                1.39 kB │ gzip:   0.64 kB
+dist/client/assets/card-D-sD0YpQ.js                                 1.48 kB │ gzip:   0.58 kB
+dist/client/assets/no-company-page-BPIVQtWH.js                      1.53 kB │ gzip:   0.76 kB
+dist/client/assets/with-selector-DgzDz-z8.js                        1.67 kB │ gzip:   0.74 kB
+dist/client/assets/download-CLs_HrNb.js                             1.72 kB │ gzip:   0.97 kB
+dist/client/assets/bargaining-councils-CL8JOQGv.js                  2.26 kB │ gzip:   0.63 kB
+dist/client/assets/useMutation-D_wwXJJl.js                          2.29 kB │ gzip:   0.96 kB
+dist/client/assets/dialog-CaJxreZi.js                               2.35 kB │ gzip:   0.95 kB
+dist/client/assets/useSetFieldFocused-ySD0tThP.js                   2.47 kB │ gzip:   1.17 kB
+dist/client/assets/password-strength-BYCfhN_x.js                    2.48 kB │ gzip:   1.12 kB
+dist/client/assets/progress-DA93W66T.js                             2.63 kB │ gzip:   1.25 kB
+dist/client/assets/auth-shell-B0-sa-km.js                           2.75 kB │ gzip:   1.05 kB
+dist/client/assets/input-D-zbSPgh.js                                2.92 kB │ gzip:   1.43 kB
+dist/client/assets/alert-dialog-exSv_kDr.js                         2.98 kB │ gzip:   0.99 kB
+dist/client/assets/route-CJi9DoHj.js                                3.04 kB │ gzip:   1.19 kB
+dist/client/assets/forgot-password-Co_cXwNp.js                      3.07 kB │ gzip:   1.36 kB
+dist/client/assets/reset-password-BfDxmHk_.js                       3.10 kB │ gzip:   1.29 kB
+dist/client/assets/field-DCkBSc9I.js                                3.16 kB │ gzip:   1.04 kB
+dist/client/assets/public-header-BzjBe6u5.js                        3.18 kB │ gzip:   1.14 kB
+dist/client/assets/input-group-CpiWNSZA.js                          3.20 kB │ gzip:   1.17 kB
+dist/client/assets/useCompositeListItem-6cwptHBy.js                 3.31 kB │ gzip:   1.47 kB
+dist/client/assets/login-Dwu02C9H.js                                3.71 kB │ gzip:   1.56 kB
+dist/client/assets/bargaining-council-table-DlSmBLwC.js             3.79 kB │ gzip:   0.87 kB
+dist/client/assets/attachment-BeTReoG7.js                           4.54 kB │ gzip:   1.53 kB
+dist/client/assets/useCollapsiblePanel-DDzeAES_.js                  4.84 kB │ gzip:   2.15 kB
+dist/client/assets/useBaseUiId-DsmPwHEi.js                          5.14 kB │ gzip:   2.03 kB
+dist/client/assets/signup-o-lCIepi.js                               5.16 kB │ gzip:   2.10 kB
+dist/client/assets/preload-helper-BqHq8kmU.js                       5.20 kB │ gzip:   2.01 kB
+dist/client/assets/admin-CiQ-OIZ6.js                                5.43 kB │ gzip:   1.48 kB
+dist/client/assets/item-DLU9Ru21.js                                 7.32 kB │ gzip:   3.08 kB
+dist/client/assets/DialogTitle-CFVxeVDS.js                          8.49 kB │ gzip:   3.11 kB
+dist/client/assets/ToolbarRootContext-DbTLJNaM.js                   8.56 kB │ gzip:   3.67 kB
+dist/client/assets/composite-DCsi9HJ9.js                            9.17 kB │ gzip:   3.66 kB
+dist/client/assets/api-client-B53KEaFT.js                          10.19 kB │ gzip:   3.77 kB
+dist/client/assets/companies-iBC39H42.js                           11.78 kB │ gzip:   3.25 kB
+dist/client/assets/eft-CdJWbfIy.js                                 12.13 kB │ gzip:   3.57 kB
+dist/client/assets/terms-DFrOlALB.js                               12.13 kB │ gzip:   3.52 kB
+dist/client/assets/about-DmYvAbmb.js                               12.35 kB │ gzip:   3.43 kB
+dist/client/assets/privacy-DQfmxpe3.js                             13.14 kB │ gzip:   3.40 kB
+dist/client/assets/users-CVTGzM6X.js                               14.78 kB │ gzip:   3.79 kB
+dist/client/assets/help-page-B3sYsagX.js                           16.67 kB │ gzip:   5.20 kB
+dist/client/assets/app-B9GBTK7L.js                                 26.08 kB │ gzip:   8.53 kB
+dist/client/assets/billing-B7ueaUff.js                             31.94 kB │ gzip:   9.25 kB
+dist/client/assets/select-DRt9U01v.js                              32.66 kB │ gzip:  11.42 kB
+dist/client/assets/routes-BE-krFlJ.js                              33.14 kB │ gzip:   9.43 kB
+dist/client/assets/analyze-D6d8EimB.js                             33.60 kB │ gzip:  10.54 kB
+dist/client/assets/auth-client-YUEvWTgv.js                         35.60 kB │ gzip:  13.19 kB
+dist/client/assets/useScrollLock-Cb_ewZaI.js                       40.56 kB │ gzip:  14.22 kB
+dist/client/assets/route-n-e1N8BP.js                               45.78 kB │ gzip:  14.77 kB
+dist/client/assets/button-U4kt5VYS.js                              50.22 kB │ gzip:  19.77 kB
+dist/client/assets/setup-Dwai5wm8.js                               61.72 kB │ gzip:  20.50 kB
+dist/client/assets/link-D750vjiN.js                                63.47 kB │ gzip:  22.80 kB
+dist/client/assets/documents-CkCERXId.js                          103.14 kB │ gzip:  30.66 kB
+dist/client/assets/index-CNbJU0-Z.js                              401.47 kB │ gzip: 127.37 kB
+
+✓ built in 1.05s
+transforming...
+
+[@tanstack/devtools-vite] Removed devtools code from: /src/routes/__root.tsx
+
+✓ 4465 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/server/wrangler.json                                                 1.81 kB │ gzip:   0.91 kB
+dist/server/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2          7.42 kB
+dist/server/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2            8.00 kB
+dist/server/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2             15.08 kB
+dist/server/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2            16.51 kB
+dist/server/assets/geist-latin-wght-normal-BgDaEnEv.woff2                29.40 kB
+dist/server/.vite/manifest.json                                          60.40 kB │ gzip:   6.84 kB
+dist/server/assets/styles-DwNl84nI.css                                  149.39 kB │ gzip:  23.02 kB
+dist/server/assets/kysely-adapter-D0XUhZzB.js                             0.07 kB │ gzip:   0.08 kB
+dist/server/assets/start-C63VetBp.js                                      0.08 kB │ gzip:   0.10 kB │ map:     0.43 kB
+dist/server/assets/separator-BbzZyq2q.js                                  0.09 kB │ gzip:   0.11 kB │ map:     0.72 kB
+dist/server/assets/help-xihl1Ab3.js                                       0.11 kB │ gzip:   0.12 kB │ map:     0.46 kB
+dist/server/assets/clamp-D0kAXd-u.js                                      0.12 kB │ gzip:   0.13 kB │ map:     0.55 kB
+dist/server/assets/empty-plugin-adapters-BaGcmrjC.js                      0.13 kB │ gzip:   0.13 kB │ map:     0.61 kB
+dist/server/assets/useRender-D4aXb89D.js                                  0.15 kB │ gzip:   0.15 kB │ map:     0.70 kB
+dist/server/assets/stringifyLocale-CkHjdQTJ.js                            0.15 kB │ gzip:   0.15 kB │ map:     0.71 kB
+dist/server/assets/money-CBdFR5W-.js                                      0.16 kB │ gzip:   0.15 kB │ map:     0.58 kB
+dist/server/assets/isElementDisabled-KSuuBj8D.js                          0.16 kB │ gzip:   0.15 kB │ map:     0.60 kB
+dist/server/assets/help-DhuTGNhe.js                                       0.19 kB │ gzip:   0.18 kB │ map:     0.74 kB
+dist/server/assets/utils-ju8GUCvZ.js                                      0.19 kB │ gzip:   0.17 kB │ map:     0.91 kB
+dist/server/assets/DialogRoot-DrZ1akZs.js                                 0.20 kB │ gzip:   0.18 kB │ map:     1.00 kB
+dist/server/assets/x-CIfzMOih.js                                          0.22 kB │ gzip:   0.20 kB │ map:     1.04 kB
+dist/server/assets/compiled-query-Ds2NVcFT.js                             0.23 kB │ gzip:   0.22 kB │ map:     1.45 kB
+dist/server/assets/useRouter-B0xSJiMa.js                                  0.24 kB │ gzip:   0.19 kB │ map:     1.78 kB
+dist/server/assets/arrow-right-BBD6FElB.js                                0.24 kB │ gzip:   0.22 kB │ map:     1.11 kB
+dist/server/assets/loader-circle-B6iWOpjH.js                              0.24 kB │ gzip:   0.22 kB │ map:     1.08 kB
+dist/server/assets/arrow-up-right-8d05N4p5.js                             0.24 kB │ gzip:   0.21 kB │ map:     1.13 kB
+dist/server/assets/getHighlightReason-BWUHo8ax.js                         0.25 kB │ gzip:   0.20 kB │ map:     1.12 kB
+dist/server/assets/visuallyHidden-CmQ9ItcI.js                             0.25 kB │ gzip:   0.21 kB │ map:     0.97 kB
+dist/server/assets/DirectionContext-BDDEjofG.js                           0.26 kB │ gzip:   0.21 kB │ map:     0.91 kB
+dist/server/assets/menu-DPMft2l7.js                                       0.26 kB │ gzip:   0.21 kB │ map:     1.16 kB
+dist/server/assets/help-Bul2YVCH.js                                       0.29 kB │ gzip:   0.23 kB │ map:     0.92 kB
+dist/server/assets/skeleton-DYZlVoSX.js                                   0.29 kB │ gzip:   0.24 kB │ map:     0.66 kB
+dist/server/assets/useRouterState-CHE4JeOk.js                             0.29 kB │ gzip:   0.23 kB │ map:     1.85 kB
+dist/server/assets/circle-check-big-CWjAaO1V.js                           0.30 kB │ gzip:   0.25 kB │ map:     1.22 kB
+dist/server/assets/upload-D1SJLsbq.js                                     0.30 kB │ gzip:   0.24 kB │ map:     1.22 kB
+dist/server/assets/log-out-CNxIIgAo.js                                    0.30 kB │ gzip:   0.24 kB │ map:     1.22 kB
+dist/server/assets/vektor-mark-DKjk1cVn.js                                0.30 kB │ gzip:   0.26 kB │ map:     0.69 kB
+dist/server/assets/chevron-up-Beo9mcpi.js                                 0.30 kB │ gzip:   0.23 kB │ map:     1.88 kB
+dist/server/assets/string-BCSe1WZp.js                                     0.31 kB │ gzip:   0.24 kB │ map:     1.80 kB
+dist/server/assets/analyze-DtZOSxFE.js                                    0.31 kB │ gzip:   0.25 kB │ map:    39.44 kB
+dist/server/assets/banknote-Cq0Fe18E.js                                   0.32 kB │ gzip:   0.26 kB │ map:     1.32 kB
+dist/server/assets/useNavigate-oILi2pm_.js                                0.32 kB │ gzip:   0.25 kB │ map:     2.32 kB
+dist/server/assets/useValueChanged-DvUDU05W.js                            0.32 kB │ gzip:   0.25 kB │ map:     1.23 kB
+dist/server/assets/destinations-BqORt33q.js                               0.32 kB │ gzip:   0.24 kB │ map:     1.85 kB
+dist/server/assets/useControlled-Ab2M5pHs.js                              0.35 kB │ gzip:   0.28 kB │ map:     4.08 kB
+dist/server/assets/coins-CCohXK8h.js                                      0.35 kB │ gzip:   0.28 kB │ map:     1.36 kB
+dist/server/assets/spinner-CX6OU0xH.js                                    0.35 kB │ gzip:   0.27 kB │ map:     0.80 kB
+dist/server/assets/reset-password-DDX4D7SW.js                             0.37 kB │ gzip:   0.26 kB │ map:     6.00 kB
+dist/server/assets/triangle-alert-DwO6TyeJ.js                             0.37 kB │ gzip:   0.28 kB │ map:     1.40 kB
+dist/server/assets/ClientOnly-BPKkf3Wu.js                                 0.38 kB │ gzip:   0.28 kB │ map:     1.90 kB
+dist/server/assets/date-BBwhA5PM.js                                       0.38 kB │ gzip:   0.23 kB │ map:     1.18 kB
+dist/server/assets/session-DcbEesEC.js                                    0.42 kB │ gzip:   0.34 kB │ map:     2.58 kB
+dist/server/assets/gift-BddJb4Ux.js                                       0.42 kB │ gzip:   0.30 kB │ map:     1.46 kB
+dist/server/assets/CompositeItem-BUrh_92A.js                              0.43 kB │ gzip:   0.30 kB │ map:     1.71 kB
+dist/server/assets/redirect-DmtLUW0N.js                                   0.43 kB │ gzip:   0.28 kB │ map:     2.71 kB
+dist/server/assets/usePopupHandleStore-D8SUymTr.js                        0.45 kB │ gzip:   0.31 kB │ map:     1.95 kB
+dist/server/assets/file-text-Bw5L9Cya.js                                  0.46 kB │ gzip:   0.30 kB │ map:     1.56 kB
+dist/server/assets/useSelector-CwBClnEy.js                                0.46 kB │ gzip:   0.32 kB │ map:     2.25 kB
+dist/server/assets/signup-DuQOT9pk.js                                     0.47 kB │ gzip:   0.34 kB │ map:     9.90 kB
+dist/server/assets/login-OQHOuO-v.js                                      0.48 kB │ gzip:   0.33 kB │ map:     7.09 kB
+dist/server/assets/__23tanstack-start-server-fn-resolver-DptGHyLG.js      0.49 kB │ gzip:   0.31 kB
+dist/server/assets/useTimeout-BU9KiXhD.js                                 0.62 kB │ gzip:   0.36 kB │ map:     2.64 kB
+dist/server/assets/download-Cqri0vMz.js                                   0.62 kB │ gzip:   0.44 kB │ map:     2.36 kB
+dist/server/assets/useCompositeItem-DtDjEoUc.js                           0.63 kB │ gzip:   0.42 kB │ map:     2.27 kB
+dist/server/assets/useMatch-pn-G-Bln.js                                   0.66 kB │ gzip:   0.41 kB │ map:     3.25 kB
+dist/server/assets/useAriaLabelledBy-xBGHnizz.js                          0.70 kB │ gzip:   0.47 kB │ map:     3.85 kB
+dist/server/assets/rolldown-runtime-hePW80VL.js                           0.71 kB │ gzip:   0.42 kB
+dist/server/assets/use-active-company-Bjb1GvYK.js                         0.73 kB │ gzip:   0.44 kB │ map:     2.69 kB
+dist/server/assets/session-BH0mQMNu.js                                    0.76 kB │ gzip:   0.48 kB │ map:     2.94 kB
+dist/server/assets/google-icon-BzfzIwM0.js                                0.83 kB │ gzip:   0.52 kB │ map:     1.50 kB
+dist/server/assets/manifest-D58MtnTo.js                                   0.84 kB │ gzip:   0.43 kB │ map:     3.81 kB
+dist/server/assets/textarea-DHyJzuZ5.js                                   0.84 kB │ gzip:   0.47 kB │ map:     1.25 kB
+dist/server/assets/page-state-luBEvq0x.js                                 0.96 kB │ gzip:   0.54 kB │ map:     2.41 kB
+dist/server/assets/page-header-848TZS5x.js                                1.03 kB │ gzip:   0.57 kB │ map:     2.47 kB
+dist/server/assets/eft-D19ioCSg.js                                        1.04 kB │ gzip:   0.59 kB │ map:     4.04 kB
+dist/server/assets/sqlite-adapter-C_LAV4e3.js                             1.06 kB │ gzip:   0.52 kB │ map:     4.43 kB
+dist/server/assets/dist-Bab1Qy8c.js                                       1.23 kB │ gzip:   0.67 kB │ map:    18.01 kB
+dist/server/assets/useTriggerSwitchTransition-oUo0KII9.js                 1.29 kB │ gzip:   0.70 kB │ map:     8.04 kB
+dist/server/assets/queries-CiRcpLXQ.js                                    1.30 kB │ gzip:   0.56 kB │ map:     6.62 kB
+dist/server/assets/table-Cnc8jX7S.js                                      1.30 kB │ gzip:   0.54 kB │ map:     3.62 kB
+dist/server/assets/alert-Miz41uCW.js                                      1.36 kB │ gzip:   0.64 kB │ map:     2.99 kB
+dist/server/assets/useBaseUiId-BecSyfQg.js                                1.42 kB │ gzip:   0.80 kB │ map:     8.84 kB
+dist/server/assets/badge-Dnc5-TH0.js                                      1.43 kB │ gzip:   0.68 kB │ map:     2.74 kB
+dist/server/assets/card-0z4PM1Cr.js                                       1.56 kB │ gzip:   0.63 kB │ map:     3.73 kB
+dist/server/assets/empty-BGNNEItN.js                                      1.59 kB │ gzip:   0.64 kB │ map:     3.84 kB
+dist/server/assets/no-company-page-cHMiAlkM.js                            1.61 kB │ gzip:   0.81 kB │ map:     4.73 kB
+dist/server/assets/billing-catalog-3n9RT9H9.js                            1.70 kB │ gzip:   0.67 kB │ map:     4.23 kB
+dist/server/assets/with-selector-DrBnreTX.js                              1.72 kB │ gzip:   0.78 kB │ map:     9.29 kB
+dist/server/assets/node-sqlite-dialect-BowWLXvK.js                        1.87 kB │ gzip:   0.88 kB │ map:     6.01 kB
+dist/server/assets/bun-sqlite-dialect-DoOVo4ja-CtyBkVMb.js                1.87 kB │ gzip:   0.88 kB │ map:     6.01 kB
+dist/server/assets/useOpenInteractionType-9XATT1ck.js                     2.28 kB │ gzip:   1.14 kB │ map:    13.56 kB
+dist/server/assets/link-DFU_F67I.js                                       2.34 kB │ gzip:   1.26 kB │ map:    18.27 kB
+dist/server/assets/useMutation-CAzw9hG8.js                                2.39 kB │ gzip:   1.01 kB │ map:     9.00 kB
+dist/server/assets/dialog-CxdDHSmT.js                                     2.47 kB │ gzip:   1.00 kB │ map:     6.49 kB
+dist/server/assets/password-strength-t-Yn95m3.js                          2.54 kB │ gzip:   1.15 kB │ map:     6.35 kB
+dist/server/assets/useSetFieldFocused-B4QloRQF.js                         2.56 kB │ gzip:   1.23 kB │ map:    16.80 kB
+dist/server/assets/bargaining-councils-mOf818pk.js                        2.60 kB │ gzip:   0.80 kB │ map:     5.57 kB
+dist/server/assets/progress-CHBeKSL1.js                                   2.72 kB │ gzip:   1.30 kB │ map:    16.35 kB
+dist/server/assets/auth-shell-888RP2YW.js                                 2.80 kB │ gzip:   1.09 kB │ map:     5.21 kB
+dist/server/assets/input-D9nAOSwI.js                                      3.01 kB │ gzip:   1.47 kB │ map:    12.82 kB
+dist/server/assets/alert-dialog-nLF0OlCU.js                               3.07 kB │ gzip:   1.03 kB │ map:     8.51 kB
+dist/server/assets/d1-sqlite-dialect-m0f01-4z-Cv-csE1u.js                 3.07 kB │ gzip:   1.31 kB │ map:     9.90 kB
+dist/server/assets/forgot-password-DP_kqU4w.js                            3.16 kB │ gzip:   1.42 kB │ map:     7.99 kB
+dist/server/assets/route-D3FpZLcX.js                                      3.23 kB │ gzip:   1.28 kB │ map:     9.15 kB
+dist/server/assets/reset-password-DHFsR1r2.js                             3.23 kB │ gzip:   1.35 kB │ map:     8.98 kB
+dist/server/assets/field-BDRijYBH.js                                      3.24 kB │ gzip:   1.09 kB │ map:     8.63 kB
+dist/server/assets/public-header-BOdC4AYp.js                              3.27 kB │ gzip:   1.19 kB │ map:     8.31 kB
+dist/server/assets/input-group-BRGA9uhj.js                                3.28 kB │ gzip:   1.22 kB │ map:     6.90 kB
+dist/server/assets/useCompositeListItem-DmiVNqkV.js                       3.41 kB │ gzip:   1.53 kB │ map:    18.20 kB
+dist/server/assets/mutation-BXkAuwvL.js                                   3.43 kB │ gzip:   1.17 kB │ map:    11.62 kB
+dist/server/assets/lazyRouteComponent-673pjICJ.js                         3.61 kB │ gzip:   1.30 kB │ map:    28.17 kB
+dist/server/assets/compliance-pdJigON6.js                                 3.78 kB │ gzip:   1.76 kB │ map:    14.30 kB
+dist/server/assets/bargaining-council-table-DUIdAD9Z.js                   3.86 kB │ gzip:   0.91 kB │ map:     8.49 kB
+dist/server/assets/login-BRjOWEvO.js                                      3.86 kB │ gzip:   1.64 kB │ map:    10.57 kB
+dist/server/assets/env-impl-DjDHZeMJ.js                                   3.88 kB │ gzip:   1.91 kB │ map:    12.60 kB
+dist/server/assets/react-dom-BJQT4hCr.js                                  3.95 kB │ gzip:   1.46 kB │ map:    14.06 kB
+dist/server/assets/company-validation-DXivkBjd.js                         4.06 kB │ gzip:   1.88 kB │ map:    11.84 kB
+dist/server/assets/sheet-CI5haSU0.js                                      4.12 kB │ gzip:   1.54 kB │ map:    12.03 kB
+dist/server/assets/tender-scoring-Ccw_r-Kt.js                             4.35 kB │ gzip:   1.97 kB │ map:    17.41 kB
+dist/server/assets/createServerFn-TzwWSSJ4.js                             4.56 kB │ gzip:   2.06 kB │ map:    21.57 kB
+dist/server/assets/attachment-BFiiaZlO.js                                 4.62 kB │ gzip:   1.58 kB │ map:    10.86 kB
+dist/server/assets/dist-DMZHZpCz.js                                       4.71 kB │ gzip:   1.85 kB │ map:    18.16 kB
+dist/server/assets/useCollapsiblePanel-rj61c-Kf.js                        4.93 kB │ gzip:   2.21 kB │ map:    36.73 kB
+dist/server/assets/Match-COFe2vwx.js                                      4.97 kB │ gzip:   1.97 kB │ map:    24.58 kB
+dist/server/assets/signup-DbvKAFW2.js                                     5.35 kB │ gzip:   2.19 kB │ map:    15.35 kB
+dist/server/assets/admin-cO75Qr-t.js                                      5.51 kB │ gzip:   1.53 kB │ map:    13.64 kB
+dist/server/assets/dist-DyXREa7f.js                                       5.53 kB │ gzip:   2.12 kB │ map:    26.13 kB
+dist/server/assets/item-CnkwIGiI.js                                       6.52 kB │ gzip:   2.80 kB │ map:    28.94 kB
+dist/server/assets/server-C2g_eSiP.js                                     7.51 kB │ gzip:   3.00 kB │ map:    47.82 kB
+dist/server/assets/jsx-runtime-lyXjfMfH.js                                8.29 kB │ gzip:   3.15 kB │ map:    32.87 kB
+dist/server/assets/DialogTitle-Do_xifb1.js                                8.58 kB │ gzip:   3.16 kB │ map:    45.77 kB
+dist/server/assets/ToolbarRootContext-BcjyfJg8.js                         8.66 kB │ gzip:   3.73 kB │ map:    53.87 kB
+dist/server/assets/composite-DLoY7Sc6.js                                  9.22 kB │ gzip:   3.70 kB │ map:    48.50 kB
+dist/server/assets/api-client-tcpcEKA4.js                                10.25 kB │ gzip:   3.80 kB │ map:    48.90 kB
+dist/server/assets/safePolygon-BsGIIw3l.js                               10.71 kB │ gzip:   3.93 kB │ map:    57.69 kB
+dist/server/assets/companies-82ZWa3Jt.js                                 11.91 kB │ gzip:   3.31 kB │ map:    32.97 kB
+dist/server/assets/terms-DANLf_Hc.js                                     12.21 kB │ gzip:   3.58 kB │ map:    22.73 kB
+dist/server/assets/eft-BWGtpWnc.js                                       12.26 kB │ gzip:   3.64 kB │ map:    35.63 kB
+dist/server/assets/about-DchP05Nw.js                                     12.43 kB │ gzip:   3.48 kB │ map:    26.09 kB
+dist/server/assets/privacy-6_wzqcgt.js                                   13.23 kB │ gzip:   3.45 kB │ map:    25.83 kB
+dist/server/assets/_tanstack-start-manifest_v-CqwBI8vt.js                13.53 kB │ gzip:   2.49 kB
+dist/server/assets/users-CuDJ7_lH.js                                     14.90 kB │ gzip:   3.85 kB │ map:    41.47 kB
+dist/server/assets/QueryClientProvider-BRTbDESr.js                       15.41 kB │ gzip:   5.35 kB │ map:    66.34 kB
+dist/server/assets/auth-client-B5wlugS6.js                               15.97 kB │ gzip:   6.19 kB │ map:    72.57 kB
+dist/server/assets/help-page-Yso2YMQo.js                                 16.75 kB │ gzip:   5.25 kB │ map:    32.20 kB
+dist/server/assets/route-DH5rUvVN.js                                     17.22 kB │ gzip:   6.40 kB │ map:    87.14 kB
+dist/server/assets/has-permission-DKqGAAIu.js                            21.14 kB │ gzip:   7.83 kB │ map:    89.73 kB
+dist/server/assets/usePositioner-Cs7Ed0Yt.js                             24.47 kB │ gzip:   9.68 kB │ map:   154.17 kB
+dist/server/assets/app-D5KFOXXe.js                                       26.32 kB │ gzip:   8.63 kB │ map:    92.53 kB
+dist/server/assets/billing-C8yrd2rP.js                                   32.10 kB │ gzip:   9.32 kB │ map:    99.64 kB
+dist/server/assets/select-ByuA-_WX.js                                    32.89 kB │ gzip:  11.51 kB │ map:   163.75 kB
+dist/server/assets/routes-DBEZ_s6x.js                                    33.27 kB │ gzip:   9.48 kB │ map:    88.32 kB
+dist/server/assets/dist-B15qwN92.js                                      33.62 kB │ gzip:   9.41 kB │ map:    95.85 kB
+dist/server/assets/analyze-DDDdDqix.js                                   33.90 kB │ gzip:  10.66 kB │ map:   148.59 kB
+dist/server/assets/useScrollLock-y8eSgH5H.js                             40.67 kB │ gzip:  14.26 kB │ map:   252.37 kB
+dist/server/assets/button-5fF5F_fM.js                                    42.13 kB │ gzip:  17.00 kB │ map:   173.94 kB
+dist/server/assets/route-H9aOM6Kz.js                                     46.18 kB │ gzip:  14.93 kB │ map:   211.86 kB
+dist/server/assets/matchContext-D7LdLuDh.js                              51.02 kB │ gzip:  17.71 kB │ map:   286.04 kB
+dist/server/assets/setup-BbCiX4WR.js                                     59.42 kB │ gzip:  19.56 kB │ map:   283.77 kB
+dist/server/assets/dist-Ir3J-3v9.js                                      82.39 kB │ gzip:  19.28 kB │ map:   442.35 kB
+dist/server/assets/documents-CxSBQbTr.js                                103.54 kB │ gzip:  30.86 kB │ map:   595.36 kB
+dist/server/assets/sqlite-introspector-DSCAP82F-Crx7Ny14.js             116.03 kB │ gzip:  23.33 kB │ map:   552.81 kB
+dist/server/assets/factory-DPHNOnc0.js                                  135.60 kB │ gzip:  39.70 kB │ map:   715.10 kB
+dist/server/index.js                                                    315.04 kB │ gzip:  98.13 kB │ map: 1,406.60 kB
+dist/server/assets/server-auth-Cggl-Nx-.js                              501.39 kB │ gzip: 136.40 kB │ map: 1,936.47 kB
+dist/server/assets/router-C-QO8pbw.js                                   522.60 kB │ gzip: 205.75 kB │ map: 2,421.09 kB
+dist/server/assets/pdfjs-Bc2u0_GK.js                                  1,599.27 kB │ gzip: 492.43 kB │ map: 3,404.24 kB
+
+[plugin vite:css-post] [SOURCEMAP_BROKEN] Sourcemap is likely to be incorrect: a plugin (vite:css-post) was used to transform files, but didn't generate a sourcemap for the transformation. Consult the plugin documentation for help: https://rolldown.rs/guide/troubleshooting#warning-sourcemap-is-likely-to-be-incorrect
+
+✓ built in 1.42s
+EXIT(0) >> /Users/sfx/phase1-evidence/logs/vektor/build.log

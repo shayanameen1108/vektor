@@ -1,83 +1,173 @@
+import { z } from "zod";
+
 import type { companies } from "@/db/schema/company";
 import { VALID_COUNCIL_CODES } from "@/lib/bargaining-councils";
 import { verifyCipc, verifyCsdMaaa, verifySarsTcs } from "@/lib/verification";
 
 const VALID_PPPFA = new Set(["80/20", "90/10"]);
 
-interface StatutoryFields {
-  cipcNum?: string;
-  csdMaaaNum?: string | null;
-  sarsTcsPin?: string | null;
+type VerifyFn = (value: string) => {
+  valid: boolean;
+  reason?: string;
+  normalized?: string;
+};
+
+/** The first issue is the actionable 400 detail returned to the client. */
+export function firstIssueMessage(error: z.ZodError): string {
+  return error.issues[0]?.message ?? "Invalid input";
 }
 
-/** Validate supplied statutory fields and return database-ready normalized values. */
-export function validateStatutoryFields(
-  body: Record<string, unknown>,
-  options: { requireCipc?: boolean } = {},
-): StatutoryFields {
-  const result: StatutoryFields = {};
-  const has = (key: string) => Object.prototype.hasOwnProperty.call(body, key);
+/**
+ * Shared company payload schema used by POST /api/companies, PATCH
+ * /api/companies/:id, and the setup UI — one definition so the three
+ * consumers cannot drift. Statutory fields keep their format checks and
+ * return normalized values; wrong types now fail instead of being coerced.
+ */
 
-  if (options.requireCipc && !has("cipc_num")) {
-    throw new Error("CIPC number is required");
-  }
-  if (has("cipc_num")) {
-    if (typeof body.cipc_num !== "string") {
-      throw new Error("CIPC number must be a string");
-    }
-    const verification = verifyCipc(body.cipc_num);
-    if (!verification.valid) {
-      throw new Error(`Invalid CIPC number: ${verification.reason}`);
-    }
-    result.cipcNum = verification.normalized!;
-  }
+/** Optional text field: strings or null only; "" collapses to null. */
+const optionalText = z
+  .string({ error: "Must be a string or null" })
+  .nullable()
+  .transform((v) => (v == null || v.trim() === "" ? null : v))
+  .optional();
 
-  for (const [inputKey, outputKey, label, verify] of [
-    ["csd_maaa_num", "csdMaaaNum", "CSD/MAAA number", verifyCsdMaaa],
-    ["sars_tcs_pin", "sarsTcsPin", "SARS TCS PIN", verifySarsTcs],
-  ] as const) {
-    if (!has(inputKey)) continue;
-    const value = body[inputKey];
-    if (value === null) {
-      result[outputKey] = null;
-      continue;
-    }
-    if (typeof value !== "string") {
-      throw new Error(`${label} must be a string or null`);
-    }
-    if (value.trim() === "") {
-      result[outputKey] = null;
-      continue;
-    }
-    const verification = verify(value);
-    if (!verification.valid) {
-      throw new Error(`Invalid ${label}: ${verification.reason}`);
-    }
-    result[outputKey] = verification.normalized!;
-  }
+/** Optional statutory field: null/"" clear; format verified, output normalized. */
+const optionalStatutory = (label: string, verify: VerifyFn) =>
+  z
+    .string({ error: `${label} must be a string or null` })
+    .nullable()
+    .transform((v, ctx) => {
+      if (v == null || v.trim() === "") return null;
+      const result = verify(v);
+      if (!result.valid) {
+        ctx.addIssue({ code: "custom", message: `Invalid ${label}: ${result.reason}` });
+        return z.NEVER;
+      }
+      return result.normalized!;
+    })
+    .optional();
 
-  return result;
-}
+const companyNameField = z
+  .string({
+    error: (iss) =>
+      iss.input === undefined ? "Company name is required" : "company_name must be a string",
+  })
+  .trim()
+  .min(1, "company_name cannot be empty");
 
-export function validateCouncils(codes: unknown): string[] | null {
-  if (codes == null) return null;
-  if (!Array.isArray(codes)) throw new Error("bargaining_councils must be an array");
-  const unique = [...new Set(codes as string[])];
-  const unknown = unique.filter((c) => !VALID_COUNCIL_CODES.has(c));
-  if (unknown.length > 0) {
-    throw new Error(`Unknown bargaining council code(s): ${unknown.join(", ")}`);
-  }
-  return unique;
-}
+const cipcField = z
+  .string({
+    error: (iss) =>
+      iss.input === undefined ? "CIPC number is required" : "CIPC number must be a string",
+  })
+  .transform((v, ctx) => {
+    const result = verifyCipc(v);
+    if (!result.valid) {
+      ctx.addIssue({ code: "custom", message: `Invalid CIPC number: ${result.reason}` });
+      return z.NEVER;
+    }
+    return result.normalized!;
+  });
 
-export function validatePppfa(value: unknown): string | null {
-  if (value == null || value === "") return null;
-  if (typeof value !== "string" || !VALID_PPPFA.has(value)) {
-    throw new Error(
-      `Invalid PPPFA preference system: ${String(value as string)}. Must be one of 80/20, 90/10`,
-    );
+const bbbeeField = z
+  .union([z.number(), z.string()])
+  .nullable()
+  .transform((v, ctx) => {
+    if (v == null || v === "") return null;
+    const n = Number(v);
+    if (!Number.isInteger(n) || n < 1 || n > 8) {
+      ctx.addIssue({ code: "custom", message: "bbbee_level must be between 1 and 8" });
+      return z.NEVER;
+    }
+    return n;
+  })
+  .optional();
+
+const councilsField = z
+  .array(z.string())
+  .nullable()
+  .transform((v, ctx) => {
+    if (v == null) return null;
+    const unique = [...new Set(v)];
+    const unknown = unique.filter((c) => !VALID_COUNCIL_CODES.has(c));
+    if (unknown.length > 0) {
+      ctx.addIssue({
+        code: "custom",
+        message: `Unknown bargaining council code(s): ${unknown.join(", ")}`,
+      });
+      return z.NEVER;
+    }
+    return unique;
+  })
+  .optional();
+
+const pppfaField = z
+  .string()
+  .nullable()
+  .transform((v, ctx) => {
+    if (v == null || v === "") return null;
+    if (!VALID_PPPFA.has(v)) {
+      ctx.addIssue({
+        code: "custom",
+        message: `Invalid PPPFA preference system: ${v}. Must be one of 80/20, 90/10`,
+      });
+      return z.NEVER;
+    }
+    return v;
+  })
+  .optional();
+
+export const companyInputSchema = z.object({
+  company_name: companyNameField,
+  cipc_num: cipcField,
+  csd_maaa_num: optionalStatutory("CSD/MAAA number", verifyCsdMaaa),
+  sars_tcs_pin: optionalStatutory("SARS TCS PIN", verifySarsTcs),
+  cidb_crs_num: optionalText,
+  bbbee_level: bbbeeField,
+  contact_email: optionalText,
+  contact_phone: optionalText,
+  authorised_signatory_name: optionalText,
+  authorised_signatory_position: optionalText,
+  bargaining_councils: councilsField,
+  preferred_pppfa_system: pppfaField,
+  alerts_enabled: z.boolean().optional(),
+});
+
+/** PATCH accepts the same shape with every key optional — only-sent keys apply. */
+export const companyPatchSchema = companyInputSchema.partial();
+
+/** The statutory subset the setup UI checks live for its "ready" indicator. */
+export const statutoryInputSchema = companyInputSchema.pick({
+  cipc_num: true,
+  csd_maaa_num: true,
+  sars_tcs_pin: true,
+});
+
+export type CompanyPatchInput = z.infer<typeof companyPatchSchema>;
+
+/** PATCH input keys -> company table columns; councils serialize to JSON. */
+export function companyPatchUpdates(input: CompanyPatchInput): Record<string, unknown> {
+  const updates: Record<string, unknown> = {};
+  const set = (key: keyof CompanyPatchInput, column: string) => {
+    if (input[key] !== undefined) updates[column] = input[key];
+  };
+  set("company_name", "companyName");
+  set("cipc_num", "cipcNum");
+  set("csd_maaa_num", "csdMaaaNum");
+  set("sars_tcs_pin", "sarsTcsPin");
+  set("cidb_crs_num", "cidbCrsNum");
+  set("bbbee_level", "bbbeeLevel");
+  set("contact_email", "contactEmail");
+  set("contact_phone", "contactPhone");
+  set("authorised_signatory_name", "authorisedSignatoryName");
+  set("authorised_signatory_position", "authorisedSignatoryPosition");
+  if (input.bargaining_councils !== undefined) {
+    updates.bargainingCouncils =
+      input.bargaining_councils == null ? null : JSON.stringify(input.bargaining_councils);
   }
-  return value;
+  set("preferred_pppfa_system", "preferredPppfaSystem");
+  set("alerts_enabled", "alertsEnabled");
+  return updates;
 }
 
 export function toApiCompany(row: typeof companies.$inferSelect) {
@@ -100,8 +190,4 @@ export function toApiCompany(row: typeof companies.$inferSelect) {
     updated_at: new Date(row.updatedAt).toISOString(),
     user_id: row.userId,
   };
-}
-
-export function nullIfBlank(v: unknown): string | null {
-  return typeof v === "string" ? (v.trim() === "" ? null : v) : null;
 }

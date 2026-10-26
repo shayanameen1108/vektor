@@ -1,0 +1,11 @@
+
+■ Local database already has application tables but no Void migration history.
+
+  Existing tables: account, companies, company_credits, compliance_documents, 
+  d1_migrations, eft_payments, referral_rewards, referrals, sent_reminders, 
+  session, tenders, user, verification
+
+  This usually means the schema was applied with `void db push` or the local 
+  database was created before migration tracking existed.
+  Run `void db reset` to recreate the local database from db/migrations/, or 
+  delete the local D1 state if you do not need its data.
