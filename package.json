@@ -62,5 +62,5 @@
     "void": "^1.2.1",
     "wrangler": "^4.152.0"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.15.0"
 }
