@@ -1,5 +1,5 @@
 import { and, eq } from "drizzle-orm";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 
 import { companies } from "@/db/schema/company";
 import { complianceDocuments, sentReminders } from "@/db/schema/compliance";

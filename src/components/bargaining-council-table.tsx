@@ -77,7 +77,7 @@ export function BargainingCouncilTable({ variant }: { variant: keyof typeof LINK
             >
               MEIBC — Mechanical / HVAC
             </a>
-            <p className="mt-0.5 text-xs text-muted-foreground">
+            <p className="mt-1 text-xs text-muted-foreground">
               HVAC also needs SARACCA + SAQCC Gas registration
             </p>
           </TableCell>

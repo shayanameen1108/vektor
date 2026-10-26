@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { user } from "@/db/schema/auth";
 import { companies } from "@/db/schema/company";

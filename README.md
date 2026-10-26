@@ -8,31 +8,53 @@ Production: [vektorhq.co.za](https://vektorhq.co.za)
 
 ## Setup
 
-```bash
-mise install
-mise run setup
-nub run dev
+[Vite+](https://viteplus.dev) (`vp`) runs everything: it uses the Node in `.node-version` and the pnpm in `package.json`, and ships Vite, Vitest, Oxlint, and Oxfmt as one set, pinned in `pnpm-workspace.yaml`. `vp install` also sets up the pre-commit hook, which checks what is staged.
+
+```sh
+curl -fsSL https://vite.plus | bash   # once per machine
+vp install
+vp run dev                            # applies local D1 migrations, then http://127.0.0.1:5173
 ```
 
-Copy `.dev.vars.example` to `.dev.vars` if it is not created for you. All email goes through Resend (`RESEND_API_KEY` required, even locally). Tender analysis uses the Workers AI binding — wrangler must be logged in to the Cloudflare account.
+Copy `.dev.vars.example` to `.dev.vars` if it is not created for you. Its `ENVIRONMENT="local"` keeps local runs off outside services ([`src/lib/ports.ts`](src/lib/ports.ts)): email lands in an in-memory mailbox (`GET /api/dev/mail`) instead of Resend, and tender analysis uses a deterministic stand-in instead of the Workers AI binding. Production sets no `ENVIRONMENT`, so it always uses Resend and Workers AI.
 
 ## Commands
 
-- `nub run dev` — Vite + local D1 migrate
-- `nub run build` — Cloudflare Workers build
-- `nub run preview` — production build on :4173
-- `nub run deploy` — build and `wrangler deploy`
-- `nub run deploy:preview` — `wrangler versions upload`
-- `nub run db:migrate:local` / `nub run db:migrate:remote`
-- `nub run seed:admin` — first admin (`ADMIN_EMAIL` / `ADMIN_PASSWORD` required)
-- `nub run check` — typecheck, lint, format, unit, e2e, build
-- `nub run clean` — generated output
+```sh
+vp check                   # format, lint, and type check (vp check --fix to fix)
+vp run check:tokens        # every colour and size is a token from src/styles.css
+vp test                    # Vitest unit tests
+vp run test:smoke         # resets local D1, builds, then the public pages and the credit chain in the installed Chrome
+vp build                   # Cloudflare Workers production build
+vp preview                 # the production build, locally
+vp run deploy              # build and deploy with Wrangler
+vp run db:migrate:local    # or db:migrate:remote
+vp run seed:admin          # first admin (ADMIN_EMAIL / ADMIN_PASSWORD required)
+vp run clean               # generated output
+```
 
 UI uses shadcn/ui (`base-nova`). Add components with:
 
-```bash
-nubx shadcn@latest add button --yes
+```sh
+vp dlx shadcn@latest add button --yes
 ```
+
+CI ([`.github/workflows/check.yml`](.github/workflows/check.yml)) runs `vp check`, `vp run check:tokens`, `vp test run` and `vp run test:smoke` on Ubuntu for every pull request and every push to `main`. The smoke run needs no secrets or Cloudflare login: it builds with `.dev.vars.example`, whose `ENVIRONMENT="local"` swaps Resend and Workers AI for the local mailbox and the tender stand-in. It opens the public pages and the one chain that spends a credit, in the installed Chrome. On failure, the job uploads Playwright traces as the `playwright-traces` artifact.
+
+## Deploy
+
+GitHub Actions deploys: the `deploy` job in [`.github/workflows/check.yml`](.github/workflows/check.yml) runs `vp run deploy` on every push to `main`, and only after Check passes, so a change whose tests fail never reaches production. Pull requests are checked, not deployed. Cloudflare builds nothing itself: the Worker is not connected to Git.
+
+The job reads these from the repository's **Settings → Secrets and variables → Actions**:
+
+| Name                    | Kind     | Purpose                                                                  |
+| ----------------------- | -------- | ------------------------------------------------------------------------ |
+| `CLOUDFLARE_API_TOKEN`  | Secret   | User API token from the "Edit Cloudflare Workers" template, Work account |
+| `CLOUDFLARE_ACCOUNT_ID` | Variable | The Work account                                                         |
+
+`vp run deploy` also works from a laptop after `vp exec wrangler login`.
+
+The deploy does not migrate D1. Run `vp run db:migrate:remote` before merging a change that adds a migration.
 
 ## Production secrets
 
@@ -54,4 +76,4 @@ Set these with `wrangler secret put` (or the dashboard) before the first deploy.
 
 The Worker name is `vektor`. Workers AI is enabled via the `AI` binding in `wrangler.jsonc`. The account must have Workers AI on.
 
-After secrets: `nub run db:migrate:remote`, then `nub run deploy:preview` for a smoke run, then `nub run deploy`.
+After secrets: `vp run db:migrate:remote`, then deploy.

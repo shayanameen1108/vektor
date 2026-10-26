@@ -35,7 +35,9 @@
       "migrations_dir": "drizzle",
     },
   ],
+  // Workers AI has no local simulation; local runs use a stand-in (src/lib/ports.ts).
   "ai": {
     "binding": "AI",
+    "remote": true,
   },
 }

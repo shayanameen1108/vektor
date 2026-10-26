@@ -516,7 +516,7 @@ function DocumentsPage() {
                             ))}
                           </SelectContent>
                         </Select>
-                        <FieldDescription className="text-[11px] text-muted-foreground">
+                        <FieldDescription className="text-xs text-muted-foreground">
                           You can upload one Letter per council — a fresh upload only replaces the
                           letter for the same council.
                         </FieldDescription>
@@ -610,7 +610,7 @@ function DocumentsPage() {
                     />
                     {PREVIEW_TYPES.has(formData.doc_type as DocType) && previewLoading && (
                       <p
-                        className="mt-1.5 text-[11px] text-muted-foreground"
+                        className="mt-2 text-xs text-muted-foreground"
                         data-testid="bbbee-preview-loading"
                       >
                         Reading certificate…
@@ -621,7 +621,7 @@ function DocumentsPage() {
                       !bbbeePreview?.level &&
                       !bbbeePreview?.expiry && (
                         <p
-                          className="mt-1.5 text-[11px] text-muted-foreground"
+                          className="mt-2 text-xs text-muted-foreground"
                           data-testid="bbbee-preview-empty"
                         >
                           No expiry date could be detected. Enter it manually and verify it against
@@ -631,7 +631,7 @@ function DocumentsPage() {
                     {PREVIEW_TYPES.has(formData.doc_type as DocType) &&
                       currentPreviewState.status === "error" && (
                         <p
-                          className="mt-1.5 text-[11px] text-destructive"
+                          className="mt-2 text-xs text-destructive"
                           data-testid="bbbee-preview-error"
                         >
                           Could not read this document automatically. Enter the expiry date manually
@@ -645,7 +645,7 @@ function DocumentsPage() {
                           data-testid="bbbee-preview-hint"
                           className="mt-2 border-primary/30 bg-primary/5"
                         >
-                          <AlertTitle className="text-[11px] font-semibold text-primary">
+                          <AlertTitle className="text-xs font-semibold text-primary">
                             Detected expiry on document:
                           </AlertTitle>
                           <AlertDescription className="flex flex-wrap items-center gap-2">
@@ -672,7 +672,7 @@ function DocumentsPage() {
                               </Button>
                             ) : (
                               <span
-                                className="ml-auto text-[11px] font-semibold text-primary"
+                                className="ml-auto text-xs font-semibold text-primary"
                                 data-testid="bbbee-preview-applied"
                               >
                                 ✓ Matched
@@ -683,7 +683,7 @@ function DocumentsPage() {
                       )}
                     {formData.doc_type === "BBBEE" && bbbeePreview?.level && !previewLoading && (
                       <p
-                        className="mt-1.5 text-[11px] text-muted-foreground"
+                        className="mt-2 text-xs text-muted-foreground"
                         data-testid="bbbee-preview-level"
                       >
                         Also detected on cert: <strong>B-BBEE Level {bbbeePreview.level}</strong>
@@ -763,7 +763,7 @@ function DocumentsPage() {
                   </Empty>
                 </div>
               ) : (
-                <Table className="min-w-[720px] w-full">
+                <Table className="min-w-180 w-full">
                   <TableHeader className="bg-card">
                     <TableRow className="hover:bg-transparent">
                       <TableHead className={VAULT_HEAD_CLASS}>Type</TableHead>
@@ -1005,7 +1005,7 @@ function DocumentsPage() {
                 />
                 {isExpiryMismatch(editForm.expiry_date, editingDoc.extracted_expiry_date) && (
                   <p
-                    className="mt-1.5 text-[11px] text-status-warning"
+                    className="mt-2 text-xs text-status-warning"
                     data-testid="edit-expiry-mismatch"
                   >
                     Note: certificate reads {formatDate(editingDoc.extracted_expiry_date!)}

@@ -33,7 +33,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-svh bg-background text-foreground">
       <header data-testid="admin-nav" className="border-b bg-background px-6 py-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <VektorMark />
             <span className="text-xl font-bold tracking-tight">Vektor Admin</span>
           </div>
@@ -90,7 +90,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                             to={item.to}
                             data-testid={`${item.testId}-mobile`}
                             aria-current={active ? "page" : undefined}
-                            className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                            className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                           >
                             {item.label}
                           </Link>

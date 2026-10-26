@@ -213,7 +213,7 @@ function AdminUsersPage() {
           >
             User management
           </h1>
-          <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             List every tenant, inspect compliance and history, and remove abandoned accounts. Delete
             is irreversible and cascades across companies, documents, tenders, payments, referrals,
             and rewards.
@@ -244,14 +244,14 @@ function AdminUsersPage() {
             data-testid="admin-users-search"
             aria-label="Search users"
           />
-          <p className="mt-1.5 text-[11px] text-muted-foreground">
+          <p className="mt-2 text-xs text-muted-foreground">
             Filter the table by email, name, or id.
           </p>
         </div>
       </div>
 
       <div className="overflow-x-auto rounded-sm border bg-card">
-        <Table className="min-w-[720px] text-sm">
+        <Table className="min-w-180 text-sm">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="px-6 py-3 table-caps text-muted-foreground">User</TableHead>
@@ -427,7 +427,7 @@ function AdminUsersPage() {
             >
               <p className="overline-label text-muted-foreground">Companies</p>
               <p className="mt-1 text-2xl font-bold">{selectedDetail.companies.length}</p>
-              <ul className="mt-3 space-y-1.5 text-xs">
+              <ul className="mt-3 space-y-2 text-xs">
                 {selectedDetail.companies.map((c) => (
                   <li key={c.id} className="truncate text-muted-foreground">
                     <span className="font-semibold text-foreground">{c.company_name}</span> ·{" "}
@@ -459,8 +459,8 @@ function AdminUsersPage() {
                       variant={d.is_compliant ? "outline" : "destructive"}
                       className={
                         d.is_compliant
-                          ? "border-status-success/25 bg-status-success/10 text-[10px] font-bold text-status-success"
-                          : "text-[10px] font-bold"
+                          ? "border-status-success/25 bg-status-success/10 text-xs font-bold text-status-success"
+                          : "text-xs font-bold"
                       }
                     >
                       {d.is_compliant ? "compliant" : "non-compliant"}
@@ -550,7 +550,7 @@ function AdminUsersPage() {
         <DialogContent
           showCloseButton={false}
           data-testid="delete-user-dialog"
-          className="max-h-[90svh] overflow-y-auto p-6 sm:max-w-md"
+          className="max-h-dialog overflow-y-auto p-6 sm:max-w-md"
         >
           <DialogHeader>
             <DialogTitle className="text-lg font-bold tracking-tight">Delete user?</DialogTitle>

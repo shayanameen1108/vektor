@@ -28,7 +28,7 @@ export function ImpersonationBanner() {
     <Alert
       data-impersonation
       data-testid="impersonation-banner"
-      className="fixed inset-x-0 top-0 z-[60] flex min-h-10 items-center rounded-none border-0 bg-status-warning px-4 py-2 text-sm font-semibold text-status-warning-foreground"
+      className="fixed inset-x-0 top-0 z-banner flex min-h-10 items-center rounded-none border-0 bg-status-warning px-4 py-2 text-sm font-semibold text-status-warning-foreground"
     >
       <AlertDescription className="flex min-h-6 w-full items-center justify-between gap-3 text-status-warning-foreground">
         <span className="min-w-0 truncate">Impersonating {session.user.email} — admin view</span>

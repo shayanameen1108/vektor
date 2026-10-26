@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { validateStatutoryFields } from "@/lib/company-validation";
 import { verifyCipc, verifyCsdMaaa, verifySarsTcs, verify } from "@/lib/verification";

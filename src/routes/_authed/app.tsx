@@ -339,7 +339,7 @@ function AppPage() {
             <FileTextIcon className="size-6 shrink-0" aria-hidden="true" />
             <span className="min-w-0">
               <span className="block font-bold">Manage Documents</span>
-              <span className="mt-0.5 block text-xs leading-snug font-normal opacity-70">
+              <span className="mt-1 block text-xs leading-snug font-normal opacity-70">
                 Upload and track compliance documents
               </span>
             </span>
@@ -354,7 +354,7 @@ function AppPage() {
             <Building2Icon className="size-6 shrink-0" aria-hidden="true" />
             <span className="min-w-0">
               <span className="block font-bold">Edit Company Profile</span>
-              <span className="mt-0.5 block text-xs leading-snug font-normal opacity-70">
+              <span className="mt-1 block text-xs leading-snug font-normal opacity-70">
                 Update CIPC, CIDB, and B-BBEE details
               </span>
             </span>
@@ -369,7 +369,7 @@ function AppPage() {
             <BanknoteIcon className="size-6 shrink-0" aria-hidden="true" />
             <span className="min-w-0">
               <span className="block font-bold">Billing &amp; Credits</span>
-              <span className="mt-0.5 block text-xs leading-snug font-normal opacity-70">
+              <span className="mt-1 block text-xs leading-snug font-normal opacity-70">
                 View credits and EFT payments
               </span>
             </span>

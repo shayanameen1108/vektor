@@ -28,8 +28,7 @@ export function PageHeader({
       data-testid={testId}
       className={cn(
         "border-b border-border bg-card px-6 py-6 text-card-foreground sm:px-8",
-        sticky &&
-          "sticky top-[calc(var(--header-height)+var(--impersonation-banner-height))] z-10 md:top-(--impersonation-banner-height)",
+        sticky && "sticky top-(--sticky-header-offset) z-10 md:top-(--impersonation-banner-height)",
         className,
       )}
     >

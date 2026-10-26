@@ -521,7 +521,7 @@ function SetupPage() {
                 {/* Section heading, not a form label — the combobox trigger
                       carries its own accessible name via ariaLabel. */}
                 <p className="label-caps">Bargaining Councils I&apos;m registered with</p>
-                <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   Pick every council you hold a current Letter of Good Standing with. Vektor
                   cross-checks these against each tender&apos;s applicable council so you know when
                   a Letter is missing before you bid.
@@ -534,7 +534,7 @@ function SetupPage() {
                 >
                   <ComboboxChips
                     ref={councilsAnchor}
-                    className="mt-3 min-h-[42px]"
+                    className="mt-3 min-h-11"
                     data-testid="bc-multiselect"
                   >
                     <ComboboxValue>

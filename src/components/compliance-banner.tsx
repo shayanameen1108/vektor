@@ -60,7 +60,7 @@ export function ComplianceBanner({ documents }: ComplianceBannerProps) {
             ? "Government tenders reject bids with expired compliance. Renew these before bidding."
             : "These documents expire within 30 days — renew now to stay eligible."}
         </p>
-        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+        <div className="mt-2 flex flex-wrap items-center gap-2">
           {chips.map((docType) => (
             <Badge
               key={docType}

@@ -54,8 +54,7 @@ const navItems = [
 
 // SidebarMenuButton already paints idle, hover and active from the sidebar
 // tokens; this only adds the high-contrast brand edge on the active item.
-const ACTIVE_NAV =
-  "font-semibold shadow-[inset_3px_0_0_0_var(--sidebar-primary)] hover:bg-sidebar-accent";
+const ACTIVE_NAV = "font-semibold shadow-nav hover:bg-sidebar-accent";
 
 const SECTION_LABEL = "label-caps text-sidebar-foreground/60";
 
@@ -148,13 +147,13 @@ function UserFooter() {
           render={
             <Button
               variant="ghost"
-              className="h-auto w-full justify-start gap-2 px-2 py-1.5 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              className="h-auto w-full justify-start gap-2 px-2 py-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               data-testid="user-menu-trigger"
             />
           }
         >
           <Avatar size="sm" className="rounded-sm">
-            <AvatarFallback className="rounded-sm bg-sidebar-accent text-[10px] font-bold text-sidebar-accent-foreground">
+            <AvatarFallback className="rounded-sm bg-sidebar-accent text-xs font-bold text-sidebar-accent-foreground">
               {initials || "V"}
             </AvatarFallback>
           </Avatar>
@@ -168,7 +167,7 @@ function UserFooter() {
         <DropdownMenuContent align="start" className="w-56">
           <DropdownMenuGroup>
             <DropdownMenuLabel className="label-caps">Signed in as</DropdownMenuLabel>
-            <p className="truncate px-1.5 pb-1 text-xs text-muted-foreground">{user.email}</p>
+            <p className="truncate px-2 pb-1 text-xs text-muted-foreground">{user.email}</p>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
@@ -196,7 +195,7 @@ export function AppSidebar() {
     <>
       <header
         data-testid="mobile-topbar"
-        className="fixed inset-x-0 top-[var(--impersonation-banner-height)] z-30 flex h-(--header-height) items-center justify-between border-b border-sidebar-border bg-sidebar px-4 md:hidden"
+        className="fixed inset-x-0 top-(--impersonation-banner-height) z-30 flex h-(--header-height) items-center justify-between border-b border-sidebar-border bg-sidebar px-4 md:hidden"
       >
         <SidebarTrigger
           data-testid="mobile-menu-open"
@@ -213,7 +212,7 @@ export function AppSidebar() {
       <Sidebar collapsible="offcanvas" data-testid="sidebar">
         <nav aria-label="Vektor navigation" className="flex size-full flex-col">
           <SidebarHeader className="border-b border-sidebar-border p-6">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-3">
               <VektorMark />
               <span className="text-xl font-bold tracking-tight">Vektor</span>
             </div>

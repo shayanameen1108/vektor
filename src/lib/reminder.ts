@@ -1,7 +1,8 @@
 /**
  * Compliance Guardian — reminder email domain logic
  * Ported verbatim from backend/reminder_service.py
- * Sends idempotent expiry reminders via Resend (fetch to api.resend.com)
+ * Sends idempotent expiry reminders via Resend (fetch to api.resend.com), or
+ * to the local mailbox when ENVIRONMENT="local" (src/lib/ports.ts)
  * Thresholds: 30, 7, 0 days before expiry
  */
 
@@ -10,6 +11,7 @@ import { and, eq, isNotNull } from "drizzle-orm";
 import { createDb } from "@/db";
 import { companies } from "@/db/schema/company";
 import { complianceDocuments, sentReminders } from "@/db/schema/compliance";
+import { isLocal, sendToLocalMailbox } from "@/lib/ports";
 import type { MailEnv } from "@/lib/runtime-env";
 
 import { DOC_TYPE_LABEL } from "./compliance";
@@ -153,6 +155,17 @@ export async function sendViaResend(
   return msgId;
 }
 
+/** Sends one email and returns its message id: the local mailbox locally, Resend otherwise. */
+export async function sendEmail(
+  env: MailEnv,
+  toEmail: string,
+  subject: string,
+  html: string,
+): Promise<string> {
+  if (isLocal(env)) return sendToLocalMailbox(toEmail, subject, html);
+  return sendViaResend(env, toEmail, subject, html);
+}
+
 // ---------- Send one reminder ----------
 
 export interface SendReminderResult {
@@ -251,7 +264,7 @@ export async function sendDocumentReminder(
   let resendId: string | null = null;
   let error: string | null = null;
   try {
-    resendId = await sendViaResend(env, toEmail, subject, html);
+    resendId = await sendEmail(env, toEmail, subject, html);
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     error = msg;
@@ -317,7 +330,7 @@ export async function sendEftDecisionEmail(
       ? `[Vektor] Payment confirmed — ${args.reference}`
       : `[Vektor] Payment couldn't be confirmed — ${args.reference}`;
   try {
-    await sendViaResend(env, args.to, subject, html);
+    await sendEmail(env, args.to, subject, html);
   } catch (e) {
     console.error(`Failed to send EFT ${args.type} email to ${args.to}`, e);
   }

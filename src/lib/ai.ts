@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { localTenderAnalysis } from "@/lib/local-tender-analysis";
+import { isLocal } from "@/lib/ports";
 import { runtimeEnv } from "@/lib/runtime-env";
 
 const nullableText = z.string().trim().min(1).max(300).nullable();
@@ -24,7 +26,7 @@ const aiResultSchema = z
 
 export type AiResult = z.infer<typeof aiResultSchema>;
 
-/** Single Workers AI model — no stub, no fallback. */
+/** Single Workers AI model in production, no fallback. Local runs use a stand-in (ports.ts). */
 const TENDER_MODEL = "@cf/zai-org/glm-4.7-flash";
 /** ~10k tokens; enough for the leading pages without filling the Worker payload. */
 const TENDER_TEXT_CHARS = 40_000;
@@ -61,6 +63,18 @@ const tenderJsonSchema = {
 } as const;
 
 export async function analyzeTenderWithAi(pdfText: string): Promise<AiResult> {
+  const raw = isLocal(runtimeEnv)
+    ? localTenderAnalysis(pdfText)
+    : parseJsonContent(await runWorkersAi(pdfText));
+  const parsed = aiResultSchema.parse(raw);
+  return {
+    ...parsed,
+    mandatory_returnables: dedupe(parsed.mandatory_returnables),
+    evaluation_criteria: dedupe(parsed.evaluation_criteria),
+  };
+}
+
+async function runWorkersAi(pdfText: string): Promise<string> {
   const response = await runtimeEnv.AI.run(TENDER_MODEL, {
     messages: [
       {
@@ -88,12 +102,7 @@ export async function analyzeTenderWithAi(pdfText: string): Promise<AiResult> {
 
   const content = response.choices?.[0]?.message?.content;
   if (!content) throw new Error("AI returned no structured tender analysis");
-  const parsed = aiResultSchema.parse(parseJsonContent(content));
-  return {
-    ...parsed,
-    mandatory_returnables: dedupe(parsed.mandatory_returnables),
-    evaluation_criteria: dedupe(parsed.evaluation_criteria),
-  };
+  return content;
 }
 
 function parseJsonContent(content: string): unknown {

@@ -177,7 +177,7 @@ function AdminEftPage() {
           >
             EFT console
           </h1>
-          <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             Review incoming bank transfers. Confirm to grant credits (idempotent) and best-effort
             trigger referral rewards; reject requires a reason and allows re-upload →
             pending_review. Auditable via D1 state on manual_payments and referral_rewards.
@@ -220,7 +220,7 @@ function AdminEftPage() {
       </div>
 
       <div className="overflow-x-auto rounded-sm border bg-card">
-        <Table className="min-w-[860px] text-sm" data-testid="admin-eft-table">
+        <Table className="min-w-215 text-sm" data-testid="admin-eft-table">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="px-4 py-3 table-caps text-muted-foreground">
@@ -280,7 +280,7 @@ function AdminEftPage() {
                     <TableCell className="px-4 py-3">
                       <Badge
                         variant="outline"
-                        className={`text-[11px] font-bold ${
+                        className={`text-xs font-bold ${
                           EFT_STATUS_CLASS[p.status as EftStatus] ?? NEUTRAL_BADGE_CLASS
                         }`}
                       >
@@ -288,14 +288,14 @@ function AdminEftPage() {
                       </Badge>
                       {p.status === "rejected" && p.reject_reason && (
                         <p
-                          className="mt-1 max-w-[200px] truncate text-[11px] text-destructive"
+                          className="mt-1 max-w-50 truncate text-xs text-destructive"
                           title={p.reject_reason}
                         >
                           {p.reject_reason}
                         </p>
                       )}
                       {p.status === "confirmed" && p.credits_granted != null && (
-                        <p className="mt-1 text-[11px] text-status-success">
+                        <p className="mt-1 text-xs text-status-success">
                           +{p.credits_granted} credits
                         </p>
                       )}
@@ -304,7 +304,7 @@ function AdminEftPage() {
                       {formatDateTime(p.created_at)}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-right">
-                      <div className="inline-flex items-center gap-1.5">
+                      <div className="inline-flex items-center gap-2">
                         {p.proof_path && (
                           <Button
                             type="button"
@@ -357,7 +357,7 @@ function AdminEftPage() {
         <DialogContent
           showCloseButton={false}
           data-testid="admin-eft-proof-dialog"
-          className="flex max-h-[90svh] max-w-3xl flex-col gap-0 overflow-hidden p-0"
+          className="flex max-h-dialog max-w-3xl flex-col gap-0 overflow-hidden p-0"
         >
           <DialogHeader className="flex-row items-center justify-between border-b px-6 py-4">
             <div>
@@ -387,7 +387,7 @@ function AdminEftPage() {
                 <iframe
                   src={proofUrl}
                   title="Proof PDF"
-                  className="h-[60svh] w-full rounded-sm border bg-card"
+                  className="h-proof w-full rounded-sm border bg-card"
                   data-testid="admin-eft-proof-pdf"
                 />
                 <Button
@@ -409,7 +409,7 @@ function AdminEftPage() {
                 <img
                   src={proofUrl}
                   alt="Proof"
-                  className="mx-auto max-h-[60svh] rounded-sm border"
+                  className="mx-auto max-h-proof rounded-sm border"
                   data-testid="admin-eft-proof-image"
                 />
                 <Button

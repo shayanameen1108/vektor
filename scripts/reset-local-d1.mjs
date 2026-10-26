@@ -1,4 +1,4 @@
-// Deterministic e2e runs: wipe the local D1 state so every `nub run test:e2e`
+// Deterministic e2e runs: wipe the local D1 state so every `vp run test:e2e`
 // starts from the migrations in `drizzle/` alone, then re-applies them. Without
 // this, the preview database accumulates every user/company ever created by
 // the suite, which makes admin-console listings (and axe scans over them) grow

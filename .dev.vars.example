@@ -2,16 +2,19 @@
 # Copy to .dev.vars and fill in values. Never commit .dev.vars with real secrets.
 
 BETTER_AUTH_SECRET="development-secret-key-at-least-32-chars-long"
-# Preview/e2e default is :4173. `nub run dev` is :5173 — both origins are
+# Preview/e2e default is :4173. `vp run dev` is :5173 — both origins are
 # trusted in src/lib/auth/auth.ts so either port works locally.
 BETTER_AUTH_URL="http://127.0.0.1:4173"
 APP_URL="http://127.0.0.1:4173"
 
-# Transactional email (Resend). Required everywhere, including local dev —
-# every send goes through api.resend.com. A test-mode key (re_test_…)
-# simulates without delivering but only accepts Resend's testing inbox, so
-# e2e reminder flows address mail to delivered@resend.dev (see
-# RESEND_TEST_INBOX in tests/e2e/helpers.ts).
+# "local" keeps every run off outside services (src/lib/ports.ts): email goes
+# to an in-memory mailbox (GET /api/dev/mail) instead of Resend, and tender
+# analysis uses a deterministic stand-in instead of Workers AI. Production
+# sets no ENVIRONMENT. Remove it to try Resend and Workers AI from here (that
+# also needs `remoteBindings` on in vite.config.ts and a Cloudflare login).
+ENVIRONMENT="local"
+
+# Transactional email (Resend). Only used without ENVIRONMENT="local".
 RESEND_API_KEY="re_..."
 SENDER_EMAIL="onboarding@resend.dev"
 SENDER_NAME="Vektor"
@@ -37,5 +40,5 @@ GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 
 # Tender analysis uses the Workers AI binding (see `ai` in wrangler.jsonc)
-# with @cf/zai-org/glm-4.7-flash — no keys required. Local runs use the
-# binding directly; remote runs need Workers AI enabled on the account.
+# with @cf/zai-org/glm-4.7-flash — no keys required. With ENVIRONMENT="local"
+# a stand-in reads the PDF text instead (src/lib/local-tender-analysis.ts).

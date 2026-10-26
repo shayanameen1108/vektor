@@ -179,8 +179,8 @@ test("preview smoke — full vertical chain", async ({ browser }) => {
   // Deterministic admin login (fresh context, unauthenticated)
   await login(adminPage, effectiveAdminEmail, effectiveAdminPassword);
   await expect(adminPage).toHaveURL(/\/admin/, { timeout: 20000 });
-  // Settle the client-side redirect before later full-page gotos — the same
-  // webkit SPA-guard race clearSession() documents in ./helpers.ts.
+  // Settle the client-side redirect before later full-page gotos. clearSession()
+  // documents the same race in ./helpers.ts.
   await expect(adminPage.getByTestId("admin-overview-title")).toBeVisible({ timeout: 15000 });
 
   // Concurrent confirms both observe confirmed; the guarded batch grants once.

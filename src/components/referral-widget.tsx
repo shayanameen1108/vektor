@@ -105,14 +105,14 @@ export function ReferralWidget() {
           {TIER_ROWS.map((t) => (
             <div
               key={t.key}
-              className="rounded-sm border border-border bg-muted px-3 py-2.5 text-center"
+              className="rounded-sm border border-border bg-muted px-3 py-3 text-center"
               data-testid={`referral-tier-${t.key}`}
             >
               <p className="overline-label text-muted-foreground">{t.label}</p>
-              <p className="text-xl font-black text-primary leading-tight mt-0.5">
+              <p className="text-xl font-black text-primary leading-tight mt-1">
                 +{tierRewards[t.key] ?? 0}
               </p>
-              <p className="text-[10px] text-muted-foreground">credits</p>
+              <p className="text-xs text-muted-foreground">credits</p>
             </div>
           ))}
         </div>
@@ -175,7 +175,7 @@ export function ReferralWidget() {
             >
               {stats.invited_count}
             </p>
-            <p className="overline-label text-muted-foreground mt-0.5">Invited</p>
+            <p className="overline-label text-muted-foreground mt-1">Invited</p>
           </div>
           <div className="text-center">
             <TrendingUpIcon
@@ -189,7 +189,7 @@ export function ReferralWidget() {
             >
               {stats.subscribed_count}
             </p>
-            <p className="overline-label text-muted-foreground mt-0.5">Subscribed</p>
+            <p className="overline-label text-muted-foreground mt-1">Subscribed</p>
           </div>
           <div className="text-center">
             <CoinsIcon size={16} className="mx-auto mb-1 text-primary" aria-hidden="true" />
@@ -199,11 +199,11 @@ export function ReferralWidget() {
             >
               {stats.credits_earned}
             </p>
-            <p className="overline-label text-muted-foreground mt-0.5">Credits earned</p>
+            <p className="overline-label text-muted-foreground mt-1">Credits earned</p>
           </div>
         </div>
 
-        <p className="mt-5 text-[11px] text-muted-foreground leading-relaxed">
+        <p className="mt-5 text-xs text-muted-foreground leading-relaxed">
           Fair-use limit: <strong className="text-foreground">{stats.monthly_remaining}</strong>{" "}
           rewards remaining this month ·{" "}
           <strong className="text-foreground">{stats.lifetime_remaining}</strong> remaining lifetime
@@ -216,7 +216,7 @@ export function ReferralWidget() {
               Recent invites ({stats.recent.length})
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <ul className="mt-3 space-y-1.5">
+              <ul className="mt-3 space-y-2">
                 {stats.recent.map((r, i) => (
                   <li key={i} className="flex items-center justify-between text-xs">
                     <span className="font-mono text-muted-foreground">{r.referee_email}</span>

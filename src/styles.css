@@ -140,6 +140,8 @@
   body {
     @apply bg-background text-foreground min-h-svh antialiased;
     font-family: var(--font-sans);
+    /* Resolved here so it follows the impersonation banner, which is set on body. */
+    --sticky-header-offset: calc(var(--header-height) + var(--impersonation-banner-height));
   }
 
   body:has([data-impersonation]) {
@@ -249,12 +251,46 @@
   }
 
   & ul {
-    @apply list-disc space-y-1.5 pl-5 marker:text-muted-foreground;
+    @apply list-disc space-y-2 pl-5 marker:text-muted-foreground;
   }
 
   & ol {
-    @apply list-decimal space-y-1.5 pl-5 marker:text-muted-foreground;
+    @apply list-decimal space-y-2 pl-5 marker:text-muted-foreground;
   }
+}
+
+/* Layout values that are not a spacing step. Components name these instead of
+   writing an arbitrary size. */
+@utility max-h-dialog {
+  max-height: 90svh;
+}
+
+@utility h-proof {
+  height: 60svh;
+}
+
+@utility max-h-proof {
+  max-height: 60svh;
+}
+
+@utility grid-cols-hero {
+  grid-template-columns: 1.15fr 1fr;
+}
+
+@utility grid-cols-step {
+  grid-template-columns: 7.5rem 1fr;
+}
+
+@utility grid-cols-footer {
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr;
+}
+
+@utility shadow-nav {
+  box-shadow: inset 0.25rem 0 0 0 var(--sidebar-primary);
+}
+
+@utility z-banner {
+  z-index: 60;
 }
 
 @layer utilities {

@@ -111,7 +111,7 @@ function PrivacyPage() {
             </h2>
             <p>We collect only the minimum information needed to provide Vektor.</p>
             <p className="font-semibold text-foreground">From you directly:</p>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>Account details (name, email, hashed password)</li>
               <li>
                 Company profile (company name, CIPC registration number, SARS Tax Clearance PIN,
@@ -129,7 +129,7 @@ function PrivacyPage() {
               </li>
             </ul>
             <p className="font-semibold text-foreground">Automatically:</p>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>
                 IP address, browser type, and session duration (for security & abuse prevention)
               </li>
@@ -148,7 +148,7 @@ function PrivacyPage() {
             className="mt-10 scroll-mt-8"
           >
             <h2 className="text-xl font-bold tracking-tight">Why We Collect It</h2>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>
                 <strong>Providing the Service:</strong> parsing your tender documents, calculating
                 B-BBEE points, storing your compliance vault, sending expiry reminders.
@@ -174,7 +174,7 @@ function PrivacyPage() {
             className="mt-10 scroll-mt-8"
           >
             <h2 className="text-xl font-bold tracking-tight">How Long We Keep It</h2>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>
                 <strong>Active account data:</strong> as long as your account is active.
               </li>
@@ -199,7 +199,7 @@ function PrivacyPage() {
           >
             <h2 className="text-xl font-bold tracking-tight">Your Rights Under POPIA</h2>
             <p>You have the right to:</p>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>
                 <strong>Access</strong> the personal information we hold about you (Section 23).
               </li>
@@ -237,7 +237,7 @@ function PrivacyPage() {
           >
             <h2 className="text-xl font-bold tracking-tight">Security</h2>
             <p>We protect your data with:</p>
-            <ul className="list-disc space-y-1.5 pl-5">
+            <ul className="list-disc space-y-2 pl-5">
               <li>Better Auth password hashing and database-backed session management</li>
               <li>HTTPS/TLS 1.3 encryption in transit</li>
               <li>At-rest encryption on documents in R2 storage</li>

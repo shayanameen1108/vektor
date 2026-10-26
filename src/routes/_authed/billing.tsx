@@ -259,7 +259,7 @@ function BillingPage() {
                 <p className="mt-4 text-xs text-muted-foreground" data-testid="rollover-cap-hint">
                   Rollover cap: {subscription.rollover_cap} credits
                   {currentCredits >= subscription.rollover_cap && (
-                    <span className="ml-2 rounded-sm bg-secondary px-2 py-0.5 font-semibold text-foreground">
+                    <span className="ml-2 rounded-sm bg-secondary px-2 py-1 font-semibold text-foreground">
                       At cap — use some to accrue more
                     </span>
                   )}
@@ -366,38 +366,32 @@ function BillingPage() {
                           <li className="flex items-start gap-2 text-sm">
                             <CheckIcon
                               aria-hidden="true"
-                              className="text-status-success mt-0.5 shrink-0"
+                              className="text-status-success mt-1 shrink-0"
                             />
                             <span>
                               <strong>{pkg.credits}</strong> tender analyses / month
                             </span>
                           </li>
                           <li className="flex items-start gap-2 text-sm">
-                            <CheckIcon
-                              aria-hidden="true"
-                              className="text-primary mt-0.5 shrink-0"
-                            />
+                            <CheckIcon aria-hidden="true" className="text-primary mt-1 shrink-0" />
                             <span>{pkg.tagline ?? "Full compliance suite"}</span>
                           </li>
                           <li className="flex items-start gap-2 text-sm">
                             <CheckIcon
                               aria-hidden="true"
-                              className="text-status-success mt-0.5 shrink-0"
+                              className="text-status-success mt-1 shrink-0"
                             />
                             <span>Full PDF audit report</span>
                           </li>
                           <li className="flex items-start gap-2 text-sm">
                             <CheckIcon
                               aria-hidden="true"
-                              className="text-status-success mt-0.5 shrink-0"
+                              className="text-status-success mt-1 shrink-0"
                             />
                             <span>{support}</span>
                           </li>
                           <li className="flex items-start gap-2 text-sm">
-                            <CheckIcon
-                              aria-hidden="true"
-                              className="text-primary mt-0.5 shrink-0"
-                            />
+                            <CheckIcon aria-hidden="true" className="text-primary mt-1 shrink-0" />
                             <span>
                               <strong>Rollover</strong> — bank up to <strong>{rolloverCap}</strong>{" "}
                               unused credits
@@ -451,7 +445,7 @@ function BillingPage() {
                         <li className="flex items-start gap-2 text-sm">
                           <CheckIcon
                             aria-hidden="true"
-                            className="text-status-success mt-0.5 shrink-0"
+                            className="text-status-success mt-1 shrink-0"
                           />
                           <span>
                             <strong>{pkg.credits}</strong> tender analysis credit
@@ -459,20 +453,20 @@ function BillingPage() {
                           </span>
                         </li>
                         <li className="flex items-start gap-2 text-sm">
-                          <CheckIcon aria-hidden="true" className="text-primary mt-0.5 shrink-0" />
+                          <CheckIcon aria-hidden="true" className="text-primary mt-1 shrink-0" />
                           <span>Credit never expires — use whenever you bid</span>
                         </li>
                         <li className="flex items-start gap-2 text-sm">
                           <CheckIcon
                             aria-hidden="true"
-                            className="text-status-success mt-0.5 shrink-0"
+                            className="text-status-success mt-1 shrink-0"
                           />
                           <span>Full compliance suite — vault, SBD forms, alerts</span>
                         </li>
                         <li className="flex items-start gap-2 text-sm">
                           <CheckIcon
                             aria-hidden="true"
-                            className="text-status-success mt-0.5 shrink-0"
+                            className="text-status-success mt-1 shrink-0"
                           />
                           <span>One-time payment — no recurring billing</span>
                         </li>
@@ -717,7 +711,7 @@ function EftPaymentDialog({
   return (
     <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
       <DialogContent
-        className="max-w-lg max-h-[90svh] overflow-y-auto"
+        className="max-w-lg max-h-dialog overflow-y-auto"
         data-testid="eft-payment-dialog"
       >
         <DialogHeader>

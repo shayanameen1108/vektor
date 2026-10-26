@@ -79,7 +79,7 @@ const TopNav = () => (
     className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background"
   >
     <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-      <Link to="/" data-testid="landing-logo" className="flex items-center gap-2.5">
+      <Link to="/" data-testid="landing-logo" className="flex items-center gap-3">
         <VektorMark />
         <span className="text-xl font-bold tracking-tight">Vektor</span>
       </Link>
@@ -145,7 +145,7 @@ const TopNav = () => (
                     <a
                       href={item.href}
                       data-testid={`${item.testId}-mobile`}
-                      className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                      className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                     >
                       {item.label}
                     </a>
@@ -158,7 +158,7 @@ const TopNav = () => (
                   <Link
                     to="/about"
                     data-testid="landing-nav-about-mobile"
-                    className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                    className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                   >
                     About
                   </Link>
@@ -171,7 +171,7 @@ const TopNav = () => (
                     to="/login"
                     search={{}}
                     data-testid="landing-signin-mobile"
-                    className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                    className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                   >
                     Sign in
                   </Link>
@@ -214,13 +214,13 @@ const HERO_CHECKS = [
 const Hero = () => (
   <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-32" data-testid="landing-hero">
     <div aria-hidden="true" className="blueprint-grid pointer-events-none absolute inset-0" />
-    <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-[1.15fr_1fr] lg:px-10">
+    <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-hero lg:px-10">
       <div>
         <p className="mb-6 inline-flex items-center gap-2 overline-label text-primary">
           <span className="inline-block h-px w-6 bg-primary" />
           SA Tender Compliance · Built for contractors
         </p>
-        <h1 className="text-4xl leading-[1.02] font-black tracking-tight sm:text-5xl">
+        <h1 className="text-4xl leading-none font-black tracking-tight sm:text-5xl">
           Never lose a bid on a <span className="text-primary">technicality</span> again.
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground lg:text-xl">
@@ -244,7 +244,7 @@ const Hero = () => (
           <Link
             to="/about"
             data-testid="landing-hero-secondary-cta"
-            className="inline-flex items-center gap-1.5 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex items-center gap-2 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground"
           >
             How Vektor works
             <ArrowUpRight aria-hidden="true" />
@@ -253,7 +253,7 @@ const Hero = () => (
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
           {["No credit card needed", "Pay by EFT — no gateway fees", "Cancel any time"].map(
             (line) => (
-              <span key={line} className="inline-flex items-center gap-1.5">
+              <span key={line} className="inline-flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 fill-primary text-primary" aria-hidden="true" />
                 {line}
               </span>
@@ -264,7 +264,7 @@ const Hero = () => (
 
       <div className="relative" data-testid="landing-hero-visual">
         <div className="relative overflow-hidden rounded-sm border border-border bg-card">
-          <div className="flex items-center gap-1.5 border-b border-border bg-background px-4 py-3">
+          <div className="flex items-center gap-2 border-b border-border bg-background px-4 py-3">
             <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
             <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
             <div className="h-2.5 w-2.5 rounded-full bg-secondary" />
@@ -276,11 +276,11 @@ const Hero = () => (
             <div className="flex items-center justify-between">
               <div>
                 <p className="overline-label text-muted-foreground">Go / No-Go</p>
-                <p className="mt-0.5 text-2xl font-bold text-primary">GO — 84%</p>
+                <p className="mt-1 text-2xl font-bold text-primary">GO — 84%</p>
               </div>
               <div className="text-right">
                 <p className="overline-label text-muted-foreground">B-BBEE Points</p>
-                <p className="mt-0.5 text-2xl font-bold text-foreground">18 / 20</p>
+                <p className="mt-1 text-2xl font-bold text-foreground">18 / 20</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -311,7 +311,7 @@ const Hero = () => (
             </div>
             <div>
               <p className="text-xs font-bold text-foreground">COIDA letter expires in 7 days</p>
-              <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
+              <p className="mt-1 text-xs leading-snug text-muted-foreground">
                 Renew before Friday or you&apos;ll be ineligible to bid on this tender.
               </p>
             </div>
@@ -388,7 +388,7 @@ const FeaturesSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">What you get</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           Compliance work, <span className="text-primary">done before your coffee cools.</span>
         </h2>
       </div>
@@ -438,7 +438,7 @@ const HowItWorks = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">How Vektor works</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           From RFP to submission, <span className="text-primary">in three steps.</span>
         </h2>
       </div>
@@ -449,7 +449,7 @@ const HowItWorks = () => (
             data-testid={`landing-step-${step.n}`}
             className="rounded-sm border-border bg-background shadow-none"
           >
-            <CardContent className="grid items-start gap-4 p-6 lg:grid-cols-[120px_1fr] lg:gap-10 lg:p-8">
+            <CardContent className="grid items-start gap-4 p-6 lg:grid-cols-step lg:gap-10 lg:p-8">
               <p aria-hidden="true" className="text-5xl font-black text-primary/70 lg:text-6xl">
                 {step.n}
               </p>
@@ -493,7 +493,7 @@ const ProductProofSection = () => (
                     : "bg-primary";
               return (
                 <div key={row.doc}>
-                  <div className="mb-1.5 flex items-center justify-between">
+                  <div className="mb-2 flex items-center justify-between">
                     <span className="text-xs font-medium text-foreground">{row.doc}</span>
                     <span
                       className={`tight-caps ${
@@ -524,7 +524,7 @@ const ProductProofSection = () => (
       </div>
       <div className="order-1 lg:order-2">
         <p className="mb-4 overline-label text-primary">Compliance vault</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           Your statutory documents, one calendar away from a lost bid.
         </h2>
         <p className="mt-6 text-base leading-relaxed text-muted-foreground lg:text-lg">
@@ -539,9 +539,9 @@ const ProductProofSection = () => (
             "Attach any document to a tender bid in one click",
             "Full audit trail — nothing goes missing",
           ].map((line) => (
-            <li key={line} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+            <li key={line} className="flex items-start gap-3 text-sm text-muted-foreground">
               <CheckCircle
-                className="mt-0.5 h-4 w-4 shrink-0 fill-primary text-primary"
+                className="mt-1 h-4 w-4 shrink-0 fill-primary text-primary"
                 aria-hidden="true"
               />
               {line}
@@ -575,7 +575,7 @@ const PricingSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">Pricing</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           Every plan comes with <span className="text-primary">every feature.</span>
         </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -608,7 +608,7 @@ const PricingSection = () => (
               {p.features.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
                   <CheckCircle
-                    className="mt-0.5 h-3 w-3 shrink-0 fill-primary text-primary"
+                    className="mt-1 h-3 w-3 shrink-0 fill-primary text-primary"
                     aria-hidden="true"
                   />
                   {f}
@@ -641,7 +641,7 @@ const PricingSection = () => (
           — one credit, no subscription, perfect for quick one-off tender checks.
         </p>
       )}
-      <p className="mt-3 text-[11px] text-muted-foreground">
+      <p className="mt-3 text-xs text-muted-foreground">
         Payments are facilitated by{" "}
         <span className="font-semibold text-muted-foreground">EcoBuiltConnect (Pty) Ltd</span> via
         secure EFT to a First National Bank business account.
@@ -676,7 +676,7 @@ function PartnerLogo({ logo, initials }: { logo?: string; initials: string }) {
   if (!logo || broken) {
     return (
       <div className="flex h-32 items-center justify-center border-b border-primary/30 bg-primary/10">
-        <span className="text-4xl font-black tracking-[0.05em] text-primary">{initials}</span>
+        <span className="text-4xl font-black tracking-wider text-primary">{initials}</span>
       </div>
     );
   }
@@ -697,7 +697,7 @@ const PartnersSection = () => (
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 max-w-2xl">
         <p className="mb-4 overline-label text-primary">Partners</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           Backed by trusted South African <span className="text-primary">partners.</span>
         </h2>
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -723,7 +723,7 @@ const PartnersSection = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid={`landing-partner-link-${p.name.replace(/\s+/g, "-").toLowerCase()}`}
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-primary transition-colors hover:text-primary/80"
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary transition-colors hover:text-primary/80"
                 >
                   Visit website <ArrowRight aria-hidden="true" />
                 </a>
@@ -732,7 +732,7 @@ const PartnersSection = () => (
                 <a
                   href={`mailto:${p.email}`}
                   data-testid={`landing-partner-email-${p.name.replace(/\s+/g, "-").toLowerCase()}`}
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-primary transition-colors hover:text-primary/80"
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary transition-colors hover:text-primary/80"
                 >
                   {p.email} <ArrowRight aria-hidden="true" />
                 </a>
@@ -777,7 +777,7 @@ const FaqSection = () => (
     <div className="mx-auto max-w-4xl px-6 lg:px-10">
       <div className="mb-12">
         <p className="mb-4 overline-label text-primary">Common questions</p>
-        <h2 className="text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+        <h2 className="text-4xl leading-none font-black tracking-tight lg:text-5xl">
           The important stuff, up front.
         </h2>
       </div>
@@ -804,7 +804,7 @@ const FinalCta = () => (
         <div aria-hidden="true" className="brand-glow pointer-events-none absolute inset-0" />
         <div className="relative">
           <p className="mb-4 overline-label text-primary">Ready when you are</p>
-          <h2 className="max-w-2xl text-4xl leading-[1.05] font-black tracking-tight lg:text-5xl">
+          <h2 className="max-w-2xl text-4xl leading-none font-black tracking-tight lg:text-5xl">
             Your next bid could go <span className="text-primary">out this afternoon.</span>
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
@@ -831,7 +831,7 @@ const FinalCta = () => (
               to="/login"
               search={{}}
               data-testid="landing-final-cta-signin"
-              className="inline-flex items-center gap-1.5 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground"
             >
               I already have an account
             </Link>
@@ -852,7 +852,7 @@ function FooterCol({
   return (
     <div>
       <p className="mb-4 overline-label text-muted-foreground">{title}</p>
-      <ul className="space-y-2.5">
+      <ul className="space-y-3">
         {links.map((l) =>
           l.to ? (
             <li key={l.label}>
@@ -881,9 +881,9 @@ function FooterCol({
 
 const Footer = () => (
   <footer className="border-t border-border bg-background py-14" data-testid="landing-footer">
-    <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] lg:px-10">
+    <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-footer lg:px-10">
       <div>
-        <div className="mb-4 flex items-center gap-2.5">
+        <div className="mb-4 flex items-center gap-3">
           <VektorMark />
           <span className="text-xl font-bold tracking-tight">Vektor</span>
         </div>
@@ -891,7 +891,7 @@ const Footer = () => (
           Automated tender compliance for South African contractors. Built in Cape Town, made for
           every construction firm from Polokwane to Port Elizabeth.
         </p>
-        <p className="mt-4 text-[11px] text-muted-foreground">
+        <p className="mt-4 text-xs text-muted-foreground">
           © {new Date().getFullYear()} EcoBuiltConnect (Pty) Ltd — All rights reserved. Vektor™ is a
           trade mark of EcoBuiltConnect (Pty) Ltd.
         </p>

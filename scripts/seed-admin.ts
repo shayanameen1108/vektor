@@ -2,7 +2,7 @@
  * Seed the first admin account against a running local dev/preview server.
  *
  * Usage:
- *   ADMIN_EMAIL=you@company.co.za ADMIN_PASSWORD=... nub run seed:admin
+ *   ADMIN_EMAIL=you@company.co.za ADMIN_PASSWORD=... vp run seed:admin
  *   # optional: BASEURL=http://127.0.0.1:4173 (default http://127.0.0.1:5173)
  *
  * Steps: sign up via better-auth's email API, then flip `role` to 'admin' in
@@ -28,17 +28,17 @@ const res = await fetch(`${base}/api/auth/sign-up/email`, {
 if (!res || !res.ok) {
   console.error(
     `[seed-admin] signup failed (${res ? res.status : "server unreachable"}). ` +
-      `Is the dev server running? nub run dev`,
+      `Is the dev server running? vp run dev`,
   );
   if (res) console.error(await res.text().catch(() => ""));
   process.exit(1);
 }
 console.log(`[seed-admin] created user ${email}`);
 
+// `vp run` puts node_modules/.bin on PATH.
 execFileSync(
-  "nubx",
+  "wrangler",
   [
-    "wrangler",
     "d1",
     "execute",
     "DB",

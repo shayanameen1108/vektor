@@ -122,7 +122,7 @@ function AdminPage() {
           <Card className="rounded-sm border-border shadow-none transition-colors hover:border-primary/40">
             <CardHeader>
               <p className="overline-label text-muted-foreground">User management</p>
-              <CardTitle className="flex items-center gap-1.5">
+              <CardTitle className="flex items-center gap-2">
                 Manage users <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </CardTitle>
               <CardDescription>Impersonate and troubleshoot accounts.</CardDescription>
@@ -133,7 +133,7 @@ function AdminPage() {
           <Card className="rounded-sm border-border shadow-none transition-colors hover:border-primary/40">
             <CardHeader>
               <p className="overline-label text-muted-foreground">Company registry</p>
-              <CardTitle className="flex items-center gap-1.5">
+              <CardTitle className="flex items-center gap-2">
                 Manage companies <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </CardTitle>
               <CardDescription>Inspect compliance posture at a glance.</CardDescription>
@@ -144,7 +144,7 @@ function AdminPage() {
           <Card className="rounded-sm border-border shadow-none transition-colors hover:border-primary/40">
             <CardHeader>
               <p className="overline-label text-muted-foreground">EFT console</p>
-              <CardTitle className="flex items-center gap-1.5">
+              <CardTitle className="flex items-center gap-2">
                 Review payments <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </CardTitle>
               <CardDescription>Confirm credits and trigger referral rewards.</CardDescription>

@@ -21,7 +21,7 @@ export function AuthShell({
       <div className="relative hidden w-1/2 flex-col justify-between border-r border-border p-12 lg:flex">
         <div aria-hidden="true" className="blueprint-grid pointer-events-none absolute inset-0" />
         <div aria-hidden="true" className="brand-glow pointer-events-none absolute inset-0" />
-        <Link to="/" data-testid="auth-brand-home" className="relative flex items-center gap-2.5">
+        <Link to="/" data-testid="auth-brand-home" className="relative flex items-center gap-3">
           <VektorMark className="h-8 w-8" />
           <span className="text-2xl font-bold tracking-tight">Vektor</span>
         </Link>
@@ -31,23 +31,23 @@ export function AuthShell({
             <span className="inline-block h-px w-6 bg-primary" />
             SA Tender Compliance
           </p>
-          <h2 className="text-4xl leading-[1.05] font-black tracking-tight xl:text-5xl">
+          <h2 className="text-4xl leading-none font-black tracking-tight xl:text-5xl">
             Never lose a bid on a <span className="text-primary">technicality</span> again.
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             CIDB matching, B-BBEE scoring, and expiry alerts for SA public tenders in seconds, not
             weeks.
           </p>
-          <ul className="space-y-2.5 pt-2 text-sm text-foreground">
-            <li className="flex items-start gap-2.5">
+          <ul className="space-y-3 pt-2 text-sm text-foreground">
+            <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
               <span>5 free tender analyses on signup</span>
             </li>
-            <li className="flex items-start gap-2.5">
+            <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
               <span>Auto-fill SBD 4 and SBD 6.1 forms</span>
             </li>
-            <li className="flex items-start gap-2.5">
+            <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
               <span>Email alerts 30 / 7 / 0 days before compliance expires</span>
             </li>

@@ -170,7 +170,7 @@ function AdminCompaniesPage() {
           >
             Company registry
           </h1>
-          <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             Read every tenant&apos;s compliance posture at a glance. Delete abandoned accounts or
             inspect documents, tenders, credits and reminders.
           </p>
@@ -203,7 +203,7 @@ function AdminCompaniesPage() {
       </div>
 
       <div className="overflow-x-auto rounded-sm border bg-card">
-        <Table className="min-w-[760px] text-sm">
+        <Table className="min-w-190 text-sm">
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="px-6 py-3 table-caps text-muted-foreground">Company</TableHead>
@@ -265,7 +265,7 @@ function AdminCompaniesPage() {
                     {r.expired_doc_count > 0 && (
                       <Badge
                         variant="outline"
-                        className="ml-1 border-destructive/20 bg-destructive/10 text-[10px] font-bold text-destructive"
+                        className="ml-1 border-destructive/20 bg-destructive/10 text-xs font-bold text-destructive"
                       >
                         {r.expired_doc_count} expired
                       </Badge>
@@ -390,8 +390,8 @@ function AdminCompaniesPage() {
                       variant={d.is_compliant ? "outline" : "destructive"}
                       className={
                         d.is_compliant
-                          ? "border-status-success/25 bg-status-success/10 text-[10px] font-bold text-status-success"
-                          : "text-[10px] font-bold"
+                          ? "border-status-success/25 bg-status-success/10 text-xs font-bold text-status-success"
+                          : "text-xs font-bold"
                       }
                     >
                       {d.is_compliant ? "ok" : "non-compliant"}

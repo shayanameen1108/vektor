@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { getSbd4Fields, getSbd61Fields } from "@/lib/sbd";
 

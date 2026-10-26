@@ -4,7 +4,7 @@ import { env } from "cloudflare:workers";
 import { createDb } from "@/db";
 import { fetchOwnedCompany } from "@/lib/ownership";
 import { buildTestAlertHtml } from "@/lib/reminder-template";
-import { sendViaResend } from "@/lib/reminder";
+import { sendEmail } from "@/lib/reminder";
 import { runtimeEnv } from "@/lib/runtime-env";
 import { requireUser } from "@/lib/server-auth";
 
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/api/reminders/test/$companyId")({
           appUrl: (runtimeEnv.APP_URL || "").replace(/\/$/, ""),
         });
         try {
-          const resendId = await sendViaResend(
+          const resendId = await sendEmail(
             runtimeEnv,
             to,
             "[Vektor] Test alert — Compliance Guardian",

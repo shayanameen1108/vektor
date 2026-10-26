@@ -3,6 +3,8 @@ import { env } from "cloudflare:workers";
 /** Secrets and vars configured with Wrangler in addition to generated bindings. */
 export type RuntimeEnv = Env & {
   AI: Ai;
+  /** "local" in .dev.vars swaps in the local adapters (src/lib/ports.ts). */
+  ENVIRONMENT?: string;
   APP_URL?: string;
   BETTER_AUTH_URL?: string;
   BETTER_AUTH_SECRET?: string;
@@ -23,6 +25,7 @@ export type RuntimeEnv = Env & {
 export const runtimeEnv = env as unknown as RuntimeEnv;
 
 export interface MailEnv {
+  ENVIRONMENT?: string;
   APP_URL?: string;
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;

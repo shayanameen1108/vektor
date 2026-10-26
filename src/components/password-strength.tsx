@@ -23,7 +23,7 @@ export function PasswordStrength({ password, email }: { password: string; email?
   if (!password) {
     return (
       <p
-        className="mt-2 text-[11px] leading-relaxed text-muted-foreground"
+        className="mt-2 text-xs leading-relaxed text-muted-foreground"
         data-testid="password-requirements"
       >
         Minimum {MIN_LENGTH} characters. Avoid common passwords like &quot;password123&quot;. A
@@ -39,7 +39,7 @@ export function PasswordStrength({ password, email }: { password: string; email?
           <ProgressIndicator className={`h-full ${BAR_COLORS[score]}`} />
         </ProgressTrack>
       </Progress>
-      <p className={`mt-1.5 text-[11px] leading-relaxed ${LABEL_COLORS[score]}`}>
+      <p className={`mt-2 text-xs leading-relaxed ${LABEL_COLORS[score]}`}>
         <span className="font-semibold">{label}.</span>{" "}
         <span className={ok ? "text-muted-foreground" : "text-muted-foreground/70"}>{hint}</span>
       </p>

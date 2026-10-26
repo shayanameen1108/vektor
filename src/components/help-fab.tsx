@@ -141,7 +141,7 @@ export function HelpFab() {
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-primary text-xs font-bold text-primary-foreground">
                     {i + 1}
                   </span>
-                  <span className="pt-0.5">{t}</span>
+                  <span className="pt-1">{t}</span>
                 </li>
               ))}
             </ul>

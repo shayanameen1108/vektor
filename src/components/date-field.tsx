@@ -46,9 +46,9 @@ export function DateField({
             type="button"
             variant="outline"
             data-testid={testId}
-            data-empty={!selected}
+            data-empty={selected ? undefined : ""}
             aria-haspopup="dialog"
-            className="w-full justify-start font-normal data-[empty=true]:text-muted-foreground"
+            className="w-full justify-start font-normal data-empty:text-muted-foreground"
           />
         }
       >

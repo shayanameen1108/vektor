@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 import { classifyExpiry, EXPIRING_SOON_DAYS, extractExpiryFromText } from "@/lib/compliance";
 import { REMINDER_THRESHOLDS } from "@/lib/reminder";

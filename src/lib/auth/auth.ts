@@ -8,7 +8,7 @@ import { createDb } from "@/db";
 import * as schema from "@/db/schema";
 import { buildTrustedOrigins } from "@/lib/auth/trusted-origins";
 import { ensureReferralCode, recordSignup } from "@/lib/referral";
-import { sendViaResend } from "@/lib/reminder";
+import { sendEmail } from "@/lib/reminder";
 import { buildPasswordResetHtml } from "@/lib/reminder-template";
 import { runtimeEnv } from "@/lib/runtime-env";
 
@@ -54,7 +54,7 @@ export const auth = betterAuth({
     revokeSessionsOnPasswordReset: true,
     sendResetPassword: async ({ user, url }) => {
       const appUrl = (runtimeEnv.APP_URL || runtimeEnv.BETTER_AUTH_URL || "").replace(/\/$/, "");
-      const delivery = sendViaResend(
+      const delivery = sendEmail(
         runtimeEnv,
         user.email,
         "[Vektor] Reset your password",
@@ -73,7 +73,7 @@ export const auth = betterAuth({
       clientSecret: runtimeEnv.GOOGLE_CLIENT_SECRET ?? "",
     },
   },
-  // `nub run dev` is :5173 and preview/e2e is :4173. Trust both local
+  // `vp run dev` is :5173 and preview/e2e is :4173. Trust both local
   // origins so cookies and CSRF checks work regardless of which port is up.
   // Configured public URLs are expanded with their apex/www counterparts so
   // login works on both https://vektorhq.co.za and https://www.vektorhq.co.za.

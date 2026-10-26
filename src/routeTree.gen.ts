@@ -38,6 +38,7 @@ import { Route as ApiBillingPackagesRouteImport } from './routes/api/billing/pac
 import { Route as ApiCompaniesIndexRouteImport } from './routes/api/companies/index'
 import { Route as ApiCompaniesCompanyIdRouteImport } from './routes/api/companies/$companyId'
 import { Route as ApiDashboardActivityRouteImport } from './routes/api/dashboard/activity'
+import { Route as ApiDevMailRouteImport } from './routes/api/dev/mail'
 import { Route as ApiDocumentsIdRouteImport } from './routes/api/documents/$id'
 import { Route as ApiDocumentsPreviewBbbeeRouteImport } from './routes/api/documents/preview-bbbee'
 import { Route as ApiDocumentsUploadRouteImport } from './routes/api/documents/upload'
@@ -213,6 +214,11 @@ const ApiCompaniesCompanyIdRoute = ApiCompaniesCompanyIdRouteImport.update({
 const ApiDashboardActivityRoute = ApiDashboardActivityRouteImport.update({
   id: '/api/dashboard/activity',
   path: '/api/dashboard/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDevMailRoute = ApiDevMailRouteImport.update({
+  id: '/api/dev/mail',
+  path: '/api/dev/mail',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiDocumentsIdRoute = ApiDocumentsIdRouteImport.update({
@@ -419,6 +425,7 @@ export interface FileRoutesByFullPath {
   '/api/billing/packages': typeof ApiBillingPackagesRoute
   '/api/companies/$companyId': typeof ApiCompaniesCompanyIdRoute
   '/api/dashboard/activity': typeof ApiDashboardActivityRoute
+  '/api/dev/mail': typeof ApiDevMailRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/documents/preview-bbbee': typeof ApiDocumentsPreviewBbbeeRoute
   '/api/documents/upload': typeof ApiDocumentsUploadRoute
@@ -480,6 +487,7 @@ export interface FileRoutesByTo {
   '/api/billing/packages': typeof ApiBillingPackagesRoute
   '/api/companies/$companyId': typeof ApiCompaniesCompanyIdRoute
   '/api/dashboard/activity': typeof ApiDashboardActivityRoute
+  '/api/dev/mail': typeof ApiDevMailRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/documents/preview-bbbee': typeof ApiDocumentsPreviewBbbeeRoute
   '/api/documents/upload': typeof ApiDocumentsUploadRoute
@@ -544,6 +552,7 @@ export interface FileRoutesById {
   '/api/billing/packages': typeof ApiBillingPackagesRoute
   '/api/companies/$companyId': typeof ApiCompaniesCompanyIdRoute
   '/api/dashboard/activity': typeof ApiDashboardActivityRoute
+  '/api/dev/mail': typeof ApiDevMailRoute
   '/api/documents/$id': typeof ApiDocumentsIdRoute
   '/api/documents/preview-bbbee': typeof ApiDocumentsPreviewBbbeeRoute
   '/api/documents/upload': typeof ApiDocumentsUploadRoute
@@ -608,6 +617,7 @@ export interface FileRouteTypes {
     | '/api/billing/packages'
     | '/api/companies/$companyId'
     | '/api/dashboard/activity'
+    | '/api/dev/mail'
     | '/api/documents/$id'
     | '/api/documents/preview-bbbee'
     | '/api/documents/upload'
@@ -669,6 +679,7 @@ export interface FileRouteTypes {
     | '/api/billing/packages'
     | '/api/companies/$companyId'
     | '/api/dashboard/activity'
+    | '/api/dev/mail'
     | '/api/documents/$id'
     | '/api/documents/preview-bbbee'
     | '/api/documents/upload'
@@ -732,6 +743,7 @@ export interface FileRouteTypes {
     | '/api/billing/packages'
     | '/api/companies/$companyId'
     | '/api/dashboard/activity'
+    | '/api/dev/mail'
     | '/api/documents/$id'
     | '/api/documents/preview-bbbee'
     | '/api/documents/upload'
@@ -785,6 +797,7 @@ export interface RootRouteChildren {
   ApiBillingPackagesRoute: typeof ApiBillingPackagesRoute
   ApiCompaniesCompanyIdRoute: typeof ApiCompaniesCompanyIdRoute
   ApiDashboardActivityRoute: typeof ApiDashboardActivityRoute
+  ApiDevMailRoute: typeof ApiDevMailRoute
   ApiDocumentsIdRoute: typeof ApiDocumentsIdRoute
   ApiDocumentsPreviewBbbeeRoute: typeof ApiDocumentsPreviewBbbeeRoute
   ApiDocumentsUploadRoute: typeof ApiDocumentsUploadRoute
@@ -1016,6 +1029,13 @@ declare module '@tanstack/react-router' {
       path: '/api/dashboard/activity'
       fullPath: '/api/dashboard/activity'
       preLoaderRoute: typeof ApiDashboardActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/dev/mail': {
+      id: '/api/dev/mail'
+      path: '/api/dev/mail'
+      fullPath: '/api/dev/mail'
+      preLoaderRoute: typeof ApiDevMailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/documents/$id': {
@@ -1359,6 +1379,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiBillingPackagesRoute: ApiBillingPackagesRoute,
   ApiCompaniesCompanyIdRoute: ApiCompaniesCompanyIdRoute,
   ApiDashboardActivityRoute: ApiDashboardActivityRoute,
+  ApiDevMailRoute: ApiDevMailRoute,
   ApiDocumentsIdRoute: ApiDocumentsIdRoute,
   ApiDocumentsPreviewBbbeeRoute: ApiDocumentsPreviewBbbeeRoute,
   ApiDocumentsUploadRoute: ApiDocumentsUploadRoute,

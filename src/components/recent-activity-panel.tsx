@@ -76,7 +76,7 @@ function ActivityRowShell({
           aria-label={typeof title === "string" ? title : "Open activity"}
         />
       }
-      className="w-full rounded-none border-0 px-5 py-3.5 hover:bg-accent"
+      className="w-full rounded-none border-0 px-5 py-4 hover:bg-accent"
     >
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-secondary text-secondary-foreground">
         {icon}
@@ -168,7 +168,7 @@ export function RecentActivityPanel({ limit = 8 }: { limit?: number }) {
   return (
     <Card className="mb-8" data-testid="recent-activity-panel">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-border">
-        <CardTitle className="flex items-center gap-2.5 text-xl font-bold tracking-tight">
+        <CardTitle className="flex items-center gap-3 text-xl font-bold tracking-tight">
           Recent Activity
         </CardTitle>
         <span className="overline-label text-muted-foreground">Last {limit}</span>
@@ -185,7 +185,7 @@ export function RecentActivityPanel({ limit = 8 }: { limit?: number }) {
               key={tab.key}
               value={tab.key}
               data-testid={`activity-tab-${tab.key}`}
-              className="label-caps flex-none whitespace-nowrap rounded-sm px-3 py-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground data-active:bg-primary data-active:text-primary-foreground data-active:hover:bg-primary data-active:hover:text-primary-foreground"
+              className="label-caps flex-none whitespace-nowrap rounded-sm px-3 py-2 text-muted-foreground hover:bg-secondary hover:text-foreground data-active:bg-primary data-active:text-primary-foreground data-active:hover:bg-primary data-active:hover:text-primary-foreground"
             >
               {tab.label}
             </TabsTrigger>

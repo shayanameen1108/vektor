@@ -1,0 +1,55 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    # A hung step fails within the hour, not at GitHub's six.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      # The v1 tag is frozen and no longer moves.
+      - uses: voidzero-dev/setup-vp@v1.21.2
+        with:
+          node-version-file: .node-version
+          cache: true
+      - run: vp check
+      - run: vp run check:tokens
+      - run: vp test run
+      # No secrets: preflight copies .dev.vars.example, whose ENVIRONMENT="local"
+      # keeps email and tender analysis on this machine (src/lib/ports.ts).
+      # Installed Chrome. The public pages, then the one chain that spends a credit.
+      - run: vp run test:smoke
+        timeout-minutes: 15
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
+          if-no-files-found: ignore
+
+  deploy:
+    # Production: only from main, and only once every check above has passed.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # One deploy at a time; a newer push waits rather than racing the older one.
+    concurrency:
+      group: production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+      - uses: voidzero-dev/setup-vp@v1.21.2
+        with:
+          node-version-file: .node-version
+          cache: true
+      - run: vp run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

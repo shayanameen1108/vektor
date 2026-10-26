@@ -32,7 +32,7 @@ export function PublicHeader({
   return (
     <header data-testid={testId} className="sticky top-0 z-20 border-b border-border bg-card">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
-        <Link to="/" data-testid={brandTestId} className="flex items-center gap-2.5">
+        <Link to="/" data-testid={brandTestId} className="flex items-center gap-3">
           <VektorMark className="h-7 w-7" />
           <span className="text-xl font-bold tracking-tight">Vektor</span>
         </Link>
@@ -64,7 +64,7 @@ export function PublicHeader({
                     <Link
                       to={item.to}
                       data-testid={`${testId}-mobile-${item.key}`}
-                      className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                      className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                     >
                       {item.label}
                     </Link>
@@ -78,7 +78,7 @@ export function PublicHeader({
                     to="/login"
                     search={{}}
                     data-testid={`${testId}-mobile-login`}
-                    className="rounded-sm px-3 py-2.5 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
+                    className="rounded-sm px-3 py-3 text-sm font-semibold text-muted-foreground hover:bg-accent hover:text-foreground"
                   >
                     Sign in
                   </Link>
