@@ -1,0 +1,13 @@
+diff --git a/dist/wrapper-D3sZyh2C.mjs b/dist/wrapper-D3sZyh2C.mjs
+index 24e66f5163de40db55a1df6acb140217269cbdc4..b659844a73515de678966f0062aa481180ec6837 100644
+--- a/dist/wrapper-D3sZyh2C.mjs
++++ b/dist/wrapper-D3sZyh2C.mjs
+@@ -145,7 +145,7 @@ async function generateWrapper(workerDir, workerMain, root, features) {
+ 			}
+ 		});
+ 		handlerFilename = readdirSync(outDir).filter((f) => f.startsWith("__void_handlers"))[0] ?? "__void_handlers.mjs";
+-		copyFileSync(join(outDir, handlerFilename), join(workerDir, handlerFilename));
++		for (const emitted of readdirSync(outDir)) copyFileSync(join(outDir, emitted), join(workerDir, emitted));
+ 	}
+ 	let migrations;
+ 	let migrationPlanBundle;

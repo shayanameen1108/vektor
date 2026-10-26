@@ -2,6 +2,7 @@
   "name": "vektor",
   "private": true,
   "type": "module",
+  "sideEffects": false,
   "scripts": {
     "dev": "vp run db:migrate:local && vp dev --host 127.0.0.1",
     "build": "vp build",
@@ -46,7 +47,7 @@
     "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.3.3",
-    "@tanstack/devtools-vite": "^0.8.3",
+    "@tanstack/devtools-vite": "^0.8.5",
     "@tanstack/react-devtools": "^0.10.13",
     "@tanstack/react-router-devtools": "^1.167.2",
     "@types/node": "^24.19.2",
@@ -59,8 +60,8 @@
     "typescript": "^7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
-    "void": "^1.1.12",
+    "void": "^1.2.1",
     "wrangler": "^4.152.0"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.15.0"
 }
