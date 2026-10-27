@@ -3,7 +3,7 @@
  * for `?redirect=`; `isAdminConsoleSession` / `homeForSession` are the same
  * admin-vs-impersonation rule used by route guards and `requireAdmin`.
  */
-export const USER_DESTINATIONS = [
+const USER_DESTINATIONS = [
   "/app",
   "/setup",
   "/documents",

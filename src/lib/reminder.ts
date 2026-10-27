@@ -109,7 +109,7 @@ class EmailNotConfiguredError extends Error {}
 class EmailProviderRejectedError extends Error {}
 class EmailSendError extends Error {}
 
-export async function sendViaResend(
+async function sendViaResend(
   env: MailEnv,
   toEmail: string,
   subject: string,

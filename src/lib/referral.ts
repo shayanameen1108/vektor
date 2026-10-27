@@ -28,7 +28,7 @@ export const TIER_REWARDS: Record<string, number> = {
 };
 export const MONTHLY_REWARD_CAP = 5;
 export const LIFETIME_REWARD_CAP = 20;
-export const REFEREE_SIGNUP_BONUS = 0;
+const REFEREE_SIGNUP_BONUS = 0;
 
 export function isSelfReferral(
   referrer: { id: string; email: string },
