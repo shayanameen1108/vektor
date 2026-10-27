@@ -13,7 +13,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 
-export function NoCompanyEmpty({ testId }: { testId: string }) {
+function NoCompanyEmpty({ testId }: { testId: string }) {
   const navigate = useNavigate();
 
   return (

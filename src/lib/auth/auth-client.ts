@@ -1,6 +1,8 @@
 import { adminClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
+import { asString } from "@/lib/request-utils";
+
 export const authClient = createAuthClient({
   plugins: [adminClient()],
 });
@@ -19,10 +21,6 @@ export interface VektorSessionData {
     referralCode?: string | null;
   } | null;
   session?: { id: string; impersonatedBy?: string | null } | null;
-}
-
-function asString(value: unknown): string {
-  return typeof value === "string" ? value : "";
 }
 
 export function asVektorSession(data: unknown): VektorSessionData | null {

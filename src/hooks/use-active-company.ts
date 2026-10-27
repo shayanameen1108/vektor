@@ -49,7 +49,7 @@ if (typeof window !== "undefined") {
 }
 
 /** Drop the remembered pick on sign-out so the next user starts clean. */
-export function clearActiveCompany() {
+function clearActiveCompany() {
   setId(null);
 }
 

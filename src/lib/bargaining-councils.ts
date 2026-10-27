@@ -14,7 +14,7 @@ export interface BargainingCouncil {
   website?: string | null;
 }
 
-export const COUNCILS: BargainingCouncil[] = [
+const COUNCILS: BargainingCouncil[] = [
   {
     code: "BCCEI",
     name: "Bargaining Council for the Civil Engineering Industry",

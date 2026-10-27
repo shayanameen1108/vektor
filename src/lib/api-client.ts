@@ -8,7 +8,7 @@
 
 import type { EftStatus } from "@/lib/eft";
 
-export class ApiError extends Error {
+class ApiError extends Error {
   status: number;
   detail: string;
 

@@ -376,7 +376,7 @@ function drawTable(state: BuilderState, rows: string[][], colWidths: number[]) {
 
 // --- Public generators ---
 
-export async function generateSbd4(company: SbdCompany, tender: SbdTender): Promise<Uint8Array> {
+async function generateSbd4(company: SbdCompany, tender: SbdTender): Promise<Uint8Array> {
   const fields = getSbd4Fields(company, tender);
   const pdfDoc = await PDFDocument.create();
   const currentPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
@@ -459,7 +459,7 @@ export async function generateSbd4(company: SbdCompany, tender: SbdTender): Prom
   return bytes;
 }
 
-export async function generateSbd61(
+async function generateSbd61(
   company: SbdCompany,
   tender: SbdTender,
   preferenceSystemInput?: string | null,

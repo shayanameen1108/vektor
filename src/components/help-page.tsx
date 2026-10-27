@@ -152,7 +152,7 @@ function ReferenceSection({
   );
 }
 
-export function HelpContent() {
+function HelpContent() {
   return (
     <div className="mx-auto w-full max-w-6xl space-y-10 p-4 sm:p-8">
       <section data-testid="help-walkthrough-section">
